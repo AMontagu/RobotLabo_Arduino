@@ -125,6 +125,8 @@ long ColorSensorTCS3200::getPrecisionValue(void) {
 	return 0;
 }
 
+void ColorSensorTCS3200::reset(void) {}
+
 char* ColorSensorTCS3200::getSensorName(void) {
 	return this->sensorName;
 }
@@ -206,49 +208,6 @@ ISR(TIMER2_OVF_vect)//the timer 2, 10ms interrupt overflow again. Internal overf
 		TIMSK2 = 0x00;
 	}
 	currentColorSensor->counter = 0;
-	//Serial.println("before delay in ISR");
-	delay(2);
-}
-
-void ColorSensorTCS3200::getRGB() {
-	flag++;
-	if (flag == 1)
-	{
-		counter = 0;
-	}
-	else if (flag == 2)
-	{
-		digitalWrite(s2, LOW);
-		digitalWrite(s3, LOW);
-		countR = counter / 1.051;
-		Serial.print("ared=");
-		Serial.println(countR, DEC);
-		digitalWrite(s2, HIGH);
-		digitalWrite(s3, HIGH);
-	}
-	else if (flag == 3)
-	{
-		countG = counter / 1.0157;
-		Serial.print("agreen=");
-		Serial.println(countG, DEC);
-		digitalWrite(s2, LOW);
-		digitalWrite(s3, HIGH);
-
-	}
-	else if (flag == 4)
-	{
-		countB = counter / 1.114;
-		Serial.print("ablue=");
-		Serial.println(countB, DEC);
-		digitalWrite(s2, LOW);
-		digitalWrite(s3, LOW);
-	}
-	else
-	{
-		//Serial.println("in else ISR primary condition");
-		flag = 0;
-	}
-	counter = 0;
 	//Serial.println("before delay in ISR");
 	delay(2);
 }

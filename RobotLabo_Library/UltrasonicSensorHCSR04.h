@@ -106,6 +106,11 @@ class UltrasonicSensorHCSR04 : public Sensor
 	 virtual long getPrecisionValue(void);
 
 	 /**
+	 *  reset the sensor. For exemple for the encodeur ...
+	 */
+	 virtual void reset(void);
+
+	 /**
 	 *  get the name of the sensor
 	 *
 	 *  @return a sting corresponding to the name of the sensor
