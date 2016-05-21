@@ -20,7 +20,7 @@ class UltrasonicSensorHCSR04 : public Sensor
 	 /**
 	 *  Name of the sensor
 	 */
-	 char* sensorName;
+	 char* sensorName; //yann comment
 
 	 /**
 	 *  Name of the sensor
