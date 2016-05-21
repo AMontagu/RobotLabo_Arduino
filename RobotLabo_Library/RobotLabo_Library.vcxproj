@@ -76,8 +76,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actioner.h" />
     <ClInclude Include="ColorSensorTCS3200.h" />
+    <ClInclude Include="Encoder.h" />
     <ClInclude Include="IRSharp10To80.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sensor.h" />
@@ -86,8 +86,8 @@
     <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actioner.c" />
     <ClCompile Include="ColorSensorTCS3200.cpp" />
+    <ClCompile Include="Encoder.cpp" />
     <ClCompile Include="IRSharp10To80.cpp" />
     <ClCompile Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp" />
     <ClCompile Include="UltrasonicSensorHCSR04.cpp" />

@@ -6,6 +6,7 @@
 */
 
 //#include "RobotLabo_LibraryLib.h"
+#include "Servo180.h"
 #include "Encoder.h"
 #include "ColorSensorTCS3200.h"
 #include "IRSharp10To80.h"

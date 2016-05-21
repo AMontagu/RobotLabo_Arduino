@@ -31,7 +31,7 @@
     <ClCompile Include="ColorSensorTCS3200.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actioner.c">
+    <ClCompile Include="Encoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -57,7 +57,7 @@
     <ClInclude Include="ColorSensorTCS3200.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Actioner.h">
+    <ClInclude Include="Encoder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

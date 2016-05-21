@@ -15,10 +15,7 @@ enum motorType { courantContinu, pasapas, servoMotor};
 class Motor
 {
 public:
-	Motor(void)
-	{
-
-	}
+	Motor(void){}
 
 public:
 
