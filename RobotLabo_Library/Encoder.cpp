@@ -4,12 +4,16 @@
 
 #include "Encoder.h"
 
-Encoder::Encoder(char* name, int interruptPin)
+Encoder* encoderRight;
+Encoder* encoderLeft;
+
+Encoder::Encoder(char* name, int interruptPin, bool isRight)
 {
 	this->sensorName = name;
 	this->sensorFamilyVar = sensorFamily::encoderSensor;
 	this->sensorTypeVar = sensorType::encoder;
 	this->interruptPin = interruptPin;
+	this->isRight = isRight;
 
 	this->isSetupVar = false;
 
@@ -46,7 +50,17 @@ Encoder::~Encoder() {}
 bool Encoder::setup(void) {
 
 	//Initiate
-	attachInterrupt(this->interruptPin, this->getEncoder, CHANGE);
+	if (this->isRight)
+	{
+		encoderRight = this;
+		attachInterrupt(this->interruptPin, getEncoderRight, CHANGE);
+	}
+	if (!this->isRight)
+	{
+		encoderLeft = this;
+		attachInterrupt(this->interruptPin, getEncoderLeft, CHANGE);
+	}
+	
 
 	this->isSetupVar = true;
 
@@ -81,7 +95,26 @@ int Encoder::getSensorFamily(void) {
 	return this->sensorFamilyVar;
 }
 
-void Encoder::getEncoder() {
-	this->counter++;
+void getEncoderLeft() {
+	if (!encoderLeft) {
+		encoderLeft->counter++;
+	}
+}
+
+void getEncoderRight() {
+	if (!encoderRight) {
+		encoderRight->counter++;
+	}
+}
+
+void attachInterruptHack(int pin, bool isRight) {
+	if (isRight)
+	{
+		attachInterrupt(pin, getEncoderRight, CHANGE);
+	}
+	if (!isRight)
+	{
+		attachInterrupt(pin, getEncoderLeft, CHANGE);
+	}
 }
 

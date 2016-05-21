@@ -1,5 +1,5 @@
 // MotoeShield.h
-
+/*
 
 #ifndef _MOTORCONTINUV23_h
 #define _MOTORCONTINUV23_h
@@ -47,4 +47,4 @@ public:
 	void setIsMove(bool value);
 
 	void move(int direction);
-};
+};*/

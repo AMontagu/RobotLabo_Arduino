@@ -28,6 +28,10 @@ public:
 	virtual int getMotorType(void) = 0;
 
 	virtual void move(int value) = 0;
+
+	virtual void setSpeed(int speed) = 0;
+
+	virtual int getSpeed() = 0;
 	
 };
 #endif

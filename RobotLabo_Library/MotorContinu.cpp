@@ -1,5 +1,5 @@
 // MotorContinu.cpp
-
+/*
 #include <MotorContinu.h>
 
 
@@ -44,4 +44,4 @@ bool MotorContinu::getIsMove()
 void MotorContinu::setIsMove(bool value)
 {
 	this->isMove = value;
-}
+}*/

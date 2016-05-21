@@ -70,6 +70,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
 #include <Motor.h>
+#include <MotorContinu.cpp>
+#include <MotorContinu.h>
 #include <MotorShield.cpp>
 #include <MotorShield.h>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp>

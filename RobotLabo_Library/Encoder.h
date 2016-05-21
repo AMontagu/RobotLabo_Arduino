@@ -11,6 +11,11 @@
 
 #include "Sensor.h"
 
+void attachInterruptHack(int pin, bool isRight);
+
+void getEncoderRight();
+void getEncoderLeft();
+
 class Encoder : public Sensor
 {
 private:
@@ -30,14 +35,21 @@ private:
 	int sensorFamilyVar;
 
 	/**
-	*  return true is the sensor is setup.
+	*  return true is the encoder is setup.
 	*/
 	bool isSetupVar;
+
+	/**
+	*  return true is the encoder is setup.
+	*/
+	bool isRight;
 
 	/**
 	*  number for the interrupt pin on the arduino
 	*/
 	int interruptPin;
+
+public :
 
 	/**
 	*  encoder counter
@@ -45,18 +57,12 @@ private:
 	int counter;
 
 	/**
-	*  function called by attach interrupt for get the encoder increment
-	*/
-	void getEncoder(void);
-
-public :
-	/**
 	*  Constructor.
 	*
 	*  @param name is the name of the encoder.
 	*  @param interruptPin pin where the encoder is plugged. (need to be 2,3,18,19,20 or 21)
 	*/
-	Encoder(char* name, int interruptPin);
+	Encoder(char* name, int interruptPin, bool isRight);
 
 	/**
 	*  Copy constructor.
