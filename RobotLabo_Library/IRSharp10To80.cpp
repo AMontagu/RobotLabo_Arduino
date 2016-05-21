@@ -88,6 +88,8 @@ long IRSharp10To80::getPrecisionValue(void) {
 	return distance;
 }
 
+void IRSharp10To80::reset(void) {}
+
 char* IRSharp10To80::getSensorName(void) {
 	return this->sensorName;
 }

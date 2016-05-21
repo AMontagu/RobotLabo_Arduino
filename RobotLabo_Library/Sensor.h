@@ -9,8 +9,8 @@
 	#include "WProgram.h"
 #endif
 
-enum sensorType { ultrason, infrared, color};
-enum sensorFamily { distanceSensor, colorSensor};
+enum sensorType { ultrason, infrared, color, encoder};
+enum sensorFamily { distanceSensor, colorSensor, encoderSensor};
 
 class Sensor
 {
@@ -73,6 +73,11 @@ class Sensor
 	 *  @return an long that is a value
 	 */
 	 virtual long getPrecisionValue(void) = 0;
+
+	 /**
+	 *  reset the sensor. For exemple for the encodeur ...
+	 */
+	 virtual void reset(void) = 0;
 
 	 /**
 	 *  get the name of the sensor

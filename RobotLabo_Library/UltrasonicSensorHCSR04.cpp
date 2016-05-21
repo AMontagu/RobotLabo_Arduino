@@ -104,6 +104,8 @@ long UltrasonicSensorHCSR04::getPrecisionValue(void) {
 	return distance;
 }
 
+void UltrasonicSensorHCSR04::reset(void) {}
+
 char* UltrasonicSensorHCSR04::getSensorName(void) {
 	return this->sensorName;
 }

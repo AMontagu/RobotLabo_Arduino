@@ -1,7 +1,7 @@
-// ColorSensorTCS3200.h
+// Encoder.h
 
-#ifndef _COLORSENSORTCS3200_h
-#define _COLORSENSORTCS3200_h
+#ifndef _ENCODER_h
+#define _ENCODER_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -11,17 +11,9 @@
 
 #include "Sensor.h"
 
-enum color{red, blue, yellow, black, white, green};
-
-ISR(TIMER2_OVF_vect);
-void TCS();
-void timer2_init(void);
-void ISR_INTO();
-
-class ColorSensorTCS3200 : public Sensor
+class Encoder : public Sensor
 {
 private:
-
 	/**
 	*  Name of the sensor
 	*/
@@ -42,40 +34,49 @@ private:
 	*/
 	bool isSetupVar;
 
-public:
+	/**
+	*  number for the interrupt pin on the arduino
+	*/
+	int interruptPin;
 
-	int s0, s1, s2, s3, out;
-	int flag = 0;
-	int counter = 0;
-	int countR = 0, countG = 0, countB = 0;
+	/**
+	*  encoder counter
+	*/
+	int counter;
 
+	/**
+	*  function called by attach interrupt for get the encoder increment
+	*/
+	void getEncoder(void);
+
+public :
 	/**
 	*  Constructor.
 	*
-	*  @param name is the name of the ultrasonic sensor.
-	*  @param pin digital pin where to ultrasoni sensor is plugged.
+	*  @param name is the name of the encoder.
+	*  @param interruptPin pin where the encoder is plugged. (need to be 2,3,18,19,20 or 21)
 	*/
-	ColorSensorTCS3200(char* name, int s0, int s1, int s2, int s3, int out);
+	Encoder(char* name, int interruptPin);
 
 	/**
 	*  Copy constructor.
 	*
-	*  @param ss the TcpSocket to copy.
+	*  @param ss the Encoder to copy.
 	*/
-	ColorSensorTCS3200(const ColorSensorTCS3200 &    ss);
+	Encoder(const Encoder &    ss);
 
 	/**
 	*  Destructor.
 	*/
-	virtual ~ColorSensorTCS3200(void);
+	virtual ~Encoder(void);
 
 	/**
 	*  Assignment operator.
 	*
-	*  @param ss the UltrasonicSensor to assign this to.
-	*  @return a reference to this UltrasonicSensor.
+	*  @param ss the Encoder to assign this to.
+	*  @return a reference to this Encoder.
 	*/
-	virtual ColorSensorTCS3200 &operator= (const ColorSensorTCS3200 &    ss);
+	virtual Encoder &operator= (const Encoder &    ss);
 
 	/**
 	*  Setup the sensor.
@@ -92,7 +93,7 @@ public:
 	virtual bool isSetup(void);
 
 	/**
-	*  get the principal value interest of the sensor. For color is an enum of color, for distance is distance...
+	*  get the counter attached to the encoder...
 	*
 	*  @return an int that is a value or a enum depend of sensor type
 	*/
@@ -130,6 +131,7 @@ public:
 	*  @return an int corresponding to the enum sensor Family
 	*/
 	virtual int getSensorFamily(void);
+	
 };
 
 #endif

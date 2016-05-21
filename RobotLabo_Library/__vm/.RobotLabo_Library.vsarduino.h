@@ -66,6 +66,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <RobotLabo_Library.ino>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>
+#include <Encoder.cpp>
+#include <Encoder.h>
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp>
