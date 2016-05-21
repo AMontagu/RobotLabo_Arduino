@@ -30,13 +30,7 @@ public:
 
 	virtual int getMotorType(void) = 0;
 
-	virtual void forward(int value) = 0;
-
-	virtual void backward(int value) = 0;
-
-	virtual void turnLeft(int value) = 0;
-
-	virtual void turnRight(int value) = 0;
+	virtual void move(int value) = 0;
 	
 };
 #endif
