@@ -1,8 +1,8 @@
 // MotoeShield.h
 
 
-#ifndef _MOTORSHIELDV23_h
-#define _MOTORSHIELDV23_h
+#ifndef _MOTORCONTINUV23_h
+#define _MOTORCONTINUV23_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -13,7 +13,7 @@
 //#include "Sensor.h"
 
 
-class MotorShield : public Motor
+class MotorContinu : public Motor
 {
 private:
 
@@ -23,10 +23,16 @@ private:
 
 	bool isSetup;
 
+	bool isMove;
+
+	int pin1;
+
+	int pin2;
+
 	
 public:
 
-	MotorShield(char * name);
+	MotorContinu(char * name);
 
 	void setup(void);
 
@@ -36,11 +42,9 @@ public:
 
 	int getMotorType(void);
 
-	void forward(int vitesse);
+	bool getIsMove();
 
-	void backward(int vitesse);
+	void setIsMove(bool value);
 
-	void turnLeft(int direction);
-
-	void turnRight(int direction);
+	void move(int direction);
 };
