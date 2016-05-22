@@ -32,6 +32,8 @@ public:
 	virtual void setSpeed(int speed) = 0;
 
 	virtual int getSpeed() = 0;
+
+	virtual bool getIsMove() = 0;
 	
 };
 #endif

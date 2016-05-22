@@ -73,3 +73,8 @@ void Servo180::setSpeed(int speed) {
 int Servo180::getSpeed() {
 	return this->speed;
 }
+
+bool Servo180::getIsMove()
+{
+	return isMoveVar;
+}

@@ -1,47 +1,66 @@
 // MotorContinu.cpp
-/*
-#include <MotorContinu.h>
+
+#include "MotorContinu.h"
 
 
-MotorContinu::MotorContinu(char* name, int pin1, int pin2)
+MotorContinu::MotorContinu(int port)
 {
-	this->motorName = name;
-	this->motorFamily = motorFamily::courantContinu;
-	this->pin1 = pin1;
-	this->pin2 = pin2;
+	motorTypeVar = motorType::courantContinu;
+	this->port = port;
+	afms = Adafruit_MotorShield();
+
+	this->motor = afms.getMotor(port);
 
 	this->setup();
 }
 
 
-char* MotorContinu::getMotorName(void)
+bool MotorContinu::setup(void)
 {
-	return this->motorName;
-}
+	afms.begin();
 
-void MotorContinu::setup(void)
-{
-	
+	motor->setSpeed(150);
+	motor->run(FORWARD);
+	delay(1000);
+	// turn on motor
+	motor->run(RELEASE);
 
+	Serial.println("okay2");
 }
 
 bool MotorContinu::isSetup(void)
 {
-	return this->isSetup;
+	return isSetupVar;
 }
 
+char* MotorContinu::getMotorName(void) {
+	return this->motorName;
+}
 
-void MotorContinu::move(int direction)
+int MotorContinu::getMotorType(void) {
+	return this->motorTypeVar;
+}
+
+void MotorContinu::move(int value)
 {
+	this->isMoveVar = true;
+	motor->run(FORWARD);
+	for (int i = 0; i < value; ++i)
+	{
+		motor->setSpeed(i);
+	}
 
 }
 
 bool MotorContinu::getIsMove()
 {
-	return this->isMove;
+	return isMoveVar;
 }
 
-void MotorContinu::setIsMove(bool value)
-{
-	this->isMove = value;
-}*/
+void MotorContinu::setSpeed(int speed) {
+	this->speed = speed;
+}
+
+int MotorContinu::getSpeed() {
+	return this->speed;
+}

@@ -1,5 +1,4 @@
 // MotoeShield.h
-/*
 
 #ifndef _MOTORCONTINUV23_h
 #define _MOTORCONTINUV23_h
@@ -13,38 +12,54 @@
 //#include "Sensor.h"
 
 
+// MotoeShield.h
+
+#include "Wire.h"
+#include "Adafruit_MotorShield.h"
+#include "Motor.h"
+
+
 class MotorContinu : public Motor
 {
 private:
 
-	char * motorName;
+	Adafruit_DCMotor * motor;
 
-	int motorType;
+	char* motorName;
 
-	bool isSetup;
+	int motorTypeVar;
 
-	bool isMove;
+	bool isSetupVar;
 
-	int pin1;
+	bool isMoveVar;
 
-	int pin2;
+	int port;
 
-	
+	Adafruit_MotorShield afms;
+
+	int speed;
+
+
+
 public:
 
-	MotorContinu(char * name);
+	MotorContinu(int port);
 
-	void setup(void);
+	virtual bool setup(void);
 
-	void isSetup();
+	virtual bool isSetup();
 
-	char * getMotorName(void);
+	virtual char* getMotorName(void);
 
-	int getMotorType(void);
+	virtual int getMotorType(void);
 
-	bool getIsMove();
+	virtual bool getIsMove();
 
-	void setIsMove(bool value);
+	virtual void move(int value);
 
-	void move(int direction);
-};*/
+	virtual void setSpeed(int speed);
+
+	virtual int getSpeed();
+};
+
+#endif

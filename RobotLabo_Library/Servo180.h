@@ -34,6 +34,8 @@ class Servo180 : public Motor
 	 */
 	 bool isSetupVar;
 
+	 bool isMoveVar;
+
  public:
 
 	 /**
@@ -77,6 +79,8 @@ class Servo180 : public Motor
 	 virtual void setSpeed(int speed);
 
 	 virtual int getSpeed();
+
+	 virtual bool getIsMove();
 };
 
 #endif
