@@ -12,7 +12,7 @@
 #define _VSARDUINO_H_
 #define __AVR_ATmega2560__
 #define F_CPU 16000000L
-#define ARDUINO 10606
+#define ARDUINO 10609
 #define ARDUINO_AVR_MEGA2560
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
@@ -67,10 +67,9 @@ extern "C" void __cxa_pure_virtual() {;}
 //
 
 #include <RobotLabo_Library.ino>
+#include <Actioner.c>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>
-#include <Encoder.cpp>
-#include <Encoder.h>
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
 #include <Motor.h>

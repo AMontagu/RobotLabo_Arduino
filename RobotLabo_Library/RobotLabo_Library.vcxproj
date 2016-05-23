@@ -47,10 +47,17 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\dev\git\RobotLabo_Library\RobotLabo_Library;C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Program Files (x86)\Arduino\libraries\Servo\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\l3drxkdu.4wu\Micro Platforms\default\debuggers;C:\Users\Adrien\Documents\Arduino\libraries\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>C:\dev\git\RobotLabo_Library\RobotLabo_Library\__vm\.RobotLabo_Library.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=10606;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+=======
+      <AdditionalIncludeDirectories>D:\Program Files\Arduino\hardware\arduino\avr\cores\arduino;D:\Program Files\Arduino\hardware\arduino\avr\variants\mega;D:\Users\Supinfo\CompetRobot\RobotLabo_Library;D:\Program Files\Arduino\libraries;D:\Program Files\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\m2giur1u.jyq\Micro Platforms\default\debuggers;C:\Users\Housseini maiga\Documents\Arduino\libraries;D:\Program Files\Arduino\hardware\tools\avr/avr/include/;D:\Program Files\Arduino\hardware\tools\avr//avr/include/avr/;D:\Program Files\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>D:\Users\Supinfo\CompetRobot\RobotLabo_Library\__vm\.RobotLabo_Library.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>__AVR_ATmega2560__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=10609;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+>>>>>>> RobotLabo_Arduino/origin/fouss_dev
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

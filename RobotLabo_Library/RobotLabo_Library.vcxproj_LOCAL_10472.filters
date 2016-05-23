@@ -31,7 +31,6 @@
     <ClCompile Include="ColorSensorTCS3200.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Encoder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,8 +43,6 @@
     <ClCompile Include="MotorContinu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-=======
->>>>>>> RobotLabo_Arduino/origin/fouss_dev
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h">
