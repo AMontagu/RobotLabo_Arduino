@@ -1,16 +1,16 @@
 #include "Sound.h"
 
-Sound(char* name, int melodyPin)
+Sound::Sound(char* name, int melodyPin)
 {
 	this->actionerName = name;
-	this->actionerTypeVar = actionerType::Sound;
+	this->actionerTypeVar = actionerFamily::soundActioner;
 	this->melodyPin = melodyPin;
 	
 
 	this->isSetupVar = false;
 }
 
-Sound(const Sound &    ss): Sound(ss)
+Sound::Sound(const Sound &    ss): Sound(ss)
 {
 	this->actionerName = ss.actionerName;
 	this->actionerTypeVar = ss.actionerTypeVar;
@@ -31,6 +31,7 @@ Sound &Sound:: operator= (const Sound &    ss)
 	}
 
 	return *this;
+}
 
 Sound::~Sound() {}
 
