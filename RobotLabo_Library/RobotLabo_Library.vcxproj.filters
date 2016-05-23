@@ -75,5 +75,8 @@
     <ClInclude Include="UltrasonicSensorHCSR04.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
