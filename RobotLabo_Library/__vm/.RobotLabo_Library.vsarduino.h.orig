@@ -64,19 +64,16 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 
+<<<<<<< 6397b951c490f97128bae5e091adc39f75ef0515
 
+#include <RobotLabo_Library.ino>
+=======
+//
 //
 
 #include <RobotLabo_Library.ino>
-#include <Actioner.h>
-<<<<<<< HEAD
-#include <ColorSensorTCS3200.cpp>
-#include <ColorSensorTCS3200.h>
-#include <Encoder.cpp>
-#include <Encoder.h>
-#include <IRSharp10To80.cpp>
-#include <IRSharp10To80.h>
-=======
+#include <Actioner.c>
+>>>>>>> NeoPixel Stick 8x : First commit for light
 #include <Actioner.h>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>
@@ -84,7 +81,6 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <IRSharp10To80.h>
 #include <LightActionner.cpp>
 #include <LightActionner.h>
->>>>>>> RobotLabo_Arduino/jennyfer_dev
 #include <Motor.h>
 #include <MotorContinu.cpp>
 #include <MotorContinu.h>
