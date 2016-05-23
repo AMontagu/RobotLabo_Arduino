@@ -6,7 +6,7 @@
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "arduino.h"
 #else
-#include "Actioner.h"
+#include "WProgram.h"
 #endif
 
 /*************************************************
@@ -103,6 +103,8 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
+#include "Actioner.h"
+
 class Sound : public Actioner
 {
  private:
@@ -189,9 +191,6 @@ public:
 	*/
 	virtual int getActionerType(void);
 
-}
+};
 
 #endif
-
-
-
