@@ -45,7 +45,7 @@ public:
 	virtual bool isSetup(void) = 0;
 
 	/**
-	*  get the principal value interest of the actioner. For color is an enum of color, for distance is distance...
+	*  Do the principal action of an actionner.
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/

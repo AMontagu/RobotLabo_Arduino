@@ -267,3 +267,8 @@ ModelManifest.xml
 =======
 .fake/
 >>>>>>> RobotLabo_Arduino/master
+
+
+RobotLabo_Library/_vm/.Robotlabo_Library.vsarduino.h
+RobotLabo_Library/.Robotlabo_Library.vcxproj
+RobotLabo_Library/.Robotlabo_Library.vcxproj.filters
