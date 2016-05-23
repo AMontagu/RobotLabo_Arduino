@@ -72,8 +72,6 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Actioner.h>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>
-#include <Encoder.cpp>
-#include <Encoder.h>
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
 #include <LightActionner.cpp>
