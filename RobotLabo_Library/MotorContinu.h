@@ -18,12 +18,11 @@
 #include "Adafruit_MotorShield.h"
 #include "Motor.h"
 
-
 class MotorContinu : public Motor
 {
 private:
 
-	Adafruit_DCMotor * motor;
+	Adafruit_DCMotor *myMotor;
 
 	char* motorName;
 
@@ -33,9 +32,7 @@ private:
 
 	bool isMoveVar;
 
-	int port;
-
-	Adafruit_MotorShield afms;
+	int port; 
 
 	int speed;
 
@@ -43,7 +40,7 @@ private:
 
 public:
 
-	MotorContinu(int port);
+	MotorContinu(Adafruit_DCMotor* motorIn);
 
 	virtual bool setup(void);
 
@@ -57,7 +54,7 @@ public:
 
 	virtual void move(int value);
 
-	virtual void setSpeed(int speed);
+	virtual void setSpeeda(int speed);
 
 	virtual int getSpeed();
 };

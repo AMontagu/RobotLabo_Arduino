@@ -14,12 +14,26 @@
 #include "UltrasonicSensorHCSR04.h"
 #include "MotorContinu.h"
 
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+#include "utility/Adafruit_MS_PWMServoDriver.h"
+
+// Create the motor shield object with the default I2C address
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+// Or, create it with a different I2C address (say for stacking)
+// Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
+
+// Select which 'port' M1, M2, M3 or M4. In this case, M1
+Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
+// You can also make another motor on port M2
+//Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
+
 //UltrasonicSensorHCSR04 myFirstSensor("firstSensor", 8, 9);
 //IRSharp10To80 myIrSensor("myIrSensor", 0);
 //ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
-MotorContinu myMotor(1);
+MotorContinu myMotorContinu(myMotor);
 int pos;
 
 // the setup function runs once when you press reset or power the board
@@ -32,11 +46,13 @@ void setup() {
 
 	Serial.println("serial");
 
+	AFMS.begin();
+
 	//myFirstSensor.setup();
 	//myIrSensor.setup();
 	//myColorSensor.setup();
 	//myEncoder.setup();
-	myMotor.setup();
+	myMotorContinu.setup();
 }
 
 // the loop function runs over and over again until power down or reset
@@ -71,8 +87,13 @@ void loop() {
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}*/
 
-	myMotor.move(255);
+	myMotorContinu.move(255);
 	
+
+	delay(1000);
+
+	//myMotor.move(-255);
+
 
 	delay(1000);
 }
