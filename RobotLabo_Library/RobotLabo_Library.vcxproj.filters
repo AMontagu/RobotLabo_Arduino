@@ -31,9 +31,6 @@
     <ClCompile Include="ColorSensorTCS3200.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actioner.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h">
