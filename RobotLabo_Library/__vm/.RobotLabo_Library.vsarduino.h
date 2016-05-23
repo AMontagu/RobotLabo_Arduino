@@ -65,7 +65,10 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portModeRegister(P)
 
 
+//
+
 #include <RobotLabo_Library.ino>
+#include <Actioner.h>
 #include <Actioner.h>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>

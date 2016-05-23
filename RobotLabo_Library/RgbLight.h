@@ -1,0 +1,15 @@
+// RgbLight.h
+
+#ifndef _RGBLIGHT_h
+#define _RGBLIGHT_h
+
+#if defined(ARDUINO) && ARDUINO >= 100
+	#include "arduino.h"
+#else
+	#include "WProgram.h"
+#endif
+
+#include "Adafruit_NeoPixel\Adafruit_NeoPixel.h"
+
+#endif
+
