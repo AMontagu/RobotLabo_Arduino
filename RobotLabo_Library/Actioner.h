@@ -49,7 +49,7 @@ public:
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
-	virtual int doActioner(void) = 0;
+	virtual int doAction(void) = 0;
 
 
 	/**
