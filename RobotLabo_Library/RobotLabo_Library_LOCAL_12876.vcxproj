@@ -85,7 +85,6 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Servo180.h" />
-    <ClInclude Include="Sound.h" />
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h" />
     <ClInclude Include="UltrasonicSensorHCSR04.h" />
     <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h" />
@@ -96,7 +95,6 @@
     <ClCompile Include="IRSharp10To80.cpp" />
     <ClCompile Include="MotorContinu.cpp" />
     <ClCompile Include="Servo180.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp" />
     <ClCompile Include="UltrasonicSensorHCSR04.cpp" />
   </ItemGroup>
