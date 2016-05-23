@@ -1,3 +1,5 @@
+#include <Adafruit_MotorShield.h>
+
 /*
  Name:		RobotLabo_Library.ino
  Created:	13/05/2016 20:02:48
@@ -13,9 +15,9 @@
 #include "IRSharp10To80.h"
 #include "UltrasonicSensorHCSR04.h"
 #include "MotorContinu.h"
+#include "Sound.h"
 
 #include <Wire.h>
-#include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 
 // Create the motor shield object with the default I2C address
