@@ -1,4 +1,6 @@
+#include <Wire.h>
 #include <Adafruit_MotorShield.h>
+#include "utility/Adafruit_MS_PWMServoDriver.h"
 
 /*
  Name:		RobotLabo_Library.ino
@@ -7,7 +9,6 @@
  Editor:	http://www.visualmicro.com
 */
 
-//#include "RobotLabo_LibraryLib.h"
 #include <Servo.h>
 #include "Servo180.h"
 #include "Encoder.h"
@@ -17,16 +18,15 @@
 #include "MotorContinu.h"
 #include "Sound.h"
 
-#include <Wire.h>
-#include "utility/Adafruit_MS_PWMServoDriver.h"
+
 
 // Create the motor shield object with the default I2C address
-Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+//Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Or, create it with a different I2C address (say for stacking)
 // Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
 
 // Select which 'port' M1, M2, M3 or M4. In this case, M1
-Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
+//Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 // You can also make another motor on port M2
 //Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
 
@@ -35,12 +35,13 @@ Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 //ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
-MotorContinu myMotorContinu(myMotor);
-int pos;
+//MotorContinu myMotorContinu(myMotor);
+  Sound mySound("melody", 8)
+//int pos;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	
+	mySound.setup();
 	Serial.begin(115200);
 
 	while (!Serial)
@@ -48,18 +49,32 @@ void setup() {
 
 	Serial.println("serial");
 
-	AFMS.begin();
+
+	//AFMS.begin();
 
 	//myFirstSensor.setup();
 	//myIrSensor.setup();
 	//myColorSensor.setup();
 	//myEncoder.setup();
-	myMotorContinu.setup();
+	//myMotorContinu.setup();
+    
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	Serial.println("in loop");
+	//Serial.println("in loop");
+  int melody[] = {
+  NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+};
+
+// note durations: 4 = quarter note, 8 = eighth note, etc.:
+int noteDurations[] = {
+  4, 8, 8, 4, 4, 4, 4, 4
+};
+  
+
+
+  
 	/*if (myFirstSensor.isSetup()) {
 		Serial.println(myFirstSensor.getValue());
 	}*/
@@ -89,13 +104,15 @@ void loop() {
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}*/
 
-	myMotorContinu.move(255);
+	//myMotorContinu.move(255);
+ 
+	
 	
 
-	delay(1000);
+	//delay(1000);
 
 	//myMotor.move(-255);
 
 
-	delay(1000);
+	//delay(1000);
 }

@@ -163,6 +163,7 @@ public:
 	*  @return true if the actioner is setup, false otherwise.
 	*/
 	virtual bool isSetup(void);
+	
 
 	/**
 	*  Do the principal action of an actionner.
@@ -170,7 +171,6 @@ public:
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
 	virtual int doAction(void);
-
 
 	/**
 	*  reset the actioner. For exemple for the encodeur ...
