@@ -40,12 +40,6 @@
     <ClCompile Include="UltrasonicSensorHCSR04.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LightActionner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h">
@@ -82,12 +76,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LightActionner.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
