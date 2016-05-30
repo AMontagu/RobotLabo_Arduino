@@ -37,8 +37,8 @@ Sound &Sound:: operator= (const Sound &    ss)
 Sound::~Sound() {}
 
 bool Sound::setup(void) {
-	
 	this->isSetupVar = true;
+
 	return this->isSetupVar;
 }
 
@@ -49,7 +49,9 @@ bool Sound::isSetup(void) {
 
 int Sound::doAction(void) {
 
-	for (int thisNote = 0; thisNote < 8; thisNote++) {
+
+	
+	 for (int thisNote = 0; thisNote < 8; thisNote++) {
 
     // to calculate the note duration, take one second
     // divided by the note type.
@@ -61,13 +63,23 @@ int Sound::doAction(void) {
     // the note's duration + 30% seems to work well:
     int pauseBetweenNotes = noteDuration * 1.30;
     delay(pauseBetweenNotes);
-	}
+    // stop the tone playing:
+    noTone(8);
+  }
+  return 1; 
 
-void Sound::reset(void) {}
+}
 
-char* Sound::getActionerName(void){}
+void Sound::reset(void) {
+}
 
-int Sound::getActionerType(void){}
+char* Sound::getActionerName(void){
+	return this->actionerName;
+}
+
+int Sound::getActionerType(void){
+	return this->actionerTypeVar;
+}
 
 
 
