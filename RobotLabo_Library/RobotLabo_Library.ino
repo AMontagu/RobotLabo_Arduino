@@ -62,6 +62,7 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
+  mySound.doAction();
 	//Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
 		Serial.println(myFirstSensor.getValue());

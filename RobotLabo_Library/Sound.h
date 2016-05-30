@@ -103,14 +103,8 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-int melody[] = {
-  NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
-};
 
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4
-};
+
 
 #include "Actioner.h"
 
@@ -118,6 +112,11 @@ class Sound : public Actioner
 {
  private:
 
+
+ 	int melody[8] = {NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4};
+
+	// note durations: 4 = quarter note, 8 = eighth note, etc.:
+	int noteDurations[8] = {4, 8, 8, 4, 4, 4, 4, 4};
 	 /**
 	 *  Name of the actioner
 	 */
@@ -139,6 +138,7 @@ class Sound : public Actioner
 	 bool isSetupVar;
 
 public:
+
 
 	
 	 Sound(char* name, int melodyPin);
