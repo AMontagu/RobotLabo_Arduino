@@ -5,11 +5,12 @@
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
-	#include <Adafruit_NeoPixel.h>
-	#include "Actioner.h"
 #else
 	#include "WProgram.h"
 #endif
+
+#include <Adafruit_NeoPixel.h>
+#include "Actioner.h"
 
 class LightActionner : public Actioner
 {

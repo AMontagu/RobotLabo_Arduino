@@ -17,7 +17,7 @@ LightActionner::LightActionner(char* actionName, int actionFamily, int lightPin,
 	this->first_arg = first_arg;
 	this->second_arg = second_arg;
 	this->strip = Adafruit_NeoPixel(this->num_leds, this->lightPin, first_arg + second_arg);
-	this->setup();
+	//this->setup();
 }
 
 LightActionner::LightActionner(const LightActionner &la) : Actioner(la) {
@@ -43,7 +43,6 @@ LightActionner ::~LightActionner()
 
 bool LightActionner::setup(void)
 {
-	Serial.begin(this->delaytime);
 	strip.setBrightness(this->brightness);
 	strip.begin();
 	strip.show();
