@@ -37,48 +37,46 @@ Sound &Sound:: operator= (const Sound &    ss)
 Sound::~Sound() {}
 
 bool Sound::setup(void) {
-	this->isSetupVar = true;
-
-	return this->isSetupVar;
 }
 
 bool Sound::isSetup(void) {
-	return this->isSetupVar;
 }
 
 
 int Sound::doAction(void) {
-
-
-	
-	 for (int thisNote = 0; thisNote < 8; thisNote++) {
+  // iterate over the notes of the melody:
+  for (int thisNote = 0; thisNote < 80; thisNote++) {
 
     // to calculate the note duration, take one second
     // divided by the note type.
     //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / noteDurations[thisNote];
-    tone(8, melody[thisNote], noteDuration);
+    int noteDuration = 1000 / noteDurations2[thisNote];
+    tone(8, melodyMario[thisNote], noteDuration);
 
     // to distinguish the notes, set a minimum time between them.
     // the note's duration + 30% seems to work well:
-    int pauseBetweenNotes = noteDuration * 1.30;
+    int pauseBetweenNotes = noteDuration * 1.75;
     delay(pauseBetweenNotes);
     // stop the tone playing:
     noTone(8);
   }
-  return 1; 
+
+  return 1;
 
 }
 
-void Sound::reset(void) {
-}
+void Sound::reset(void) {}
 
 char* Sound::getActionerName(void){
-	return this->actionerName;
+	 return this->actionerName;
+
 }
+	
+
 
 int Sound::getActionerType(void){
 	return this->actionerTypeVar;
+
 }
 
 
