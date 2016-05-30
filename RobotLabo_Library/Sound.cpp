@@ -37,8 +37,7 @@ Sound &Sound:: operator= (const Sound &    ss)
 Sound::~Sound() {}
 
 bool Sound::setup(void) {
-	melodyPin = 8 
-
+	
 	this->isSetupVar = true;
 	return this->isSetupVar;
 }
