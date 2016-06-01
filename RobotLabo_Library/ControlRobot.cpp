@@ -6,6 +6,10 @@ ControlRobot::ControlRobot()
 
 }
 
+void ControlRobot::setUpRobot()
+{
+
+}
 
 void ControlRobot::forward()
 {

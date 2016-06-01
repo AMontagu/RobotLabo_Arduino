@@ -41,7 +41,7 @@ private:
 public:
 
 	MotorContinu(Adafruit_DCMotor* motorIn);
-
+	
 	virtual bool setup(void);
 
 	virtual bool isSetup();

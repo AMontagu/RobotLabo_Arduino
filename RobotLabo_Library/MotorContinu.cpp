@@ -16,11 +16,6 @@ MotorContinu::MotorContinu(Adafruit_DCMotor* motorIn)
 
 bool MotorContinu::setup(void)
 {
-	/*if (AFMS == NULL) {
-		Serial.println("AFMS is null");
-	}*/
-	//AFMS.begin();
-
 	myMotor->setSpeed(150);
 	myMotor->run(FORWARD);
 	// turn on motor
@@ -45,18 +40,6 @@ int MotorContinu::getMotorType(void) {
 void MotorContinu::move(int value)
 {
 	this->isMoveVar = true;
-	
-
-	/*if (value >= 0) {
-		myMotor->run(FORWARD);
-		myMotor->setSpeed(value);
-	}
-	else
-	{
-		myMotor->run(BACKWARD);
-		myMotor->setSpeed(-value);
-	}
-	delay(1000);*/
 
 	uint8_t i;
 

@@ -7,15 +7,19 @@
 	#include "WProgram.h"
 #endif
 
+#include "MotorContinu.h"
+#include "MotorContinu.h"
+
 class ControlRobot
 {
 
 private:
 
 
-
 public:
 	ControlRobot();
+
+	void setUpRobot();
 
 	void forward();
 
@@ -42,28 +46,5 @@ public:
 	void playSound();
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif
