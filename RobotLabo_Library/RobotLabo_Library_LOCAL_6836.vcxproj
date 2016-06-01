@@ -80,7 +80,6 @@
     <ClInclude Include="ColorSensorTCS3200.h" />
     <ClInclude Include="Encoder.h" />
     <ClInclude Include="IRSharp10To80.h" />
-    <ClInclude Include="IRSharp4To30.h" />
     <ClInclude Include="LightActionner.h" />
     <ClInclude Include="Motor.h" />
     <ClInclude Include="MotorContinu.h" />
@@ -96,7 +95,6 @@
     <ClCompile Include="ColorSensorTCS3200.cpp" />
     <ClCompile Include="Encoder.cpp" />
     <ClCompile Include="IRSharp10To80.cpp" />
-    <ClCompile Include="IRSharp4To30.cpp" />
     <ClCompile Include="LightActionner.cpp" />
     <ClCompile Include="MotorContinu.cpp" />
     <ClCompile Include="Servo180.cpp" />

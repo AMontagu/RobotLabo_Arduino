@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+#include "utility/Adafruit_MS_PWMServoDriver.h"
+
+>>>>>>> master
 /*
  Name:		RobotLabo_Library.ino
  Created:	13/05/2016 20:02:48
@@ -5,8 +12,11 @@
  Editor:	http://www.visualmicro.com
 */
 
+<<<<<<< HEAD
 //#include "RobotLabo_LibraryLib.h"
 #include "LightActionner.h"
+=======
+>>>>>>> master
 #include <Servo.h>
 #include "Servo180.h"
 #include "Encoder.h"
@@ -17,18 +27,22 @@
 #include "Sound.h"
 #include "LightActionner.h"
 
+<<<<<<< HEAD
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 #include <Adafruit_NeoPixel.h>
+=======
+
+>>>>>>> master
 
 // Create the motor shield object with the default I2C address
-Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+//Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Or, create it with a different I2C address (say for stacking)
 // Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
 
 // Select which 'port' M1, M2, M3 or M4. In this case, M1
-Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
+//Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 // You can also make another motor on port M2
 //Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
 
@@ -37,8 +51,9 @@ Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 //ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
-MotorContinu myMotorContinu(myMotor);
-int pos;
+//MotorContinu myMotorContinu(myMotor);
+  Sound mySound("melody", 30);
+//int pos;
 
 int gamma[] = {
 	0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -62,7 +77,7 @@ LightActionner la = LightActionner("first", 0, 6, 60, 50, gamma, 115200, NEO_GRB
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	
+	mySound.setup();
 	Serial.begin(115200);
 
 	while (!Serial)
@@ -70,19 +85,26 @@ void setup() {
 
 	Serial.println("serial");
 
+<<<<<<< HEAD
 	//la.setup();
 
 	AFMS.begin();
+=======
+
+	//AFMS.begin();
+>>>>>>> master
 
 	//myFirstSensor.setup();
 	//myIrSensor.setup();
 	//myColorSensor.setup();
 	//myEncoder.setup();
-	myMotorContinu.setup();
+	//myMotorContinu.setup();
+    
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
+  mySound.doAction();
 	Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
 	Serial.println(myFirstSensor.getValue());
@@ -113,16 +135,18 @@ void loop() {
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}*/
 
-	myMotorContinu.move(255);
+	//myMotorContinu.move(255);
+ 
+	
 	
 
-	delay(1000);
+	//delay(1000);
 
 	//myMotorContinu.move(-255);
 
 	//la.loop();
 
 
-	delay(1000);
+	//delay(1000);
 }
 

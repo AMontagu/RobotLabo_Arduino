@@ -74,6 +74,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Encoder.h>
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
+#include <IRSharp4To30.cpp>
+#include <IRSharp4To30.h>
 #include <LightActionner.cpp>
 #include <LightActionner.h>
 #include <Motor.h>
