@@ -47,10 +47,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Adrien\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.11\cores\arduino;C:\Users\Adrien\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.11\variants\mega;C:\dev\git\RobotLabo_Library\RobotLabo_Library;C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Program Files (x86)\Arduino\libraries\Servo\src\utility;C:\Users\Adrien\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.11\libraries\Wire\src;C:\Users\Adrien\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.11\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Users\Adrien\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.11\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ckw5dl4d.dev\Micro Platforms\default\debuggers;C:\Users\Adrien\Documents\Arduino\libraries\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>C:\dev\git\RobotLabo_Library\RobotLabo_Library\__vm\.RobotLabo_Library.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <PreprocessorDefinitions>__AVR_ATmega2560__;F_CPU=16000000L;ARDUINO=10609;ARDUINO_AVR_MEGA2560;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\mega;C:\dev\git\RobotLabo_Library\RobotLabo_Library;C:\dev\git\RobotLabo_Library\RobotLabo_Library\src\_micro-api\libraries\RobotLabo_LibraryLib\src;C:\dev\git\RobotLabo_Library\RobotLabo_Library\src\_micro-api\libraries\RobotLabo_LibraryLib\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ckw5dl4d.dev\Micro Platforms\default\debuggers;C:\Users\Adrien\Documents\Arduino\libraries\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -80,27 +80,20 @@
     <ClInclude Include="ColorSensorTCS3200.h" />
     <ClInclude Include="Encoder.h" />
     <ClInclude Include="IRSharp10To80.h" />
-    <ClInclude Include="IRSharp4To30.h" />
-    <ClInclude Include="LightActionner.h" />
     <ClInclude Include="Motor.h" />
     <ClInclude Include="MotorContinu.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Servo180.h" />
-    <ClInclude Include="Sound.h" />
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h" />
     <ClInclude Include="UltrasonicSensorHCSR04.h" />
-    <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorSensorTCS3200.cpp" />
     <ClCompile Include="Encoder.cpp" />
     <ClCompile Include="IRSharp10To80.cpp" />
-    <ClCompile Include="IRSharp4To30.cpp" />
-    <ClCompile Include="LightActionner.cpp" />
     <ClCompile Include="MotorContinu.cpp" />
     <ClCompile Include="Servo180.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp" />
     <ClCompile Include="UltrasonicSensorHCSR04.cpp" />
   </ItemGroup>

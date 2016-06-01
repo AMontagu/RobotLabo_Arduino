@@ -11,8 +11,9 @@
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
 #define __AVR_ATmega2560__
+#define _VMDEBUG 1
 #define F_CPU 16000000L
-#define ARDUINO 10606
+#define ARDUINO 10609
 #define ARDUINO_AVR_MEGA2560
 #define ARDUINO_ARCH_AVR
 #define __cplusplus 201103L
@@ -67,22 +68,27 @@ extern "C" void __cxa_pure_virtual() {;}
 //
 
 #include <RobotLabo_Library.ino>
+#include <Actioner.h>
 #include <ColorSensorTCS3200.cpp>
 #include <ColorSensorTCS3200.h>
 #include <Encoder.cpp>
 #include <Encoder.h>
 #include <IRSharp10To80.cpp>
 #include <IRSharp10To80.h>
+#include <IRSharp4To30.cpp>
+#include <IRSharp4To30.h>
+#include <LightActionner.cpp>
+#include <LightActionner.h>
 #include <Motor.h>
 #include <MotorContinu.cpp>
 #include <MotorContinu.h>
-#include <MotorShield.cpp>
-#include <MotorShield.h>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h>
 #include <Sensor.h>
 #include <Servo180.cpp>
 #include <Servo180.h>
+#include <Sound.cpp>
+#include <Sound.h>
 #include <UltrasonicSensorHCSR04.cpp>
 #include <UltrasonicSensorHCSR04.h>
 #include <resource.h>
