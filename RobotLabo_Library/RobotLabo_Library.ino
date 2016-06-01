@@ -36,7 +36,7 @@
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
 //MotorContinu myMotorContinu(myMotor);
-  Sound mySound("melody", 8);
+  Sound mySound("melody", 30);
 //int pos;
 
 // the setup function runs once when you press reset or power the board
@@ -63,7 +63,7 @@ void setup() {
 // the loop function runs over and over again until power down or reset
 void loop() {
   mySound.doAction();
-	//Serial.println("in loop");
+	Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
 		Serial.println(myFirstSensor.getValue());
 	}*/
