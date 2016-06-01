@@ -29,7 +29,9 @@ public:
 
 	virtual void move(int value) = 0;
 
-	virtual void setSpeeda(int speed) = 0;
+	virtual void stop() = 0;
+
+	virtual void setSpeed(int speed) = 0;
 
 	virtual int getSpeed() = 0;
 

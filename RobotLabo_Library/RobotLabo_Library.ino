@@ -85,7 +85,7 @@ void setup() {
 void loop() {
 	Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
-		Serial.println(myFirstSensor.getValue());
+	Serial.println(myFirstSensor.getValue());
 	}*/
 
 	/*if (myIrSensor.isSetup()) {

@@ -3,10 +3,11 @@
 #include "MotorContinu.h"
 
 
-MotorContinu::MotorContinu(Adafruit_DCMotor* motorIn)
+MotorContinu::MotorContinu(char* name,  Adafruit_DCMotor* motorIn)
 {
 	motorTypeVar = motorType::courantContinu;
 	this->port = port;
+	this->motorName = name;
 
 	this->myMotor = motorIn;
 
@@ -47,50 +48,20 @@ void MotorContinu::move(int value)
 	this->isMoveVar = true;
 	
 
-	/*if (value >= 0) {
-		myMotor->run(FORWARD);
+	if (value >= 0) {
 		myMotor->setSpeed(value);
+		myMotor->run(FORWARD);
 	}
 	else
 	{
-		myMotor->run(BACKWARD);
 		myMotor->setSpeed(-value);
+		myMotor->run(BACKWARD);
 	}
-	delay(1000);*/
+}
 
-	uint8_t i;
-
-	Serial.print("tick");
-
-	if (myMotor == NULL) {
-		Serial.print("is null");
-	}
-
-	myMotor->run(FORWARD);
-	for (i = 0; i<255; i++) {
-		myMotor->setSpeed(i);
-		delay(10);
-	}
-	for (i = 255; i != 0; i--) {
-		myMotor->setSpeed(i);
-		delay(10);
-	}
-
-	Serial.print("tock");
-
-	myMotor->run(BACKWARD);
-	for (i = 0; i<255; i++) {
-		myMotor->setSpeed(i);
-		delay(10);
-	}
-	for (i = 255; i != 0; i--) {
-		myMotor->setSpeed(i);
-		delay(10);
-	}
-
-	Serial.print("tech");
-	myMotor->run(RELEASE);
-	delay(1000);
+void MotorContinu::stop() 
+{
+	this->myMotor->run(RELEASE);
 }
 
 bool MotorContinu::getIsMove()
@@ -98,7 +69,7 @@ bool MotorContinu::getIsMove()
 	return isMoveVar;
 }
 
-void MotorContinu::setSpeeda(int speed) {
+void MotorContinu::setSpeed(int speed) {
 	this->speed = speed;
 }
 

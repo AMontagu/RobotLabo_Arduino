@@ -76,7 +76,9 @@ class Servo180 : public Motor
 
 	 virtual void move(int value);
 
-	 virtual void setSpeeda(int speed);
+	 virtual void stop();
+
+	 virtual void setSpeed(int speed);
 
 	 virtual int getSpeed();
 

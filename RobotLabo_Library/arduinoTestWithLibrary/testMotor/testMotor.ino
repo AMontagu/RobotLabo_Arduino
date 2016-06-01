@@ -22,11 +22,10 @@ Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
-MotorContinu motorFrontRight(_motorFrontRight);
-MotorContinu motorFrontLeft(_motorFrontLeft);
-MotorContinu motorBackRight(_motorBackRight);
-MotorContinu motorBackLeft(_motorBackLeft);
-
+MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight);
+MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft);
+MotorContinu motorBackRight("motorBackRight", _motorBackRight);
+MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft);
 
 void setup() {
 	
@@ -57,5 +56,7 @@ void loop() {
   motorFrontLeft.stop();
   motorBackRight.stop();
   motorBackLeft.stop();
+
+  delay(2000);
 }
 

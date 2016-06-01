@@ -1,6 +1,6 @@
-#include "IRSharp10To80.h"
+#include "IRSharp4To30.h"
 
-IRSharp10To80::IRSharp10To80(char* name, int analogPin)
+IRSharp4To30::IRSharp4To30(char* name, int analogPin)
 {
 	this->sensorName = name;
 	this->sensorFamilyVar = sensorFamily::distanceSensor;
@@ -12,7 +12,7 @@ IRSharp10To80::IRSharp10To80(char* name, int analogPin)
 	//this->setup();
 }
 
-IRSharp10To80::IRSharp10To80(const IRSharp10To80 &    ss) : Sensor(ss)
+IRSharp4To30::IRSharp4To30(const IRSharp4To30 &    ss) : Sensor(ss)
 {
 	this->sensorFamilyVar = ss.sensorFamilyVar;
 	this->sensorName = ss.sensorName;
@@ -22,7 +22,7 @@ IRSharp10To80::IRSharp10To80(const IRSharp10To80 &    ss) : Sensor(ss)
 	this->setup();
 }
 
-IRSharp10To80 &IRSharp10To80 :: operator= (const IRSharp10To80 &    ss)
+IRSharp4To30 &IRSharp4To30 :: operator= (const IRSharp4To30 &    ss)
 {
 	if (this != &ss) {
 		this->sensorFamilyVar = ss.sensorFamilyVar;
@@ -38,9 +38,9 @@ IRSharp10To80 &IRSharp10To80 :: operator= (const IRSharp10To80 &    ss)
 }
 
 
-IRSharp10To80::~IRSharp10To80() {}
+IRSharp4To30::~IRSharp4To30() {}
 
-bool IRSharp10To80::setup(void) {
+bool IRSharp4To30::setup(void) {
 
 	//Initiate
 	pinMode(analogPin, INPUT);
@@ -50,11 +50,11 @@ bool IRSharp10To80::setup(void) {
 	return this->isSetupVar;
 }
 
-bool IRSharp10To80::isSetup(void) {
+bool IRSharp4To30::isSetup(void) {
 	return this->isSetupVar;
 }
 
-int IRSharp10To80::getValue(void) {
+int IRSharp4To30::getValue(void) {
 	int compteur = 0, valeurPlusProcheCentimetre = 100, valeurPlusProcheZero = 1025;
 	int valeurCompare[8] = {};
 	int analogValue = analogRead(analogPin);
@@ -72,7 +72,7 @@ int IRSharp10To80::getValue(void) {
 	return valeurPlusProcheCentimetre;
 }
 
-long IRSharp10To80::getPrecisionValue(void) {
+long IRSharp4To30::getPrecisionValue(void) {
 	float distance = 0, volt = 0;
 	int analogValue = analogRead(analogPin);
 	volt = analogValue*0.0048828125;
@@ -88,17 +88,17 @@ long IRSharp10To80::getPrecisionValue(void) {
 	return distance;
 }
 
-void IRSharp10To80::reset(void) {}
+void IRSharp4To30::reset(void) {}
 
-char* IRSharp10To80::getSensorName(void) {
+char* IRSharp4To30::getSensorName(void) {
 	return this->sensorName;
 }
 
-int IRSharp10To80::getSensorType(void) {
+int IRSharp4To30::getSensorType(void) {
 	return this->sensorTypeVar;
 }
 
-int IRSharp10To80::getSensorFamily(void) {
+int IRSharp4To30::getSensorFamily(void) {
 	return this->sensorFamilyVar;
 }
 

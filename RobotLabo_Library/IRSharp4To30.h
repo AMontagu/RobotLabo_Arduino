@@ -1,7 +1,7 @@
 // IRSharp10To80.h
 
-#ifndef _IRSHARP10TO80_h
-#define _IRSHARP10TO80_h
+#ifndef _IRSHARP4TO30_h
+#define _IRSHARP4TO30_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
@@ -11,7 +11,7 @@
 
 #include "Sensor.h"
 
-class IRSharp10To80 : public Sensor
+class IRSharp4To30 : public Sensor
 {
 private:
 
@@ -49,28 +49,18 @@ private:
 	const int valeur70 = 129;//valeur
 	const int valeur80 = 112;//valeur*/
 
-	/*const int valeur10 = 285; //valeur
+	const int valeur10 = 285; //valeur
 	const int valeur20 = 175; //valeur
 	const int valeur30 = 107;//valeur
 	const int valeur40 = 75;//valeur
 	const int valeur50 = 55;//valeur
 	const int valeur60 = 40;//valeur
 	const int valeur70 = 30;//valeur
-	const int valeur80 = 25;//valeur*/
-
-	const int valeur10 = 620; //valeur
-	const int valeur20 = 300; //valeur
-	const int valeur30 = 200;//valeur
-	const int valeur40 = 150;//valeur
-	const int valeur50 = 120;//valeur
-	const int valeur60 = 100;//valeur
-	const int valeur70 = 70;//valeur
-	const int valeur80 = 50;//valeur
+	const int valeur80 = 25;//valeur
 
 	const int tableauValeur[8] = { valeur10, valeur20, valeur30, valeur40, valeur50, valeur60, valeur70, valeur80 };
 
-	const int ratio = 30;
-
+	const int ratio = 16;
 public:
 
 	/**
@@ -79,19 +69,19 @@ public:
 	*  @param name is the name of the ultrasonic sensor.
 	*  @param pin digital pin where to ultrasoni sensor is plugged.
 	*/
-	IRSharp10To80(char* name, int analogPin);
+	IRSharp4To30(char* name, int analogPin);
 
 	/**
 	*  Copy constructor.
 	*
 	*  @param ss the TcpSocket to copy.
 	*/
-	IRSharp10To80(const IRSharp10To80 &    ss);
+	IRSharp4To30(const IRSharp4To30 &    ss);
 
 	/**
 	*  Destructor.
 	*/
-	virtual ~IRSharp10To80(void);
+	virtual ~IRSharp4To30(void);
 
 	/**
 	*  Assignment operator.
@@ -99,7 +89,7 @@ public:
 	*  @param ss the UltrasonicSensor to assign this to.
 	*  @return a reference to this UltrasonicSensor.
 	*/
-	virtual IRSharp10To80 &operator= (const IRSharp10To80 &    ss);
+	virtual IRSharp4To30 &operator= (const IRSharp4To30 &    ss);
 
 	/**
 	*  Setup the sensor.

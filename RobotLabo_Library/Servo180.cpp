@@ -66,7 +66,12 @@ void Servo180::move(int value) {
 	this->myservo.write(value);
 }
 
-void Servo180::setSpeeda(int speed) {
+void Servo180::stop()
+{
+	this->myservo.detach();
+}
+
+void Servo180::setSpeed(int speed) {
 	this->speed = speed;
 }
 

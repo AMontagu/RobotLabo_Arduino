@@ -9,11 +9,6 @@
 	#include "WProgram.h"
 #endif
 
-//#include "Sensor.h"
-
-
-// MotoeShield.h
-
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "Motor.h"
@@ -40,7 +35,7 @@ private:
 
 public:
 
-	MotorContinu(Adafruit_DCMotor* motorIn);
+	MotorContinu(char* name, Adafruit_DCMotor* motorIn);
 
 	virtual bool setup(void);
 
@@ -54,7 +49,9 @@ public:
 
 	virtual void move(int value);
 
-	virtual void setSpeeda(int speed);
+	virtual void stop();
+
+	virtual void setSpeed(int speed);
 
 	virtual int getSpeed();
 };
