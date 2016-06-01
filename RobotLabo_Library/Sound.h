@@ -195,7 +195,7 @@ public:
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
-	virtual int doAction(void);
+	virtual void doAction(int actionNumber);
 
 	/**
 	*  reset the actioner. For exemple for the encodeur ...

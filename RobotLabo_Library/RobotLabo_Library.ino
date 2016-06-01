@@ -1,22 +1,7 @@
-<<<<<<< HEAD
-=======
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 
->>>>>>> master
-/*
- Name:		RobotLabo_Library.ino
- Created:	13/05/2016 20:02:48
- Author:	Adrien
- Editor:	http://www.visualmicro.com
-*/
-
-<<<<<<< HEAD
-//#include "RobotLabo_LibraryLib.h"
-#include "LightActionner.h"
-=======
->>>>>>> master
 #include <Servo.h>
 #include "Servo180.h"
 #include "Encoder.h"
@@ -27,14 +12,10 @@
 #include "Sound.h"
 #include "LightActionner.h"
 
-<<<<<<< HEAD
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 #include <Adafruit_NeoPixel.h>
-=======
-
->>>>>>> master
 
 // Create the motor shield object with the default I2C address
 //Adafruit_MotorShield AFMS = Adafruit_MotorShield();
@@ -52,7 +33,7 @@
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
 //MotorContinu myMotorContinu(myMotor);
-  Sound mySound("melody", 30);
+//Sound mySound("melody", 30);
 //int pos;
 
 int gamma[] = {
@@ -77,7 +58,7 @@ LightActionner la = LightActionner("first", 0, 6, 60, 50, gamma, 115200, NEO_GRB
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	mySound.setup();
+	//mySound.setup();
 	Serial.begin(115200);
 
 	while (!Serial)
@@ -85,14 +66,9 @@ void setup() {
 
 	Serial.println("serial");
 
-<<<<<<< HEAD
-	//la.setup();
-
-	AFMS.begin();
-=======
+	la.setup();
 
 	//AFMS.begin();
->>>>>>> master
 
 	//myFirstSensor.setup();
 	//myIrSensor.setup();
@@ -104,8 +80,8 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-  mySound.doAction();
-	Serial.println("in loop");
+  //mySound.doAction();
+	//Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
 	Serial.println(myFirstSensor.getValue());
 	}*/
@@ -148,5 +124,8 @@ void loop() {
 
 
 	//delay(1000);
+
+	la.doAction();
+	delay(1000);
 }
 

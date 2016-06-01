@@ -4,10 +4,10 @@
 
 #include "LightActionner.h"
 
-LightActionner::LightActionner(char* actionName, int actionFamily, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg)
+LightActionner::LightActionner(char* actionName, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg)
 {
 	this->actionnerName = actionName;
-	this->actionnerFamily = actionFamily;
+	this->actionnerFamily = actionerFamily::lightActioner;
 	this->lightPin = lightPin;
 	this->num_leds = num_leds;
 	this->brightness = brightness;
@@ -55,8 +55,21 @@ bool LightActionner::isSetup(void)
 	return this->isSetupVar;
 }
 
-int LightActionner::doAction(void)
+void LightActionner::doAction(int actionNumber)
 {
+	colorWipe(strip.Color(255, 0, 0), brightness); // Red
+	colorWipe(strip.Color(0, 255, 0), brightness); // Green
+	colorWipe(strip.Color(0, 0, 255), brightness); // Blue
+	colorWipe(strip.Color(0, 0, 0, 255), brightness); // White
+
+	whiteOverRainbow(20, 75, 5);
+
+	pulseWhite(5);
+
+	// fullWhite();
+	// delay(2000);
+
+	rainbowFade2White(3, 3, 1);
 	return 0;
 }
 
@@ -72,24 +85,6 @@ char* LightActionner::getActionerName(void)
 int LightActionner::getActionerType(void)
 {
 	return 0;
-}
-
-void LightActionner::loop()
-{
-	// Some example procedures showing how to display to the pixels:
-	colorWipe(strip.Color(255, 0, 0), brightness); // Red
-	colorWipe(strip.Color(0, 255, 0), brightness); // Green
-	colorWipe(strip.Color(0, 0, 255), brightness); // Blue
-	colorWipe(strip.Color(0, 0, 0, 255), brightness); // White
-
-	whiteOverRainbow(20, 75, 5);
-
-	pulseWhite(5);
-
-	// fullWhite();
-	// delay(2000);
-
-	rainbowFade2White(3, 3, 1);
 }
 
 void LightActionner::colorWipe(uint32_t c, uint8_t wait)

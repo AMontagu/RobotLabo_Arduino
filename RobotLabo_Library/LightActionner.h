@@ -16,7 +16,7 @@ class LightActionner : public Actioner
 {
 public:
 	LightActionner ();
-	LightActionner(char* actionName, int actionFamily, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg);
+	LightActionner(char* actionName, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg);
 	LightActionner(const LightActionner &la);
 	~LightActionner ();
 
@@ -39,7 +39,7 @@ public:
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
-	virtual int doAction(void);
+	virtual void doAction(int actionNumber);
 
 
 	/**
