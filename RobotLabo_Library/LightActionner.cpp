@@ -70,7 +70,6 @@ void LightActionner::doAction(int actionNumber)
 	// delay(2000);
 
 	rainbowFade2White(3, 3, 1);
-	return 0;
 }
 
 void LightActionner::reset(void)
