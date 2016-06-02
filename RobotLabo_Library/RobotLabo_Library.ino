@@ -1,14 +1,14 @@
-#include <Adafruit_NeoPixel.h>
+#include "Light.h"
+#include <Adafruit_MotorShield.h>
 
 /*
- Name:		RobotLabo_Library.ino
- Created:	13/05/2016 20:02:48
- Author:	Adrien
- Editor:	http://www.visualmicro.com
+Name:		RobotLabo_Library.ino
+Created:	13/05/2016 20:02:48
+Author:	Adrien
+Editor:	http://www.visualmicro.com
 */
 
 //#include "RobotLabo_LibraryLib.h"
-#include "LightActionner.h"
 #include <Servo.h>
 #include "Servo180.h"
 #include "Encoder.h"
@@ -16,11 +16,12 @@
 #include "IRSharp10To80.h"
 #include "UltrasonicSensorHCSR04.h"
 #include "MotorContinu.h"
-#include "LightActionner.h"
+#include "Light.h"
+#include "Sound.h"
 
 #include <Wire.h>
-#include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
+#include <Adafruit_NeoPixel.h>
 
 // Create the motor shield object with the default I2C address
 //Adafruit_MotorShield AFMS = Adafruit_MotorShield();
@@ -37,88 +38,81 @@
 //ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
-/*MotorContinu myMotorContinu(myMotor);
+//MotorContinu myMotorContinu(myMotor);
 int pos;
+LightClass light = LightClass("police", 6);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	
+
 	Serial.begin(115200);
 
 	while (!Serial)
-	{}
+	{
+	}
+	light.setup();
+	//Serial.println("serial");
 
-	Serial.println("serial");
-
-	AFMS.begin();
+	//AFMS.begin();
 
 	//myFirstSensor.setup();
 	//myIrSensor.setup();
 	//myColorSensor.setup();
 	//myEncoder.setup();
-	myMotorContinu.setup();
-}*/
+	//myMotorContinu.setup();
+}
 
 // the loop function runs over and over again until power down or reset
-//void loop() {
-	//Serial.println("in loop");
+void loop() {
+	Serial.println("in loop");
 	/*if (myFirstSensor.isSetup()) {
-		Serial.println(myFirstSensor.getValue());
+	Serial.println(myFirstSensor.getValue());
 	}*/
 
 	/*if (myIrSensor.isSetup()) {
-		Serial.println(myIrSensor.getValue());
-		delayMicroseconds(100);
-		//myIrSensor.getPrecisionValue();
-		Serial.println(myIrSensor.getPrecisionValue());
+	Serial.println(myIrSensor.getValue());
+	delayMicroseconds(100);
+	//myIrSensor.getPrecisionValue();
+	Serial.println(myIrSensor.getPrecisionValue());
 	}*/
 	/*Serial.println("blibli");
 	Serial.println(myColorSensor.isSetup());
 	if (myColorSensor.isSetup()) {
-		Serial.println("before get value");
-		myColorSensor.getValue();
+	Serial.println("before get value");
+	myColorSensor.getValue();
 	}
 
 	Serial.println("blabla");*/
 
 	/*for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-										  // in steps of 1 degree
-		myServo.move(pos);              // tell servo to go to position in variable 'pos'
-		delay(15);                       // waits 15ms for the servo to reach the position
+	// in steps of 1 degree
+	myServo.move(pos);              // tell servo to go to position in variable 'pos'
+	delay(15);                       // waits 15ms for the servo to reach the position
 	}
 	for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-		myServo.move(pos);              // tell servo to go to position in variable 'pos'
-		delay(15);                       // waits 15ms for the servo to reach the position
+	myServo.move(pos);              // tell servo to go to position in variable 'pos'
+	delay(15);                       // waits 15ms for the servo to reach the position
 	}*/
 
 	//myMotorContinu.move(255);
-	
 
-	//delay(1000);
+
+	delay(1000);
 
 	//myMotor.move(-255);
+	// Some example procedures showing how to display to the pixels:
+	light.colorWipe(light.strip.Color(255, 0, 0), 50); // Red
+	light.colorWipe(light.strip.Color(0, 255, 0), 50); // Green
+	light.colorWipe(light.strip.Color(0, 0, 255), 50); // Blue
+													   //colorWipe(strip.Color(0, 0, 0, 255), 50); // White RGBW
+													   // Send a theater pixel chase in...
+	light.theaterChase(light.strip.Color(127, 127, 127), 50); // White
+	light.theaterChase(light.strip.Color(127, 0, 0), 50); // Red
+	light.theaterChase(light.strip.Color(0, 0, 127), 50); // Blue
 
+	light.rainbow(20);
+	light.rainbowCycle(20);
+	light.theaterChaseRainbow(50);
 
-	//delay(1000);
-//}
-
-
-int gamma[] = {
-	0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
-	1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
-	2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
-	5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
-	10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
-	17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
-	25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
-	37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
-	51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
-	69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
-	90, 92, 93, 95, 96, 98, 99,101,102,104,105,107,109,110,112,114,
-	115,117,119,120,122,124,126,127,129,131,133,135,137,138,140,142,
-	144,146,148,150,152,154,156,158,160,162,164,167,169,171,173,175,
-	177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
-	215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
-
-LightActionner la = LightActionner("first", 0, 6, 60, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
+	delay(1000);
+}
