@@ -57,19 +57,32 @@ bool LightActionner::isSetup(void)
 
 void LightActionner::doAction(int actionNumber)
 {
-	colorWipe(strip.Color(255, 0, 0), brightness); // Red
-	colorWipe(strip.Color(0, 255, 0), brightness); // Green
-	colorWipe(strip.Color(0, 0, 255), brightness); // Blue
-	colorWipe(strip.Color(0, 0, 0, 255), brightness); // White
-
-	whiteOverRainbow(20, 75, 5);
-
-	pulseWhite(5);
-
-	// fullWhite();
-	// delay(2000);
-
-	rainbowFade2White(3, 3, 1);
+	switch (actionNumber)
+	{
+	case 1:
+		colorWipe(strip.Color(255, 0, 0), brightness); // Red
+		break;
+	case 2:
+		colorWipe(strip.Color(0, 255, 0), brightness); // Green
+		break;
+	case 3:
+		colorWipe(strip.Color(0, 0, 255), brightness); // Blue
+		break;
+	case 4:
+		colorWipe(strip.Color(0, 0, 0, 255), brightness); // White
+		break;
+	case 5:
+		whiteOverRainbow(20, 75, 5);
+		break;
+	case 6:
+		pulseWhite(5);
+		break;
+	case 7:
+		rainbowFade2White(3, 3, 1);
+		break;
+	default:
+		break;
+	}
 }
 
 void LightActionner::reset(void)
