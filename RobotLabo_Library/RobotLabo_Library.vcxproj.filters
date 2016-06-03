@@ -11,6 +11,7 @@
     <ClCompile Include="UltrasonicSensorHCSR04.cpp" />
     <ClCompile Include="IRSharp4To30.cpp" />
     <ClCompile Include="LightActionner.cpp" />
+    <ClCompile Include="Robot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actioner.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h" />
     <ClInclude Include="IRSharp4To30.h" />
     <ClInclude Include="LightActionner.h" />
+    <ClInclude Include="Robot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RobotLabo_Library.ino" />

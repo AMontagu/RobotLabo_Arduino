@@ -85,6 +85,7 @@
     <ClInclude Include="Motor.h" />
     <ClInclude Include="MotorContinu.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="Servo180.h" />
     <ClInclude Include="Sound.h" />
@@ -99,6 +100,7 @@
     <ClCompile Include="IRSharp4To30.cpp" />
     <ClCompile Include="LightActionner.cpp" />
     <ClCompile Include="MotorContinu.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Servo180.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp" />

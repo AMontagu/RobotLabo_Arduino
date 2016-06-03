@@ -53,6 +53,8 @@ public:
 
 	void followLine();
 
+	void foolwWall(bool isRightWall);
+
 	void turn45degreeLeft();
 
 	void turn45degreeRight();
@@ -61,6 +63,11 @@ public:
 
 	void playSound();
 
+	int getSensorIndexWithName(char* name);
+
+	int getMotorIndexWithName(char* name);
+
+	int getActionerIndexWithName(char* name);
 };
 
 #endif

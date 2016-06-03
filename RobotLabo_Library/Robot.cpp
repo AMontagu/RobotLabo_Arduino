@@ -117,6 +117,22 @@ void Robot::followLine()
 
 }
 
+void Robot::foolwWall(bool isRightWall) 
+{
+	int indexSensor;
+	if (isRightWall)
+	{
+		indexSensor = this->getSensorIndexWithName("ir10To80Right");
+	}
+	else
+	{
+		indexSensor = this->getSensorIndexWithName("ir4To30Left");
+	}
+	Serial.print("index sensor for follow wall = ");
+	Serial.print(indexSensor);
+
+}
+
 void Robot::turn45degreeLeft()
 {
 
@@ -135,4 +151,37 @@ void Robot::turnAround()
 void Robot::playSound()
 {
 
+}
+
+int Robot::getSensorIndexWithName(char* name)
+{
+	for (int i = 0; i < this->sensorTabSize; i++)
+	{
+		if (this->sensorTab[i].getSensorName() == name) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+int Robot::getMotorIndexWithName(char* name)
+{
+	for (int i = 0; i < this->motorTabSize; i++)
+	{
+		if (this->motorTab[i].getMotorName() == name) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+int Robot::getActionerIndexWithName(char* name)
+{
+	for (int i = 0; i < this->actionerTabSize; i++)
+	{
+		if (this->actionerTab[i].getActionerName() == name) {
+			return i;
+		}
+	}
+	return -1;
 }
