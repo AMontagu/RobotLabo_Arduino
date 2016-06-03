@@ -1,3 +1,4 @@
+#include "Robot.h"
 #include <Adafruit_MotorShield.h>
 #include <Adafruit_NeoPixel.h>
 
@@ -18,6 +19,7 @@
 #include "MotorContinu.h"
 #include "Sound.h"
 #include "LightActionner.h"
+#include "Robot.h"
 
 #include <Wire.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"

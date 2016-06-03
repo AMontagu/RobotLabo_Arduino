@@ -44,7 +44,7 @@ class Servo180 : public Motor
 	 *  @param name is the name of the ultrasonic sensor.
 	 *  @param pin digital pin where to ultrasoni sensor is plugged.
 	 */
-	 Servo180(char* name, int motorPin);
+	 Servo180(char* name, int motorPin, bool isMovingMotor = false, bool isRight = false, bool isFront = false);
 
 	 /**
 	 *  Copy constructor.

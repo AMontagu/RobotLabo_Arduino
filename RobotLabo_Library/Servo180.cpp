@@ -4,13 +4,17 @@
 
 #include "Servo180.h"
 
-Servo180::Servo180(char* name, int servoPin)
+Servo180::Servo180(char* name, int servoPin, bool isMovingMotor, bool isRight, bool isFront)
 {
 	this->motorName = name;
 	this->motorTypeVar = motorType::servoMotor;
 	this->pin = servoPin;
 
 	this->isSetupVar = false;
+
+	this->isMovingMotor = isMovingMotor;
+	this->isRight = isRight;
+	this->isFront = isFront;
 
 	//this->setup();
 }

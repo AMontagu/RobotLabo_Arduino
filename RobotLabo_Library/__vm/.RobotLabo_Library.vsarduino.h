@@ -81,6 +81,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Motor.h>
 #include <MotorContinu.cpp>
 #include <MotorContinu.h>
+#include <Robot.cpp>
+#include <Robot.h>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.cpp>
 #include <src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h>
 #include <Sensor.h>

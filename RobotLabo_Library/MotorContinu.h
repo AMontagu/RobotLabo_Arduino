@@ -35,7 +35,7 @@ private:
 
 public:
 
-	MotorContinu(char* name, Adafruit_DCMotor* motorIn);
+	MotorContinu(char* name, Adafruit_DCMotor* motorIn, bool isMovingMotor = true, bool isRight = false, bool isFront = false);
 
 	virtual bool setup(void);
 

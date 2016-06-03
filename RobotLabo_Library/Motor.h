@@ -15,7 +15,11 @@ enum motorType { courantContinu, pasapas, servoMotor};
 class Motor
 {
 public:
-	Motor(void){}
+	Motor(){}
+
+	bool isMovingMotor = true;
+	bool isRight = false;
+	bool isFront = false;
 
 public:
 

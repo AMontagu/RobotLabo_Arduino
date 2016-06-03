@@ -3,13 +3,17 @@
 #include "MotorContinu.h"
 
 
-MotorContinu::MotorContinu(char* name,  Adafruit_DCMotor* motorIn)
+MotorContinu::MotorContinu(char* name,  Adafruit_DCMotor* motorIn, bool isMovingMotor, bool isRight, bool isFront)
 {
 	motorTypeVar = motorType::courantContinu;
 	this->port = port;
 	this->motorName = name;
 
 	this->myMotor = motorIn;
+
+	this->isMovingMotor = isMovingMotor;
+	this->isRight = isRight;
+	this->isFront = isFront;
 
 	//this->setup();*/
 }
