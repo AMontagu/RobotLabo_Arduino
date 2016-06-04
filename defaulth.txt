@@ -1,0 +1,102 @@
+// UltrasonicSensor.h
+
+#ifndef _ULTRASONICSENSOR_h
+#define _ULTRASONICSENSOR_h
+
+#if defined(ARDUINO) && ARDUINO >= 100
+	#include "arduino.h"
+#else
+	#include "WProgram.h"
+#endif
+
+#include "Sensor.h"
+
+class UltrasonicSensor : public Sensor
+{
+ private:
+
+	 /**
+	 *  Name of the sensor
+	 */
+	 const char* sensorName;
+
+	 /**
+	 *  number of digital pin on the arduino
+	 */
+	 int digitalPin;
+
+ public:
+
+	 /**
+	 *  Constructor.
+	 *
+	 *  @param name is the name of the ultrasonic sensor.
+	 *  @param pin digital pin where to ultrasoni sensor is plugged.
+	 */
+	 UltrasonicSensor(const char* name, int pin);
+
+	 /**
+	 *  Copy constructor.
+	 *
+	 *  @param ss the TcpSocket to copy.
+	 */
+	 UltrasonicSensor(const UltrasonicSensor &    ss);
+
+	 /**
+	 *  Destructor.
+	 */
+	 virtual ~UltrasonicSensor(void);
+
+	 /**
+	 *  Assignment operator.
+	 *
+	 *  @param ss the UltrasonicSensor to assign this to.
+	 *  @return a reference to this UltrasonicSensor.
+	 */
+	 virtual UltrasonicSensor &operator= (const UltrasonicSensor &    ss);
+
+	 /**
+	 *  Setup the sensor.
+	 *
+	 *  @return true if setup was successfull, false otherwise.
+	 */
+	 virtual bool setup(void) = 0;
+
+	 /**
+	 *  Check if the sensor is setup.
+	 *
+	 *  @return true if the sensor is setup, false otherwise.
+	 */
+	 virtual bool isSetup(void) = 0;
+
+	 /**
+	 *  get the principal value interest of the sensor. For color is an enum of color, for distance is distance...
+	 *
+	 *  @return an int that is a value or a enum depend of sensor type
+	 */
+	 virtual int getValue(void) = 0;
+
+	 /**
+	 *  get the name of the sensor
+	 *
+	 *  @return a sting corresponding to the name of the sensor
+	 */
+	 virtual char* getSensorName(void) = 0;
+
+	 /**
+	 *  get the type of the sensor
+	 *
+	 *  @return an int corresponding to the enum sensor type
+	 */
+	 virtual int getSensorType(void) = 0;
+
+	 /**
+	 *  get the type of the sensor
+	 *
+	 *  @return an int corresponding to the enum sensor Family
+	 */
+	 virtual int getSensorFamily(void) = 0;
+};
+
+#endif
+

@@ -1,0 +1,40 @@
+#include "UltrasonicSensor.h"
+
+UltrasonicSensor::UltrasonicSensor(const char* name, int pin)
+{
+	this->sensorName = name;
+	this->digitalPin = pin;
+
+	//this->setup();
+}
+
+UltrasonicSensor::UltrasonicSensor(const UltrasonicSensor &    ss): Sensor(ss)
+{
+	this->sensorName = ss.sensorName;
+	this->digitalPin = ss.digitalPin;
+
+	this->setup();
+}
+
+
+UltrasonicSensor::~UltrasonicSensor() {}
+
+bool UltrasonicSensor::setup(void) {
+
+}
+
+bool UltrasonicSensor::isSetup(void) {
+
+}
+
+int UltrasonicSensor::getValue(void) {
+
+}
+
+char* UltrasonicSensor::getSensorName(void) {
+
+}
+
+int UltrasonicSensor::getSensorType(void) {
+
+}
