@@ -30,12 +30,15 @@ Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
 // You can also make another motor on port M2
 //Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
 
+
 //UltrasonicSensorHCSR04 myFirstSensor("firstSensor", 8, 9);
 //IRSharp10To80 myIrSensor("myIrSensor", 0);
 //ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
 //Encoder myEncoder("myEncoder", 18, true);
 //Servo180 myServo("myServo", 9);
-MotorContinu myMotorContinu(myMotor);
+//MotorContinu myMotorContinu(myMotor);
+Sound mySound("melody1", 8)
+
 int pos;
 
 // the setup function runs once when you press reset or power the board
@@ -54,7 +57,7 @@ void setup() {
 	//myIrSensor.setup();
 	//myColorSensor.setup();
 	//myEncoder.setup();
-	myMotorContinu.setup();
+	//myMotorContinu.setup();
 }
 
 // the loop function runs over and over again until power down or reset
@@ -89,10 +92,10 @@ void loop() {
 		delay(15);                       // waits 15ms for the servo to reach the position
 	}*/
 
-	myMotorContinu.move(255);
+	//myMotorContinu.move(255);
 	
 
-	delay(1000);
+	//delay(1000);
 
 	//myMotor.move(-255);
 
