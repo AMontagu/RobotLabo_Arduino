@@ -14,7 +14,10 @@ enum sensorFamily { distanceSensor = 0, colorSensor = 1, encoderSensor = 2};
 
 class Sensor
 {
- protected:
+ public:
+
+	 bool isRight = false;
+	 bool isFront = false;
 
 	 /**
 	 *  Default constructor.
@@ -44,7 +47,8 @@ class Sensor
 		 return *this;
 	 }
 
- public:
+	 virtual Sensor * create() const = 0; // Virtual constructor (creation) 
+	 virtual Sensor * clone() const = 0;  // Virtual constructor (copying) 
 
 	 /**
 	 *  Setup the sensor.

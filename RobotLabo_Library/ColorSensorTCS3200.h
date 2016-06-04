@@ -77,6 +77,15 @@ public:
 	*/
 	virtual ColorSensorTCS3200 &operator= (const ColorSensorTCS3200 &    ss);
 
+	virtual ColorSensorTCS3200 * create() const       // Virtual constructor (creation) 
+	{
+		return new ColorSensorTCS3200(this->sensorName, this->s0, this->s1, this->s2, this->s3, this->out);
+	}
+	virtual ColorSensorTCS3200 * clone() const        // Virtual constructor (copying) 
+	{
+		return new ColorSensorTCS3200(*this);
+	}
+
 	/**
 	*  Setup the sensor.
 	*

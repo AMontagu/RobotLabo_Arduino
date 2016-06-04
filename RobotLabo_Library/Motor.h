@@ -15,7 +15,38 @@ enum motorType { courantContinu = 0, pasapas, servoMotor};
 class Motor
 {
 public:
-	Motor(void){}
+	Motor(void)
+	{
+	}
+
+	/**
+	*  Copy constructor.
+	*
+	*  @param sink the Sink to copy.
+	*/
+	Motor(const Motor &    sensor)
+	{
+	}
+
+	/**
+	*  Assignment operator.
+	*
+	*  @param sensor the Sensor to assign this to.
+	*  @return a reference to this Sink.
+	*  @exception Exception
+	*/
+	virtual Motor &operator= (const Motor &    sensor)
+	{
+		return *this;
+	}
+
+	virtual ~Motor() {}
+	virtual Motor * create() const = 0; // Virtual constructor (creation) 
+	virtual Motor * clone() const = 0;  // Virtual constructor (copying) 
+
+	bool isMovingMotor = true;
+	bool isRight = false;
+	bool isFront = false;
 
 public:
 
@@ -29,7 +60,9 @@ public:
 
 	virtual void move(int value) = 0;
 
-	virtual void setSpeeda(int speed) = 0;
+	virtual void stop() = 0;
+
+	virtual void setSpeed(int speed) = 0;
 
 	virtual int getSpeed() = 0;
 

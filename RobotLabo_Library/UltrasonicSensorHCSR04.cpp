@@ -1,12 +1,15 @@
 #include "UltrasonicSensorHCSR04.h"
 
-UltrasonicSensorHCSR04::UltrasonicSensorHCSR04(char* name, int triggerPin, int echoPin)
+UltrasonicSensorHCSR04::UltrasonicSensorHCSR04(char* name, int triggerPin, int echoPin, bool isFront, bool isRight)
 {
 	this->sensorName = name;
 	this->sensorFamilyVar = distanceSensor;
 	this->sensorTypeVar = ultrason;
 	this->triggerPin = triggerPin;
 	this->echoPin = echoPin;
+
+	this->isFront = isFront;
+	this->isRight = isRight;
 
 	this->isSetupVar = false;
 
@@ -21,6 +24,9 @@ UltrasonicSensorHCSR04::UltrasonicSensorHCSR04(const UltrasonicSensorHCSR04 &   
 	this->triggerPin = ss.triggerPin;
 	this->echoPin = ss.echoPin;
 
+	this->isFront = ss.isFront;
+	this->isRight = ss.isRight;
+
 	this->setup();
 }
 
@@ -33,6 +39,9 @@ UltrasonicSensorHCSR04 &UltrasonicSensorHCSR04 :: operator= (const UltrasonicSen
 		this->isSetupVar = ss.isSetupVar;
 		this->echoPin = ss.echoPin;
 		this->triggerPin = ss.triggerPin;
+
+		this->isFront = ss.isFront;
+		this->isRight = ss.isRight;
 
 		this->setup();
 	}

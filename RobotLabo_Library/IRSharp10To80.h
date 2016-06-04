@@ -49,17 +49,27 @@ private:
 	const int valeur70 = 129;//valeur
 	const int valeur80 = 112;//valeur*/
 
-	const int valeur10 = 285; //valeur
+	/*const int valeur10 = 285; //valeur
 	const int valeur20 = 175; //valeur
 	const int valeur30 = 107;//valeur
 	const int valeur40 = 75;//valeur
 	const int valeur50 = 55;//valeur
 	const int valeur60 = 40;//valeur
 	const int valeur70 = 30;//valeur
-	const int valeur80 = 25;//valeur
+	const int valeur80 = 25;//valeur*/
+
+	const int valeur10 = 620; //valeur
+	const int valeur20 = 300; //valeur
+	const int valeur30 = 200;//valeur
+	const int valeur40 = 150;//valeur
+	const int valeur50 = 120;//valeur
+	const int valeur60 = 100;//valeur
+	const int valeur70 = 70;//valeur
+	const int valeur80 = 50;//valeur
 
 	const int tableauValeur[8] = { valeur10, valeur20, valeur30, valeur40, valeur50, valeur60, valeur70, valeur80 };
 
+	const int ratio = 30;
 
 public:
 
@@ -69,7 +79,7 @@ public:
 	*  @param name is the name of the ultrasonic sensor.
 	*  @param pin digital pin where to ultrasoni sensor is plugged.
 	*/
-	IRSharp10To80(char* name, int analogPin);
+	IRSharp10To80(char* name, int analogPin, bool isFront = false, bool isRight = false);
 
 	/**
 	*  Copy constructor.
@@ -90,6 +100,15 @@ public:
 	*  @return a reference to this UltrasonicSensor.
 	*/
 	virtual IRSharp10To80 &operator= (const IRSharp10To80 &    ss);
+
+	virtual IRSharp10To80 * create() const       // Virtual constructor (creation) 
+	{
+		return new IRSharp10To80(this->sensorName, this->analogPin, this->isFront, this->isRight);
+	}
+	virtual IRSharp10To80 * clone() const        // Virtual constructor (copying) 
+	{
+		return new IRSharp10To80(*this);
+	}
 
 	/**
 	*  Setup the sensor.

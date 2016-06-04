@@ -55,7 +55,7 @@ class UltrasonicSensorHCSR04 : public Sensor
 	 *  @param name is the name of the ultrasonic sensor.
 	 *  @param pin digital pin where to ultrasoni sensor is plugged.
 	 */
-	 UltrasonicSensorHCSR04(char* name, int triggerPin, int echoPin);
+	 UltrasonicSensorHCSR04(char* name, int triggerPin, int echoPin, bool isFront = false, bool isRight = false);
 
 	 /**
 	 *  Copy constructor.
@@ -76,6 +76,15 @@ class UltrasonicSensorHCSR04 : public Sensor
 	 *  @return a reference to this UltrasonicSensor.
 	 */
 	 virtual UltrasonicSensorHCSR04 &operator= (const UltrasonicSensorHCSR04 &    ss);
+
+	 virtual UltrasonicSensorHCSR04 * create() const       // Virtual constructor (creation) 
+	 {
+		 return new UltrasonicSensorHCSR04(this->sensorName, this->triggerPin, this->echoPin, this->isFront, this->isRight);
+	 }
+	 virtual UltrasonicSensorHCSR04 * clone() const        // Virtual constructor (copying) 
+	 {
+		 return new UltrasonicSensorHCSR04(*this);
+	 }
 
 	 /**
 	 *  Setup the sensor.

@@ -84,6 +84,15 @@ public :
 	*/
 	virtual Encoder &operator= (const Encoder &    ss);
 
+	Encoder * create() const       // Virtual constructor (creation) 
+	{
+		return new Encoder(this->sensorName, this->interruptPin, this->isRight);
+	}
+	Encoder * clone() const        // Virtual constructor (copying) 
+	{
+		return new Encoder(*this);
+	}
+
 	/**
 	*  Setup the sensor.
 	*

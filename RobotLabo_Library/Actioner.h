@@ -14,7 +14,7 @@ enum actionerFamily { lightActioner = 0, soundActioner = 1 };
 
 class Actioner
 {
-protected:
+public:
 
 	Actioner(void)
 	{
@@ -29,7 +29,11 @@ protected:
 		return *this;
 	}
 
-public:
+	virtual ~Actioner() {}
+
+	virtual Actioner * create() const = 0; // Virtual constructor (creation) 
+	virtual Actioner * clone() const = 0;  // Virtual constructor (copying) 
+
 	/**
 	*  Setup the actioner.
 	*
@@ -49,7 +53,7 @@ public:
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
-	virtual int doAction(void) = 0;
+	virtual void doAction(int actionNumber) = 0;
 
 
 	/**

@@ -1,11 +1,14 @@
 #include "IRSharp10To80.h"
 
-IRSharp10To80::IRSharp10To80(char* name, int analogPin)
+IRSharp10To80::IRSharp10To80(char* name, int analogPin, bool isFront, bool isRight)
 {
 	this->sensorName = name;
 	this->sensorFamilyVar = distanceSensor;
 	this->sensorTypeVar = infrared;
 	this->analogPin = analogPin;
+
+	this->isFront = isFront;
+	this->isRight = isRight;
 
 	this->isSetupVar = false;
 
@@ -19,6 +22,9 @@ IRSharp10To80::IRSharp10To80(const IRSharp10To80 &    ss) : Sensor(ss)
 	this->sensorTypeVar = ss.sensorTypeVar;
 	this->analogPin = ss.analogPin;
 
+	this->isFront = ss.isFront;
+	this->isRight = ss.isRight;
+
 	this->setup();
 }
 
@@ -30,6 +36,9 @@ IRSharp10To80 &IRSharp10To80 :: operator= (const IRSharp10To80 &    ss)
 		this->sensorTypeVar = ss.sensorTypeVar;
 		this->isSetupVar = ss.isSetupVar;
 		this->analogPin = ss.analogPin;
+
+		this->isFront = ss.isFront;
+		this->isRight = ss.isRight;
 
 		this->setup();
 	}
@@ -77,7 +86,7 @@ long IRSharp10To80::getPrecisionValue(void) {
 	int analogValue = analogRead(analogPin);
 	volt = analogValue*0.0048828125;
 	//distance = 1 / (volt / 24 - 0.1);
-	distance = 1 / (volt / 16);
+	distance = 1 / (volt / this->ratio);
 	/*Serial.println(F("valeur recu par le capteur = "));
 	Serial.println(analogValue);
 	Serial.println(F("valeur en volt = "));

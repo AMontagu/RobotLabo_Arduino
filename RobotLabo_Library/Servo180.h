@@ -44,7 +44,7 @@ class Servo180 : public Motor
 	 *  @param name is the name of the ultrasonic sensor.
 	 *  @param pin digital pin where to ultrasoni sensor is plugged.
 	 */
-	 Servo180(char* name, int motorPin);
+	 Servo180(char* name, int motorPin, bool isMovingMotor = false, bool isRight = false, bool isFront = false);
 
 	 /**
 	 *  Copy constructor.
@@ -65,6 +65,15 @@ class Servo180 : public Motor
 	 *  @return a reference to this Servo180.
 	 */
 	 virtual Servo180 &operator= (const Servo180 &    ss);
+
+	 virtual Servo180 * create() const       // Virtual constructor (creation) 
+	 {
+		 return new Servo180(this->motorName, this->pin, this->isMovingMotor, this->isRight, this->isFront);
+	 }
+	 virtual Servo180 * clone() const        // Virtual constructor (copying) 
+	 {
+		 return new Servo180(*this);
+	 }
 	
 	 virtual bool setup(void);
 
@@ -76,7 +85,9 @@ class Servo180 : public Motor
 
 	 virtual void move(int value);
 
-	 virtual void setSpeeda(int speed);
+	 virtual void stop();
+
+	 virtual void setSpeed(int speed);
 
 	 virtual int getSpeed();
 

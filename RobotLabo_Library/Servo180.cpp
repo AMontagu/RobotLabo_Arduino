@@ -4,13 +4,17 @@
 
 #include "Servo180.h"
 
-Servo180::Servo180(char* name, int servoPin)
+Servo180::Servo180(char* name, int servoPin, bool isMovingMotor, bool isRight, bool isFront)
 {
 	this->motorName = name;
 	this->motorTypeVar = servoMotor;
 	this->pin = servoPin;
 
 	this->isSetupVar = false;
+
+	this->isMovingMotor = isMovingMotor;
+	this->isRight = isRight;
+	this->isFront = isFront;
 
 	//this->setup();
 }
@@ -59,6 +63,7 @@ char* Servo180::getMotorName(void) {
 }
 
 int Servo180::getMotorType(void) {
+	this->motorTypeVar = motorType::servoMotor;
 	return this->motorTypeVar;
 }
 
@@ -66,7 +71,12 @@ void Servo180::move(int value) {
 	this->myservo.write(value);
 }
 
-void Servo180::setSpeeda(int speed) {
+void Servo180::stop()
+{
+	this->myservo.detach();
+}
+
+void Servo180::setSpeed(int speed) {
 	this->speed = speed;
 }
 
