@@ -30,6 +30,7 @@ LightActionner::LightActionner(const LightActionner &la) : Actioner(la) {
 	this->delaytime = la.delaytime;
 	this->first_arg = la.first_arg;
 	this->second_arg = la.second_arg;
+	this->strip = Adafruit_NeoPixel(this->num_leds, this->lightPin, first_arg + second_arg);
 	this->setup();
 }
 

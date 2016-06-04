@@ -102,24 +102,26 @@ Robot::~Robot()
 
 void Robot::setup() 
 {
-	/*Serial.print("motorTabSize = ");
+	Serial.print("sensorTabSize = ");
+	Serial.println(sensorTabSize);
+	Serial.print("motorTabSize = ");
 	Serial.println(motorTabSize);
-	Serial.print("motorTab[1].isMovingMotor = ");
-	Serial.println(motorTab[1].isMovingMotor);*/
+	Serial.print("actionerTabSize = ");
+	Serial.println(actionerTabSize);
 	for (int i = 0; i < motorTabSize; i++)
 	{
 		Serial.println("in loop");
 		this->motorTab[i]->setup();
 		Serial.println("after setup loop");
 	}
-	/*for (int i = 0; i < sensorTabSize; i++)
+	for (int i = 0; i < sensorTabSize; i++)
 	{
 		this->sensorTab[i]->setup();
 	}
 	for (int i = 0; i < actionerTabSize; i++)
 	{
 		this->actionerTab[i]->setup();
-	}*/
+	}
 }
 
 
