@@ -15,10 +15,18 @@
 class LightActionner : public Actioner
 {
 public:
-	LightActionner ();
 	LightActionner(char* actionName, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg);
 	LightActionner(const LightActionner &la);
-	~LightActionner ();
+	virtual ~LightActionner ();
+
+	virtual LightActionner * create() const       // Virtual constructor (creation) 
+	{
+		return new LightActionner(this->actionnerName, this->lightPin, this->num_leds, this->brightness, this->gamma, this->delaytime, this->first_arg, this->second_arg);
+	}
+	virtual LightActionner * clone() const        // Virtual constructor (copying) 
+	{
+		return new LightActionner(*this);
+	}
 
 	/**
 	*  Setup the actioner.

@@ -10,7 +10,7 @@ Sound::Sound(char* name, int melodyPin)
 	this->isSetupVar = false;
 }
 
-Sound::Sound(const Sound &    ss) : Sound(ss)
+Sound::Sound(const Sound &    ss) : Actioner(ss)
 {
 
 	this->actionerName = ss.actionerName;
@@ -120,14 +120,11 @@ void Sound::reset(void) {}
 
 char* Sound::getActionerName(void) {
 	return this->actionerName;
-
 }
 
-
-
 int Sound::getActionerType(void) {
+	this->actionerTypeVar = actionerFamily::soundActioner;
 	return this->actionerTypeVar;
-
 }
 
 

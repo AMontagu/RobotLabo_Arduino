@@ -33,10 +33,6 @@ LightActionner::LightActionner(const LightActionner &la) : Actioner(la) {
 	this->setup();
 }
 
-LightActionner::LightActionner()
-{
-}
-
 LightActionner ::~LightActionner()
 {
 }
@@ -91,12 +87,13 @@ void LightActionner::reset(void)
 
 char* LightActionner::getActionerName(void)
 {
-	return nullptr;
+	return this->actionnerName;
 }
 
 int LightActionner::getActionerType(void)
 {
-	return 0;
+	this->actionnerFamily = actionerFamily::lightActioner;
+	return this->actionnerFamily;
 }
 
 void LightActionner::colorWipe(uint32_t c, uint8_t wait)

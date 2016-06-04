@@ -1,20 +1,10 @@
-#include "Robot.h"
-#include <Adafruit_MotorShield.h>
-#include <Adafruit_NeoPixel.h>
-
-/*
- Name:		RobotLabo_Library.ino
- Created:	13/05/2016 20:02:48
- Author:	Adrien
- Editor:	http://www.visualmicro.com
-*/
-
-//#include "RobotLabo_LibraryLib.h"
+#include "LightActionner.h"
 #include <Servo.h>
 #include "Servo180.h"
 #include "Encoder.h"
 #include "ColorSensorTCS3200.h"
 #include "IRSharp10To80.h"
+#include "IRSharp4To30.h"
 #include "UltrasonicSensorHCSR04.h"
 #include "MotorContinu.h"
 #include "Sound.h"
@@ -22,27 +12,9 @@
 #include "Robot.h"
 
 #include <Wire.h>
+#include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
-
-
-// Create the motor shield object with the default I2C address
-//Adafruit_MotorShield AFMS = Adafruit_MotorShield();
-// Or, create it with a different I2C address (say for stacking)
-// Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
-
-// Select which 'port' M1, M2, M3 or M4. In this case, M1
-//Adafruit_DCMotor *myMotor = AFMS.getMotor(1);
-// You can also make another motor on port M2
-//Adafruit_DCMotor *myOtherMotor = AFMS.getMotor(2);
-
-//UltrasonicSensorHCSR04 myFirstSensor("firstSensor", 8, 9);
-//IRSharp10To80 myIrSensor("myIrSensor", 0);
-//ColorSensorTCS3200 myColorSensor("myColorSensor", 8, 9, 10, 11, 2);
-//Encoder myEncoder("myEncoder", 18, true);
-//Servo180 myServo("myServo", 9);
-//MotorContinu myMotorContinu(myMotor);
-Sound mySound("melody", 30);
-//int pos;
+#include <Adafruit_NeoPixel.h>
 
 int gamma[] = {
 	0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -62,79 +34,103 @@ int gamma[] = {
 	177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
 	215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
 
-LightActionner la = LightActionner("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
-// the setup function runs once when you press reset or power the board
+Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(1);
+Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
+Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
+Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
+
+MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight, true, true, true);
+MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true);
+MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
+MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft, true, false, false);
+
+UltrasonicSensorHCSR04 ultrasonicFront("distanceFront", 53, 52);
+UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
+IRSharp4To30 irLeft("distanceLeft", 0);
+IRSharp10To80 irRight("distanceRight", 2);
+
+Sound mySound("melody", 30);
+LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
+
+Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
+Sensor* sensorTab[4] = { &ultrasonicFront, &ultrasonicBack, &irLeft, &irRight };
+Actioner* actionerTab[2] = { &mySound, &la };
+
+Robot* myRobot;
+
 void setup() {
+  
+  Serial.begin(9600);
 
-	Serial.begin(9600);
+  while (!Serial)
+  {}
 
-	while (!Serial)
-	{
-	}
+  Serial.println("begin");
 
-	//Serial.println("serial");
+  /*Actioner * test = actionerTab[0]->clone();
 
-	//AFMS.begin();
+  test->setup();
+  test->doAction(1);*/
 
-	//myFirstSensor.setup();
-	//myIrSensor.setup();
-	//myColorSensor.setup();
-	//myEncoder.setup();
-	//myMotorContinu.setup();
-	mySound.setup();
-	//la.setup();
+  myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
+  Serial.println("created");
+
+  AFMS.begin();
+
+  /*for (int i = 0; i < 4; i++)
+  {
+    motorTab[i]->setup();
+  }*/
+  
+  myRobot->setup();
+
+  Serial.println("setup");
 }
 
-// the loop function runs over and over again until power down or reset
+
 void loop() {
-	mySound.doAction(1);
-	delay(1000);
-	mySound.doAction(4);
-	delay(1000);
-	Serial.println("in loop");
-	/*if (myFirstSensor.isSetup()) {
-	Serial.println(myFirstSensor.getValue());
-	}*/
 
-	/*if (myIrSensor.isSetup()) {
-		Serial.println(myIrSensor.getValue());
-		delayMicroseconds(100);
-		//myIrSensor.getPrecisionValue();
-		Serial.println(myIrSensor.getPrecisionValue());
-	}*/
-	/*Serial.println("blibli");
-	Serial.println(myColorSensor.isSetup());
-	if (myColorSensor.isSetup()) {
-		Serial.println("before get value");
-		myColorSensor.getValue();
-	}
+	Serial.print("front distance"); 
+	Serial.println(myRobot->getDistanceFront());
 
-	Serial.println("blabla");*/
+	Serial.print("back distance");
+	Serial.println(myRobot->getDistanceBack());
 
-	/*for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-										  // in steps of 1 degree
-		myServo.move(pos);              // tell servo to go to position in variable 'pos'
-		delay(15);                       // waits 15ms for the servo to reach the position
-	}
-	for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-		myServo.move(pos);              // tell servo to go to position in variable 'pos'
-		delay(15);                       // waits 15ms for the servo to reach the position
-	}*/
+	Serial.print("left distance");
+	Serial.println(myRobot->getDistanceLeft());
 
-	//myMotorContinu.move(255);
+	Serial.print("right distance");
+	Serial.println(myRobot->getDistanceRight());
 
 
+	Serial.println("Light");
+	myRobot->doLight(0);
 
+	Serial.println("loop");
+  /*for (int i = 0; i < 4; i++)
+  {
+    motorTab[i]->move(150);
+  }*/
 
-	//delay(1000);
+  Serial.println("forward");
+  
+  myRobot->forward(150);
 
-	//myMotorContinu.move(-255);
+  delay(3000);
 
-	//la.doAction(1);
+  Serial.println("backward");
 
+  myRobot->backward(150);
 
-	//delay(1000);
+  delay(3000);
+
+  Serial.println("stop");
+
+  myRobot->stop();
+
+  delay(3000);
 }
 

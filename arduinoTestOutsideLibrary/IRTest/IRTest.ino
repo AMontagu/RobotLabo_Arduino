@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("distance value sensor left = ");
+  /*Serial.print("distance value sensor left = ");
   Serial.println(getValue(irLeftAnalog));
 
   Serial.print("distance precision value sensor left = ");
@@ -46,10 +46,10 @@ void loop() {
 
   Serial.print("distance precision value sensor right = ");
   Serial.println(getPrecisionValue(irRightAnalog, ratioRight));
-  delay(1000);
+  delay(1000);*/
 
-  //Serial.println(analogRead(irLeftAnalog));
-  //delay(1000);
+  Serial.println(analogRead(irRightAnalog));
+  delay(1000);
 }
 
 int getValue(int analogPin) {
