@@ -66,7 +66,7 @@ void ControlRobot::turnAround()
 
 }
 
-void ControlRobot::playsSound()
+void ControlRobot::playSound()
 {
 	
 }
