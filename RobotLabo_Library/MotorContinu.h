@@ -1,4 +1,5 @@
-// MotoeShield.h
+#include <Adafruit_MotorShield.h>
+
 
 #ifndef _MOTORCONTINUV23_h
 #define _MOTORCONTINUV23_h
@@ -9,14 +10,8 @@
 	#include "WProgram.h"
 #endif
 
-//#include "Sensor.h"
-
-
-// MotoeShield.h
-
-#include "Wire.h"
-#include "Adafruit_MotorShield.h"
 #include "Motor.h"
+
 
 class MotorContinu : public Motor
 {

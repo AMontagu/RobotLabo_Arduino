@@ -8,7 +8,6 @@
 #endif
 
 #include "MotorContinu.h"
-#include "MotorContinu.h"
 
 class ControlRobot
 {
