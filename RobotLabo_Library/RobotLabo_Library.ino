@@ -18,7 +18,6 @@
 #include "Sound.h"
 
 
-
 // Create the motor shield object with the default I2C address
 //Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 // Or, create it with a different I2C address (say for stacking)
