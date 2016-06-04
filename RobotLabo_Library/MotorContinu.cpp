@@ -88,3 +88,4 @@ void MotorContinu::setSpeeda(int speed) {
 int MotorContinu::getSpeed() {
 	return this->speed;
 }
+

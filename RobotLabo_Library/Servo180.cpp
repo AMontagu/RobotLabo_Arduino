@@ -78,3 +78,4 @@ bool Servo180::getIsMove()
 {
 	return isMoveVar;
 }
+

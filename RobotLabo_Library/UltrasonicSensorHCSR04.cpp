@@ -117,3 +117,4 @@ int UltrasonicSensorHCSR04::getSensorType(void) {
 int UltrasonicSensorHCSR04::getSensorFamily(void) {
 	return this->sensorFamilyVar;
 }
+

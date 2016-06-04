@@ -103,3 +103,4 @@ int IRSharp10To80::getSensorFamily(void) {
 }
 
 
+
