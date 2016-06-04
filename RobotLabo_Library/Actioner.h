@@ -10,7 +10,7 @@
 #include "WProgram.h"
 #endif
 
-enum actionerFamily { lightActioner, soundActioner };
+enum actionerFamily { lightActioner = 0, soundActioner = 1 };
 
 class Actioner
 {

@@ -11,7 +11,7 @@
 
 #include "Sensor.h"
 
-enum color{red, blue, yellow, black, white, green};
+enum color{red = 0, blue, yellow, black, white, green};
 
 ISR(TIMER2_OVF_vect);
 void TCS();
@@ -30,12 +30,12 @@ private:
 	/**
 	*  Name of the sensor
 	*/
-	int sensorTypeVar;
+	sensorType sensorTypeVar;
 
 	/**
 	*  Name of the sensor
 	*/
-	int sensorFamilyVar;
+	sensorFamily sensorFamilyVar;
 
 	/**
 	*  return true is the sensor is setup.

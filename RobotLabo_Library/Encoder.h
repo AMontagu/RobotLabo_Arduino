@@ -27,12 +27,12 @@ private:
 	/**
 	*  Name of the sensor
 	*/
-	int sensorTypeVar;
+	sensorType sensorTypeVar;
 
 	/**
 	*  Name of the sensor
 	*/
-	int sensorFamilyVar;
+	sensorFamily sensorFamilyVar;
 
 	/**
 	*  return true is the encoder is setup.

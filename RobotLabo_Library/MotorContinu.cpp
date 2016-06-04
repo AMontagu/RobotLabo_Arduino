@@ -5,7 +5,7 @@
 
 MotorContinu::MotorContinu(Adafruit_DCMotor* motorIn)
 {
-	motorTypeVar = motorType::courantContinu;
+	motorTypeVar = courantContinu;
 	this->port = port;
 
 	this->myMotor = motorIn;

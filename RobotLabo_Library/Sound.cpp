@@ -3,7 +3,7 @@
 Sound::Sound(char* name, int melodyPin)
 {
 	this->actionerName = name;
-	this->actionerTypeVar = actionerFamily::soundActioner;
+	this->actionerTypeVar = soundActioner;
 	this->melodyPin = melodyPin;
 
 

@@ -141,7 +141,7 @@ private:
 	/**
 	*  Name of the actioner
 	*/
-	int actionerTypeVar;
+	actionerFamily actionerTypeVar;
 
 	/**
 	*  number for the trigger pin on the arduino

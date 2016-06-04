@@ -9,8 +9,8 @@
 	#include "WProgram.h"
 #endif
 
-enum sensorType { ultrason, infrared, color, encoder};
-enum sensorFamily { distanceSensor, colorSensor, encoderSensor};
+enum sensorType { ultrason = 0, infrared = 1, color = 3, encoder = 4};
+enum sensorFamily { distanceSensor = 0, colorSensor = 1, encoderSensor = 2};
 
 class Sensor
 {

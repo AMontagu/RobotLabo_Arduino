@@ -3,8 +3,8 @@
 IRSharp10To80::IRSharp10To80(char* name, int analogPin)
 {
 	this->sensorName = name;
-	this->sensorFamilyVar = sensorFamily::distanceSensor;
-	this->sensorTypeVar = sensorType::infrared;
+	this->sensorFamilyVar = distanceSensor;
+	this->sensorTypeVar = infrared;
 	this->analogPin = analogPin;
 
 	this->isSetupVar = false;

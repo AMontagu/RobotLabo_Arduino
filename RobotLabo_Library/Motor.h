@@ -9,7 +9,7 @@
 	#include "WProgram.h"
 #endif
 
-enum motorType { courantContinu, pasapas, servoMotor};
+enum motorType { courantContinu = 0, pasapas, servoMotor};
 
 
 class Motor

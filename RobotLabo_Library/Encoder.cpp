@@ -10,8 +10,8 @@ Encoder* encoderLeft;
 Encoder::Encoder(char* name, int interruptPin, bool isRight)
 {
 	this->sensorName = name;
-	this->sensorFamilyVar = sensorFamily::encoderSensor;
-	this->sensorTypeVar = sensorType::encoder;
+	this->sensorFamilyVar = encoderSensor;
+	this->sensorTypeVar = encoder;
 	this->interruptPin = interruptPin;
 	this->isRight = isRight;
 

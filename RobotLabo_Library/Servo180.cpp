@@ -7,7 +7,7 @@
 Servo180::Servo180(char* name, int servoPin)
 {
 	this->motorName = name;
-	this->motorTypeVar = motorType::servoMotor;
+	this->motorTypeVar = servoMotor;
 	this->pin = servoPin;
 
 	this->isSetupVar = false;

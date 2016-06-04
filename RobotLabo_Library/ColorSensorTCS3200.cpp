@@ -5,8 +5,8 @@ ColorSensorTCS3200* currentColorSensor;
 ColorSensorTCS3200::ColorSensorTCS3200(char* name, int s0, int s1, int s2, int s3, int out)
 {
 	this->sensorName = name;
-	this->sensorFamilyVar = sensorFamily::colorSensor;
-	this->sensorTypeVar = sensorType::color;
+	this->sensorFamilyVar = colorSensor;
+	this->sensorTypeVar = color;
 	this->s0 = s0;
 	this->s1 = s1;
 	this->s2 = s2;

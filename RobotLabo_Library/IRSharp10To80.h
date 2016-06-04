@@ -23,12 +23,12 @@ private:
 	/**
 	*  Name of the sensor
 	*/
-	int sensorTypeVar;
+	sensorType sensorTypeVar;
 
 	/**
 	*  Name of the sensor
 	*/
-	int sensorFamilyVar;
+	sensorFamily sensorFamilyVar;
 
 	/**
 	*  number for the trigger pin on the arduino

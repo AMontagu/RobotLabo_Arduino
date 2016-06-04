@@ -21,7 +21,7 @@ class Servo180 : public Motor
 	 /**
 	 *  Name of the sensor
 	 */
-	 int motorTypeVar;
+	 motorType motorTypeVar;
 
 	 int speed;
 

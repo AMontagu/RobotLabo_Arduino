@@ -11,7 +11,7 @@
 
 #include "Sensor.h"
 
-const long MEASURE_TIMEOUT = 25000L; // 40Hz = 25ms = ~8m à 340m/s
+const long MEASURE_TIMEOUT = 25000L; // 40Hz = 25ms = ~8m ï¿½ 340m/s
 
 class UltrasonicSensorHCSR04 : public Sensor
 {
@@ -25,12 +25,12 @@ class UltrasonicSensorHCSR04 : public Sensor
 	 /**
 	 *  Name of the sensor
 	 */
-	 int sensorTypeVar;
+	 sensorType sensorTypeVar;
 
 	 /**
 	 *  Name of the sensor
 	 */
-	 int sensorFamilyVar;
+	 sensorFamily sensorFamilyVar;
 
 	 /**
 	 *  number for the trigger pin on the arduino

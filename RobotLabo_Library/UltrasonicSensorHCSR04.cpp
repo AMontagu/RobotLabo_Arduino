@@ -3,8 +3,8 @@
 UltrasonicSensorHCSR04::UltrasonicSensorHCSR04(char* name, int triggerPin, int echoPin)
 {
 	this->sensorName = name;
-	this->sensorFamilyVar = sensorFamily::distanceSensor;
-	this->sensorTypeVar = sensorType::ultrason;
+	this->sensorFamilyVar = distanceSensor;
+	this->sensorTypeVar = ultrason;
 	this->triggerPin = triggerPin;
 	this->echoPin = echoPin;
 
@@ -61,7 +61,7 @@ bool UltrasonicSensorHCSR04::isSetup(void) {
 }
 
 int UltrasonicSensorHCSR04::getValue(void) {
-	/* send an HIGH signal for 10µs on the trigger pin */
+	/* send an HIGH signal for 10ï¿½s on the trigger pin */
 	digitalWrite(triggerPin, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(triggerPin, LOW);
@@ -83,7 +83,7 @@ int UltrasonicSensorHCSR04::getValue(void) {
 }
 
 long UltrasonicSensorHCSR04::getPrecisionValue(void) {
-	/* send an HIGH signal for 10µs on the trigger pin */
+	/* send an HIGH signal for 10ï¿½s on the trigger pin */
 	digitalWrite(triggerPin, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(triggerPin, LOW);

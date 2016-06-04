@@ -26,7 +26,7 @@ private:
 
 	char* motorName;
 
-	int motorTypeVar;
+	motorType motorTypeVar;
 
 	bool isSetupVar;
 
