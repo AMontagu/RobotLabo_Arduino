@@ -103,52 +103,89 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
+
 #include "Actioner.h"
 
 class Sound : public Actioner
 {
- private:
-
-	 /**
-	 *  Name of the actioner
-	 */
-	 char* actionerName;
-
-	 /**
-	 *  Name of the actioner
-	 */
-	 int actionerTypeVar;
-
-	 /**
-	 *  number for the trigger pin on the arduino
-	 */
-	 int melodyPin;
-
-	 /**
-	 *  return true is the actioner is setup.
-	 */
-	 bool isSetupVar;
-
 public:
 
-	
-	 Sound(char* name, int melodyPin);
+	//melody exemple 
+	int melodyNumber = 8;
+	int melody[8] = { NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4 };
+	int noteDurationsMelody[8] = { 4, 8, 8, 4, 4, 4, 4, 4 };
 
-	 
-	 Sound(const Sound &    ss);
+	//Mario main theme melody
+	int melodyMarioNumber = 78;
+	int melodyMario[78] = { NOTE_E7, NOTE_E7, 0, NOTE_E7,0, NOTE_C7, NOTE_E7, 0,NOTE_G7, 0, 0,  0,NOTE_G6, 0, 0, 0,NOTE_C7, 0, 0, NOTE_G6,0, 0, NOTE_E6, 0,0, NOTE_A6, 0, NOTE_B6,0, NOTE_AS6, NOTE_A6, 0,NOTE_G6, NOTE_E7, NOTE_G7,NOTE_A7, 0, NOTE_F7, NOTE_G7, 0, NOTE_E7, 0, NOTE_C7,NOTE_D7, NOTE_B6, 0, 0,NOTE_C7, 0, 0, NOTE_G6,0, 0, NOTE_E6, 0,0, NOTE_A6, 0, NOTE_B6,0, NOTE_AS6, NOTE_A6, 0,NOTE_G6, NOTE_E7, NOTE_G7,NOTE_A7, 0, NOTE_F7, NOTE_G7,0, NOTE_E7, 0, NOTE_C7,NOTE_D7, NOTE_B6, 0, 0 };
+	int noteDurationsMario[78] = { 12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,
+	 9, 9, 9,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12,9, 9, 9,12, 12, 12, 12,12, 12, 12, 12,12, 12, 12, 12, };
 
-	 /**
-	 *  Destructor.
-	 */
-	 virtual ~Sound(void);
+	//Underworld melody
+	int melodyUnderworldNumber = 8;
+	int melodyUnderworld[8] = { NOTE_C4, NOTE_C5, NOTE_A3, NOTE_A4,NOTE_AS3, NOTE_AS4, 0,0 };
+	int noteDurationsUnderworld[8] = { 12, 12, 12, 12,12, 12, 6,3 };
 
-	 /**
-	 *  Assignment operator.
-	 *
-	 *  @param ss the UltrasonicSensor to assign this to.
-	 *  @return a reference to this UltrasonicSensor.
-	 */
-	 virtual Sound &operator= (const Sound &    ss);
+	//Underworld melody2
+	int melodyUnderworld2Number = 25;
+	int melodyUnderworld2[25] = { 0, NOTE_DS4, NOTE_CS4, NOTE_D4,NOTE_CS4, NOTE_DS4,NOTE_DS4, NOTE_GS3,NOTE_G3, NOTE_CS4,NOTE_C4, NOTE_FS4, NOTE_F4, NOTE_E3, NOTE_AS4, NOTE_A4,NOTE_GS4, NOTE_DS4, NOTE_B3,NOTE_AS3, NOTE_A3, NOTE_GS3,0, 0, 0 };
+	int noteDurationUnderworld2[25] = { 6, 18, 18, 18,6, 6,6, 6,6, 6,18, 18, 18, 18, 18, 18,10, 10, 10,10, 10, 10,3, 3, 3 };
+
+	int musiqueTelephone = 10; 
+	int melodyTelephone[10]={NOTE_C4, NOTE_C5,NOTE_E4 ,NOTE_A4,NOTE_C4,NOTE_C4, NOTE_C5,NOTE_E4 ,NOTE_A4,NOTE_A7};
+	int noteDurationsTelephone[10] = {7,7,7,7,7,7,7,7,7,7};
+
+	int musiqueImprimente = 8; 
+	int melodyImprimente[8]= {NOTE_G1,0,NOTE_G1,NOTE_E7,NOTE_E7,NOTE_E7,NOTE_E7,NOTE_E7};
+	int noteDurationsUnderworld[8] = {2,7,3,7,7,7,7,7};
+
+	/**
+	*  Name of the actioner
+	*/
+	char* actionerName;
+
+	/**
+	*  Name of the actioner
+	*/
+	int actionerTypeVar;
+
+	/**
+	*  number for the trigger pin on the arduino
+	*/
+	int melodyPin;
+
+	/**
+	*  return true is the actioner is setup.
+	*/
+	bool isSetupVar;
+
+
+	Sound(char* name, int melodyPin);
+
+
+	Sound(const Sound &    ss);
+
+	/**
+	*  Destructor.
+	*/
+	virtual ~Sound(void);
+
+	/**
+	*  Assignment operator.
+	*
+	*  @param ss the UltrasonicSensor to assign this to.
+	*  @return a reference to this UltrasonicSensor.
+	*/
+	virtual Sound &operator= (const Sound &    ss);
+
+	virtual Sound * create() const       // Virtual constructor (creation) 
+	{
+		return new Sound(this->actionerName, this->melodyPin);
+	}
+	virtual Sound * clone() const        // Virtual constructor (copying) 
+	{
+		return new Sound(*this);
+	}
 
 	/**
 	*  Setup the actioner.
@@ -164,13 +201,13 @@ public:
 	*/
 	virtual bool isSetup(void);
 
+
 	/**
 	*  Do the principal action of an actionner.
 	*
 	*  @return an int that is a value or a enum depend of actioner type
 	*/
-	virtual int doAction(void);
-
+	virtual void doAction(int actionNumber);
 
 	/**
 	*  reset the actioner. For exemple for the encodeur ...
