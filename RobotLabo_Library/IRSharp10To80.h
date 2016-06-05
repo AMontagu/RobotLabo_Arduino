@@ -58,8 +58,12 @@ private:
 	const int valeur70 = 30;//valeur
 	const int valeur80 = 25;//valeur*/
 
-	const int valeur10 = 620; //valeur
-	const int valeur20 = 300; //valeur
+	static const int arraySize = 10;
+
+	const int valeur5= 650; //valeur
+	const int valeur10 = 450; //valeur
+	const int valeur15 = 340; //valeur
+	const int valeur20 = 270; //valeur
 	const int valeur30 = 200;//valeur
 	const int valeur40 = 150;//valeur
 	const int valeur50 = 120;//valeur
@@ -67,9 +71,9 @@ private:
 	const int valeur70 = 70;//valeur
 	const int valeur80 = 50;//valeur
 
-	const int tableauValeur[8] = { valeur10, valeur20, valeur30, valeur40, valeur50, valeur60, valeur70, valeur80 };
+	const float ratio = 30;
 
-	const int ratio = 30;
+	const int tableauValeur[arraySize] = { valeur5, valeur10, valeur15, valeur20, valeur30, valeur40, valeur50, valeur60, valeur70, valeur80 };
 
 public:
 

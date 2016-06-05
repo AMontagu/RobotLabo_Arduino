@@ -11,8 +11,6 @@
 
 #include "Sensor.h"
 
-enum color{red, blue, yellow, black, white, green};
-
 ISR(TIMER2_OVF_vect);
 void TCS();
 void timer2_init(void);

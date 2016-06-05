@@ -75,37 +75,31 @@ void setup() {
 
   myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
+  Serial.println("created");
+
   AFMS.begin();
+
+  /*for (int i = 0; i < 4; i++)
+  {
+    motorTab[i]->setup();
+  }*/
+  
   myRobot->setup();
+  Serial.println("setup");
 }
 
 
 void loop() {
 
-  Serial.println("forward");
+  int color = myRobot->getColorRight();
+  if(color == black)
+  {
+    Serial.println("black");
+  }
+  else{
+    Serial.println("white");
+  }
 
-  myRobot->turnRight(60);
-
-  delay(3000);
-
-  myRobot->turnLeft(60);
-
-  delay(3000);
-  
-  /*myRobot->forward(150);
-
-  delay(3000);
-
-  Serial.println("backward");
-
-  myRobot->backward(150);
-
-  delay(3000);*/
-
-  Serial.println("stop");
-
-  myRobot->stop();
-
-  delay(3000);
+  delay(1000);
 }
 

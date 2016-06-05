@@ -81,7 +81,7 @@ int MotorContinu::getMotorType(void) {
 
 void MotorContinu::move(int value)
 {
-	Serial.println("move");
+	//Serial.println("move");
 	this->isMoveVar = true;
 	
 

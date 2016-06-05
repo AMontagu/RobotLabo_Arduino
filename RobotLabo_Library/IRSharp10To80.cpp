@@ -65,15 +65,20 @@ bool IRSharp10To80::isSetup(void) {
 
 int IRSharp10To80::getValue(void) {
 	int compteur = 0, valeurPlusProcheCentimetre = 100, valeurPlusProcheZero = 1025;
-	int valeurCompare[8] = {};
+	int valeurCompare[arraySize] = {};
 	int analogValue = analogRead(analogPin);
-	for (compteur = 0; compteur < 8; compteur++)
+	for (compteur = 0; compteur < arraySize; compteur++)
 	{
 		valeurCompare[compteur] = abs(analogValue - tableauValeur[compteur]);
 		if (valeurCompare[compteur] < valeurPlusProcheZero)
 		{
 			valeurPlusProcheZero = valeurCompare[compteur];
-			valeurPlusProcheCentimetre = compteur * 10 + 10;
+			if (compteur < 4) {
+				valeurPlusProcheCentimetre = compteur * 5 + 5;
+			}
+			else {
+				valeurPlusProcheCentimetre = (compteur - 2) * 10 + 10;
+			}
 		}
 	}
 	//Serial.println(valeurPlusProcheCentimetre);

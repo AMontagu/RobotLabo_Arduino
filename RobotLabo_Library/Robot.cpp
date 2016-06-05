@@ -7,7 +7,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->motorTabSize = sizeof(motorTab);
 	this->actionerTabSize = sizeof(actionerTab);*/
 
-	this->sensorTabSize = 4;
+	this->sensorTabSize = 5;
 	this->motorTabSize = 4;
 	this->actionerTabSize = 2;
 
@@ -15,6 +15,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->distanceBackName = distanceBackName;
 	this->distanceLeftName = distanceLeftName;
 	this->distanceRightName = distanceRightName;
+	this->colorRightName = "colorRight";
 
 	/*Serial.print("sensorTabSize = ");
 	Serial.println(sensorTabSize);
@@ -29,28 +30,28 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	{
 		this->motorTab[i] = motorTab[i]->clone();
 	}
-	Serial.println("cloneMotor OK");
+	//Serial.println("cloneMotor OK");
 
-	Serial.println(sensorTab[0]->getSensorName());
+	//Serial.println(sensorTab[0]->getSensorName());
 	
 	for (int i = 0; i < sensorTabSize; i++)
 	{
-		Serial.println(i);
-		Serial.println("loop clone sensor");
+		//Serial.println(i);
+		//Serial.println("loop clone sensor");
 		//Serial.println(sensorTab[i]->getSensorName());
 		this->sensorTab[i] = sensorTab[i]->clone();
 	}
-	Serial.println("cloneSensor OK");
-	Serial.println(actionerTab[0]->getActionerName());
+	//Serial.println("cloneSensor OK");
+	//Serial.println(actionerTab[0]->getActionerName());
 	/*actionerTab[0]->setup();
 	actionerTab[0]->doAction(1);*/
-	Serial.println(actionerTab[1]->getActionerName());
+	//Serial.println(actionerTab[1]->getActionerName());
 	for (int i = 0; i < actionerTabSize; i++)
 	{
-		Serial.println("loop clone actionner");
+		//Serial.println("loop clone actionner");
 		this->actionerTab[i] = actionerTab[i]->clone();
 	}
-	Serial.println("cloneActioner OK");
+	//Serial.println("cloneActioner OK");
 
 #pragma region comment
 	//this->sensorTab = (Sensor *)malloc(this->sensorTabSize * sizeof(Sensor));
@@ -110,9 +111,9 @@ void Robot::setup()
 	Serial.println(actionerTabSize);
 	for (int i = 0; i < motorTabSize; i++)
 	{
-		Serial.println("in loop");
+		//Serial.println("in loop");
 		this->motorTab[i]->setup();
-		Serial.println("after setup loop");
+		//Serial.println("after setup loop");
 	}
 	for (int i = 0; i < sensorTabSize; i++)
 	{
@@ -127,29 +128,51 @@ void Robot::setup()
 
 void Robot::forward(int speed)
 {
-	Serial.println("in forward");
+	//Serial.println("in forward");
 	for (int i = 0; i < motorTabSize; i++)
 	{
-		Serial.println(this->motorTab[i]->getMotorType());
+		/*Serial.println(this->motorTab[i]->getMotorType());
 		Serial.println(motorType::courantContinu);
-		Serial.println(this->motorTab[i]->isMovingMotor);
+		Serial.println(this->motorTab[i]->isMovingMotor);*/
 
 		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
 		{
-			Serial.print("move motor");
+			//Serial.print("move motor");
 			this->motorTab[i]->move(speed);
+		}
+	}
+}
+
+void Robot::forwardDifferentSpeed(int speedRight, int speedLeft) 
+{
+	for (int i = 0; i < motorTabSize; i++)
+	{
+		/*Serial.println(this->motorTab[i]->getMotorType());
+		Serial.println(motorType::courantContinu);
+		Serial.println(this->motorTab[i]->isMovingMotor);*/
+
+		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
+		{
+			if (this->motorTab[i]->isRight)
+			{
+				this->motorTab[i]->move(speedRight);
+			}
+			else
+			{
+				this->motorTab[i]->move(speedLeft);
+			}
 		}
 	}
 }
 
 void Robot::backward(int speed)
 {
-	Serial.println("in backward");
+	//Serial.println("in backward");
 	for (int i = 0; i < motorTabSize; i++)
 	{
 		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
 		{
-			Serial.println("bacwardMotor");
+			//Serial.println("bacwardMotor");
 			this->motorTab[i]->move(-speed);
 		}
 	}
@@ -167,16 +190,20 @@ void Robot::backwardAt(int distance)
 
 void Robot::turnLeft(int speed)
 {
-	for (int i = 0; i < motorTabSize; i++)
+	for (int i = 0; i < this->motorTabSize; i++)
 	{
 		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
 		{
 			if (this->motorTab[i]->isRight) 
 			{
+				//Serial.print("is right =");
+				Serial.println(this->motorTab[i]->getMotorName());
 				this->motorTab[i]->move(-speed);
 			}
 			else
 			{
+				//Serial.print("is left =");
+				//Serial.println(this->motorTab[i]->getMotorName());
 				this->motorTab[i]->move(speed);
 			}
 		}
@@ -185,7 +212,7 @@ void Robot::turnLeft(int speed)
 
 void Robot::turnRight(int speed)
 {
-	for (int i = 0; i < motorTabSize; i++)
+	for (int i = 0; i < this->motorTabSize; i++)
 	{
 		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
 		{
@@ -201,38 +228,190 @@ void Robot::turnRight(int speed)
 	}
 }
 
-void Robot::stop()
+void Robot::turnLeftTime(int speed, int delayMs)
 {
-	Serial.println("inStop");
 	for (int i = 0; i < motorTabSize; i++)
 	{
 		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
 		{
-			Serial.println("StopMotor");
+			if (this->motorTab[i]->isRight)
+			{
+				this->motorTab[i]->move(-speed);
+			}
+			else
+			{
+				this->motorTab[i]->move(speed);
+			}
+		}
+	}
+	delay(delayMs);
+	stop();
+	delay(200);
+}
+
+void Robot::turnRightTime(int speed, int delayMs)
+{
+	for (int i = 0; i < this->motorTabSize; i++)
+	{
+		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
+		{
+			if (this->motorTab[i]->isRight)
+			{
+				this->motorTab[i]->move(speed);
+			}
+			else
+			{
+				this->motorTab[i]->move(-speed);
+			}
+		}
+	}
+	delay(delayMs);
+	stop();
+	delay(200);
+}
+
+void Robot::stop()
+{
+	//Serial.println("inStop");
+	for (int i = 0; i < motorTabSize; i++)
+	{
+		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
+		{
+			//Serial.println("StopMotor");
 			this->motorTab[i]->stop();
 		}
 	}
 }
 
-void Robot::followLine()
+void Robot::followLine(void)
 {
-
-}
-
-void Robot::foolwWall(bool isRightWall) 
-{
-	int indexSensor;
-	if (isRightWall)
+	int colorValue; // Variable qui nous permet de stocker la couleur
+	int numberMove = 0, numberMoveExpected = 5, temps = 200, countScan = 1;
+	int bigTourne = 0;
+	int speed = 80;
+	colorValue = getColorRight(); //Récupère la couleur retourne 1 si c’est noir 0 sinon
+	while (true)
 	{
-		indexSensor = this->getSensorIndexWithName("ir10To80Right");
+		while (colorValue == black) //Tant que l’on est sur du noir
+		{
+			if (bigTourne != 0) {
+				while (true)
+				{
+					forward(150);
+				}
+			}
+			Serial.println("in black");
+			forward(speed); // On fait avancer notre robot
+			colorValue = getColorRight();
+		}
+		while (colorValue != black) //Tant que l’on est pas sur du noir
+		{
+			Serial.println("different black");
+			Serial.println(colorValue);
+			numberMove = 0;
+			while (numberMove  < numberMoveExpected && colorValue != black)
+			{
+				Serial.println("first turn");
+				turnRightTime(speed, temps);// On tourne à droite sur l’amplitude precision
+								 //delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+				colorValue = getColorRight();
+				numberMove++;
+			}
+			if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi en fonction du nombre de balayage effectué
+			{
+				Serial.println("5 move turn");
+				//On retourne un peu avant la ou on a commence a tourner
+				turnLeftTime(speed, temps);
+				numberMove = 0; // On remet a 0 pour recommencer a tourner
+				numberMoveExpected++; // on est un peu avant le debut de la ou on a perdu la ligne donc on fait un mouvement de plus
+				while (numberMove  < numberMoveExpected*countScan && colorValue != black)
+				{
+					Serial.println("in while turn other sens");
+					turnLeftTime(speed, temps); // On tourne à droite sur l’amplitude precision
+									 //delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+					colorValue = getColorRight();
+					Serial.println("color value after big turn = ");
+					Serial.println(colorValue);
+					numberMove++;
+					
+				}
+				if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi
+				{
+					//On retourne la ou on a perdu la ligne
+					turnRightTime(speed, temps);
+					countScan++; //On a fait un balayge entier on ajoute 1 a count scan pour pouvoir multiplier numberMoveExpected
+					colorValue = getColorRight();
+					bigTourne++;
+					Serial.println("color value after infinite turn = ");
+					Serial.println(colorValue);
+				}
+			}
+		}
 	}
-	else
-	{
-		indexSensor = this->getSensorIndexWithName("ir4To30Left");
+}
+void Robot::followWall(bool isRightWall, int distanceToWall)
+{
+	int indexSensor = 0;
+	int speedNormal = 80;
+	int speedPlus = 80;
+	
+	if (isRightWall) {
+		indexSensor = this->getSensorIndexWithName(this->distanceRightName);
+	}
+	else {
+		indexSensor = this->getSensorIndexWithName(this->distanceLeftName);
 	}
 	Serial.print("index sensor for follow wall = ");
-	Serial.print(indexSensor);
+	Serial.println(indexSensor);
 
+	int counter = 0;
+	
+	while (true)
+	{
+		speedPlus = 100;
+		int valeur = (int) this->sensorTab[indexSensor]->getValue();
+		Serial.println(valeur);
+
+		if (distanceToWall - valeur >= 0)
+		{
+			speedPlus = speedPlus + (distanceToWall - valeur);
+		}
+		else
+		{
+			speedPlus = speedPlus - distanceToWall + valeur;
+		}
+
+		Serial.print("speedPlus = ");
+		Serial.println(speedPlus);
+
+		if (valeur < distanceToWall) {
+			if (isRightWall)
+			{
+				Serial.println("1");
+				forwardDifferentSpeed(speedPlus + 60, speedNormal);
+			}
+			else {
+				Serial.println("2");
+				forwardDifferentSpeed(speedNormal, speedPlus + 60);
+			}
+		}
+		else if (valeur > distanceToWall) {
+			if (isRightWall)
+			{
+				Serial.println("3");
+				forwardDifferentSpeed(speedNormal, speedPlus);
+			}
+			else {
+				Serial.println("4");
+				forwardDifferentSpeed(speedPlus, speedNormal);
+			}
+		}
+		else {
+			Serial.println("5");
+			forwardDifferentSpeed(speedNormal, speedNormal);
+		}
+		delay(1000);
+	}
 }
 
 void Robot::turn45degreeLeft()
@@ -320,6 +499,17 @@ int Robot::getDistanceLeft() {
 	for (int i = 0; i < this->sensorTabSize; i++)
 	{
 		if (this->sensorTab[i]->getSensorName() == this->distanceLeftName) {
+			return this->sensorTab[i]->getValue();
+		}
+	}
+	return -1;
+}
+
+int Robot::getColorRight() {
+	for (int i = 0; i < this->sensorTabSize; i++)
+	{
+		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::colorSensor && this->sensorTab[i]->getSensorName() == this->colorRightName) {
+			delay(500);
 			return this->sensorTab[i]->getValue();
 		}
 	}

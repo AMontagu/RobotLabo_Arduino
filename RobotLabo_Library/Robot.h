@@ -36,6 +36,7 @@ private:
 	char* distanceBackName;
 	char* distanceRightName;
 	char* distanceLeftName;
+	char* colorRightName;
 
 public:
 	Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bool is4Wheel = false, char* distanceFrontName = "distanceFront", char* distanceBackName = "distanceBack", char* distanceRightName = "distanceRight", char* distanceLeftName = "distanceLeft");
@@ -45,6 +46,8 @@ public:
 	void setup();
 
 	void forward(int speed);
+
+	void forwardDifferentSpeed(int speedRight, int speedLeft);
 
 	void backward(int speed);
 
@@ -56,11 +59,15 @@ public:
 
 	void turnRight(int speed);
 
+	void turnLeftTime(int speed, int delayMs);
+
+	void turnRightTime(int speed, int delayMs);
+
 	void stop();
 
 	void followLine();
 
-	void foolwWall(bool isRightWall);
+	void followWall(bool isRightWall, int distanceToWall);
 
 	void turn45degreeLeft();
 
@@ -82,6 +89,9 @@ public:
 	int getDistanceBack();
 	int getDistanceRight();
 	int getDistanceLeft();
+
+	//getColorDroite
+	int getColorRight();
 
 	//DoAction fucntions
 

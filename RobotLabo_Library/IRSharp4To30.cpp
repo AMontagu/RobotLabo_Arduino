@@ -73,7 +73,12 @@ int IRSharp4To30::getValue(void) {
 		if (valeurCompare[compteur] < valeurPlusProcheZero)
 		{
 			valeurPlusProcheZero = valeurCompare[compteur];
-			valeurPlusProcheCentimetre = compteur * 10 + 10;
+			if (compteur < 4) {
+				valeurPlusProcheCentimetre = compteur * 5 + 5;
+			}
+			else {
+				valeurPlusProcheCentimetre = (compteur - 2) * 10 + 10;
+			}
 		}
 	}
 	//Serial.println(valeurPlusProcheCentimetre);

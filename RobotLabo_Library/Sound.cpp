@@ -85,14 +85,14 @@ void Sound::doAction(int actionNumber) {
 		break;
 	}
 
-	Serial.print("aNote number = ");
+	/*Serial.print("aNote number = ");
 	Serial.println(noteNumber);
 
 	Serial.print("melodyTab[40] = ");
 	Serial.println(melodyTab[40]);
 
 	Serial.print("notesDurations[40] = ");
-	Serial.println(notesDurations[40]);
+	Serial.println(notesDurations[40]);*/
 
 	for (int thisNote = 0; thisNote < noteNumber; thisNote++) {
 
@@ -108,11 +108,11 @@ void Sound::doAction(int actionNumber) {
 		delay(pauseBetweenNotes);
 		// stop the tone playing:
 		noTone(this->melodyPin);
-		Serial.print("after loop ");
-		Serial.println(thisNote);
+		/*Serial.print("after loop ");
+		Serial.println(thisNote);*/
 
 	}
-	Serial.println("out");
+	//Serial.println("out");
 
 }
 

@@ -11,6 +11,7 @@
 
 enum sensorType { ultrason, infrared, color, encoder};
 enum sensorFamily { distanceSensor, colorSensor, encoderSensor};
+enum color { red, blue, yellow, black, white, green };
 
 class Sensor
 {

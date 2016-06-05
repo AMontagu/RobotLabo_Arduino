@@ -1,3 +1,10 @@
+/*
+Color :
+
+blue : red=424 green=759 blue=754grey : red=753 green=572 blue=591
+
+*/
+
 #include "ColorSensorTCS3200.h"
 
 ColorSensorTCS3200* currentColorSensor;
@@ -11,7 +18,7 @@ ColorSensorTCS3200::ColorSensorTCS3200(char* name, int s0, int s1, int s2, int s
 	this->s1 = s1;
 	this->s2 = s2;
 	this->s3 = s3;
-	this->out = 2;
+	this->out = out;
 
 	this->isSetupVar = false;
 
@@ -83,12 +90,22 @@ bool ColorSensorTCS3200::isSetup(void) {
 
 int ColorSensorTCS3200::getValue(void) 
 {
-	
+	int colorReturn = white;
 	currentColorSensor = this;
 	//Serial.println("before TCS");
 	TCS();
 	//Serial.println("after TCS");
-	if ((countR > 10) || (countG > 10) || (countB > 10))
+	/*Serial.print("red=");
+	Serial.println(currentColorSensor->countR, DEC);
+	Serial.print("green=");
+	Serial.println(currentColorSensor->countG, DEC);
+	Serial.print("blue=");
+	Serial.println(currentColorSensor->countB, DEC);*/
+	if ((countR < 10) || (countG < 10) || (countB < 10)) {
+		colorReturn = black;
+	}
+	return colorReturn;
+	/*if ((countR > 10) || (countG > 10) || (countB > 10))
 	{
 		//Serial.println("in condition in getvalue");
 		if ((countR > countG) && (countR > countB))
@@ -110,18 +127,15 @@ int ColorSensorTCS3200::getValue(void)
 	else
 	{
 		//Serial.println("in else in getvalue");
-	}
+	}*/
 	
 	//Serial.println("before delete");
 	//delete[] currentColorSensor;
 	//Serial.println("after delete");
 	//delay(1000);
-	return (int)0;
 }
 
 long ColorSensorTCS3200::getPrecisionValue(void) {
-	
-
 	return 0;
 }
 
@@ -179,16 +193,12 @@ ISR(TIMER2_OVF_vect)//the timer 2, 10ms interrupt overflow again. Internal overf
 		digitalWrite(currentColorSensor->s2, LOW);
 		digitalWrite(currentColorSensor->s3, LOW);
 		currentColorSensor->countR = currentColorSensor->counter / 1.051;
-		Serial.print("ared=");
-		Serial.println(currentColorSensor->countR, DEC);
 		digitalWrite(currentColorSensor->s2, HIGH);
 		digitalWrite(currentColorSensor->s3, HIGH);
 	}
 	else if (currentColorSensor->flag == 3)
 	{
 		currentColorSensor->countG = currentColorSensor->counter / 1.0157;
-		Serial.print("agreen=");
-		Serial.println(currentColorSensor->countG, DEC);
 		digitalWrite(currentColorSensor->s2, LOW);
 		digitalWrite(currentColorSensor->s3, HIGH);
 
@@ -196,8 +206,6 @@ ISR(TIMER2_OVF_vect)//the timer 2, 10ms interrupt overflow again. Internal overf
 	else if (currentColorSensor->flag == 4)
 	{
 		currentColorSensor->countB = currentColorSensor->counter / 1.114;
-		Serial.print("ablue=");
-		Serial.println(currentColorSensor->countB, DEC);
 		digitalWrite(currentColorSensor->s2, LOW);
 		digitalWrite(currentColorSensor->s3, LOW);
 	}

@@ -1,8 +1,12 @@
 int irLeftAnalog = 0;
 int irRightAnalog = 2;
 
-const int valeur10Left = 300; //valeur
-const int valeur20Left = 175; //valeur
+const int arraySize = 10;
+
+const int valeur5Left = 440; //valeur
+const int valeur10Left = 270; //valeur
+const int valeur15Left = 170; //valeur
+const int valeur20Left = 135; //valeur
 const int valeur30Left = 107;//valeur
 const int valeur40Left = 75;//valeur
 const int valeur50Left = 55;//valeur
@@ -12,10 +16,12 @@ const int valeur80Left = 25;//valeur
 
 const float ratioLeft = 16;
 
-const int tableauValeurLeft[8] = { valeur10Left, valeur20Left, valeur30Left, valeur40Left, valeur50Left, valeur60Left, valeur70Left, valeur80Left };
+const int tableauValeurLeft[arraySize] = { valeur5Left, valeur10Left, valeur15Left, valeur20Left, valeur30Left, valeur40Left, valeur50Left, valeur60Left, valeur70Left, valeur80Left };
 
-const int valeur10Right = 620; //valeur
-const int valeur20Right = 300; //valeur
+const int valeur5Right = 650; //valeur
+const int valeur10Right = 520; //valeur
+const int valeur15Right = 380; //valeur
+const int valeur20Right = 280; //valeur
 const int valeur30Right = 200;//valeur
 const int valeur40Right = 150;//valeur
 const int valeur50Right = 120;//valeur
@@ -25,7 +31,7 @@ const int valeur80Right = 50;//valeur
 
 const float ratioRight = 30;
 
-const int tableauValeurRight[8] = { valeur10Right, valeur20Right, valeur30Right, valeur40Right, valeur50Right, valeur60Right, valeur70Right, valeur80Right };
+const int tableauValeurRight[arraySize] = { valeur5Right, valeur10Right, valeur15Right, valeur20Right, valeur30Right, valeur40Right, valeur50Right, valeur60Right, valeur70Right, valeur80Right };
 
 void setup() {
  pinMode(irLeftAnalog, INPUT);
@@ -34,35 +40,68 @@ void setup() {
 
 void loop() {
   /*Serial.print("distance value sensor left = ");
-  Serial.println(getValue(irLeftAnalog));
+  Serial.println(getValueLeft(irLeftAnalog));*/
 
   Serial.print("distance precision value sensor left = ");
   Serial.println(getPrecisionValue(irLeftAnalog, ratioLeft));
   delay(1000);
 
 
-  Serial.print("distance value sensor right = ");
-  Serial.println(getValue(irRightAnalog));
+  /*Serial.print("distance value sensor right = ");
+  Serial.println(getValueRight(irRightAnalog));*/
 
   Serial.print("distance precision value sensor right = ");
   Serial.println(getPrecisionValue(irRightAnalog, ratioRight));
+  delay(1000);
+
+  /*Serial.println("right");
+  Serial.println(analogRead(irRightAnalog));
   delay(1000);*/
 
-  Serial.println(analogRead(irRightAnalog));
+  /*Serial.println("left");
+  Serial.println(analogRead(irLeftAnalog));*/
   delay(1000);
 }
 
-int getValue(int analogPin) {
+int getValueRight(int analogPin) {
   int compteur = 0, valeurPlusProcheCentimetre = 100, valeurPlusProcheZero = 1025;
-  int valeurCompare[8] = {};
+  int valeurCompare[arraySize] = {};
   int analogValue = analogRead(analogPin);
-  for (compteur = 0; compteur < 8; compteur++)
+  for (compteur = 0; compteur < arraySize; compteur++)
+  {
+    valeurCompare[compteur] = abs(analogValue - tableauValeurRight[compteur]);
+    if (valeurCompare[compteur] < valeurPlusProcheZero)
+    {
+      valeurPlusProcheZero = valeurCompare[compteur];
+      if(compteur < 4){
+        valeurPlusProcheCentimetre = compteur * 5 + 5;
+      }
+      else{
+        valeurPlusProcheCentimetre = (compteur-2) * 10 + 10;
+      }
+    }
+  }
+  //Serial.println(valeurPlusProcheCentimetre);
+
+  return valeurPlusProcheCentimetre;
+}
+
+int getValueLeft(int analogPin) {
+  int compteur = 0, valeurPlusProcheCentimetre = 100, valeurPlusProcheZero = 1025;
+  int valeurCompare[arraySize] = {};
+  int analogValue = analogRead(analogPin);
+  for (compteur = 0; compteur < arraySize; compteur++)
   {
     valeurCompare[compteur] = abs(analogValue - tableauValeurLeft[compteur]);
     if (valeurCompare[compteur] < valeurPlusProcheZero)
     {
       valeurPlusProcheZero = valeurCompare[compteur];
-      valeurPlusProcheCentimetre = compteur * 10 + 10;
+      if(compteur < 4){
+        valeurPlusProcheCentimetre = compteur * 5 + 5;
+      }
+      else{
+        valeurPlusProcheCentimetre = (compteur-2) * 10 + 10;
+      }
     }
   }
   //Serial.println(valeurPlusProcheCentimetre);
