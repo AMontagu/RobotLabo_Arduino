@@ -49,6 +49,8 @@ public:
 
 	void forwardDifferentSpeed(int speedRight, int speedLeft);
 
+	void forwardTime(int speed, int dealyMs);
+
 	void backward(int speed);
 
 	void forwardAt(int distance);
@@ -66,6 +68,8 @@ public:
 	void stop();
 
 	void followLine();
+
+	void lineFollower();
 
 	void followWall(bool isRightWall, int distanceToWall);
 

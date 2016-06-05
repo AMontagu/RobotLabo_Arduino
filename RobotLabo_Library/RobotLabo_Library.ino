@@ -65,7 +65,7 @@ Actioner* actionerTab[2] = {&mySound, &la};
 Robot* myRobot;
 String readString;
 
-bool beginVar = false;
+bool beginVar = true;
 
 void setup() {
 
@@ -75,28 +75,25 @@ void setup() {
 
   while (!beginVar)
   {
-	  while (!beginVar)
-	  {
-		  if (Serial.available() > 0) {
-			  // read the incoming byte:
-			  char incomingByte = (char)Serial.read();
+	//if (Serial.available() > 0) {
+	//	// read the incoming byte:
+	//	char incomingByte = (char)Serial.read();
 
-			  readString += incomingByte;
+	//	readString += incomingByte;
 
-			  // say what you got:
-			  Serial.print("I received: ");
-			  Serial.println(readString);
+	//	// say what you got:
+	//	Serial.print("I received: ");
+	//	Serial.println(readString);
 
-			  if (readString == "t") {
-				  beginVar = true;
-				  readString = "";
-			  }
+	//	if (readString == "t") {
+	//		beginVar = true;
+	//		readString = "";
+	//	}
 
-			  if (incomingByte == (char)'a') {
-				  readString = "";
-			  }
-		  }
-	  }
+	//	if (incomingByte == (char)'a') {
+	//		readString = "";
+	//	}
+	//}
   }
 
   //Serial.println("begin");
@@ -127,7 +124,9 @@ void loop() {
   Serial.print("right distance");
   Serial.println(myRobot->getDistanceRight());*/
 
-  myRobot->followWall(false, 15);
+  myRobot->followWall(true, 15);
+
+	//myRobot->lineFollower();
 
   delay(3000);
 }

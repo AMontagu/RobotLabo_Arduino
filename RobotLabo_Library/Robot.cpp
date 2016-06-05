@@ -165,6 +165,18 @@ void Robot::forwardDifferentSpeed(int speedRight, int speedLeft)
 	}
 }
 
+void Robot::forwardTime(int speed, int delayMs) {
+	for (int i = 0; i < motorTabSize; i++)
+	{
+		if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
+		{
+			this->motorTab[i]->move(speed);
+		}
+	}
+	delay(delayMs);
+	stop();
+}
+
 void Robot::backward(int speed)
 {
 	//Serial.println("in backward");
@@ -354,6 +366,9 @@ void Robot::followWall(bool isRightWall, int distanceToWall)
 	int indexSensor = 0;
 	int speedNormal = 80;
 	int speedPlus = 80;
+
+	int timeForward = 750;
+	int timeRotation = 400;
 	
 	if (isRightWall) {
 		indexSensor = this->getSensorIndexWithName(this->distanceRightName);
@@ -368,42 +383,63 @@ void Robot::followWall(bool isRightWall, int distanceToWall)
 	
 	while (true)
 	{
-		speedPlus = 100;
-		int valeur = (int) this->sensorTab[indexSensor]->getValue();
+		timeRotation = 500;
+		int valeur = this->sensorTab[indexSensor]->getValue();
+		Serial.print("valeur = ");
 		Serial.println(valeur);
+
+		Serial.print("distanceToWall - valeur = ");
+		Serial.println(distanceToWall - valeur);
 
 		if (distanceToWall - valeur >= 0)
 		{
-			speedPlus = speedPlus + (distanceToWall - valeur);
+			timeRotation = timeRotation + (distanceToWall - valeur) * 50;
 		}
 		else
 		{
-			speedPlus = speedPlus - distanceToWall + valeur;
+			timeRotation = timeRotation + (valeur - distanceToWall) * 50;
 		}
 
-		Serial.print("speedPlus = ");
-		Serial.println(speedPlus);
+		if (timeRotation > 1000)
+		{
+			timeRotation = 1000;
+		}
+
+		Serial.print("timeRotation = ");
+		Serial.println(timeRotation);
 
 		if (valeur < distanceToWall) {
 			if (isRightWall)
 			{
 				Serial.println("1");
-				forwardDifferentSpeed(speedPlus + 60, speedNormal);
+				//forwardDifferentSpeed(speedPlus + 60, speedNormal);
+				turnRightTime(80, timeRotation);
+				forwardTime(80, timeForward);
+				turnLeftTime(80, timeRotation);
 			}
 			else {
 				Serial.println("2");
-				forwardDifferentSpeed(speedNormal, speedPlus + 60);
+				//forwardDifferentSpeed(speedNormal, speedPlus + 60);
+				
+				turnLeftTime(80, timeRotation);
+				forwardTime(80, timeForward);
+				turnRightTime(80, timeRotation);
 			}
 		}
 		else if (valeur > distanceToWall) {
 			if (isRightWall)
 			{
 				Serial.println("3");
-				forwardDifferentSpeed(speedNormal, speedPlus);
+				turnLeftTime(80, timeRotation);
+				forwardTime(80, timeForward);
+				turnRightTime(80, timeRotation);
 			}
 			else {
 				Serial.println("4");
-				forwardDifferentSpeed(speedPlus, speedNormal);
+				
+				turnRightTime(80, timeRotation);
+				forwardTime(80, timeForward);
+				turnLeftTime(80, timeRotation);
 			}
 		}
 		else {
@@ -531,6 +567,107 @@ void Robot::doLight(int actionNumber) {
 	{
 		if (this->actionerTab[i]->getActionerType() == actionerFamily::lightActioner) {
 			this->actionerTab[i]->doAction(actionNumber);
+		}
+	}
+}
+
+void Robot::lineFollower(void) {
+	int colorValue; // Variable qui nous permet de stocker la couleur
+	bool findAtRight = true, currentTurnAtRight = true; //On veut commencer à chercher à droite
+	int speedForward = 60;
+	int  speed = 120, numberMove = 0, numberMoveExpected = 5, precision = 150, countScan = 1;
+	while (true)
+	{
+		if (currentTurnAtRight)
+		{
+			findAtRight = true;
+		}
+		else
+		{
+			findAtRight = false;
+		}
+		colorValue = getColorRight(); //Récupère la couleur retourne 1 si c’est noir 0 sinon
+		Serial.println("colorValue = ");
+		Serial.println(colorValue);
+		if (colorValue == black)
+		{
+			numberMoveExpected = 5;
+			countScan = 1;
+		}
+		while (colorValue == black) //Tant que l’on est sur du noir
+		{
+			forward(speedForward); // On fait avancer notre robot
+			delay(300);
+			stop();
+			colorValue = getColorRight();
+		}
+		while (colorValue != black) //Tant que l’on est pas sur du noir
+		{
+			numberMove = 0;
+			while (numberMove  < numberMoveExpected && colorValue != black)
+			{
+				if (findAtRight)
+				{
+					currentTurnAtRight = true;
+					turnRightTime(speed, precision); // On tourne à droite sur l’amplitude precision
+				}
+				else
+				{
+					currentTurnAtRight = false;
+					turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+				}
+				//delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+				colorValue = getColorRight();
+				numberMove++;
+			}
+			if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi en fonction du nombre de balayage effectué
+			{
+				//On retourne un peu avant la ou on a commence a tourner
+				if (findAtRight)
+				{
+					currentTurnAtRight = false;
+					turnLeftTime(speed, ((numberMoveExpected*countScan) - 1) * precision);
+				}
+				else
+				{
+					currentTurnAtRight = true;
+					turnRightTime(speed, (numberMoveExpected*countScan - 1) * precision);
+				}
+
+				numberMove = 0; // On remet a 0 pour recommencer a tourner
+				numberMoveExpected++; // on est un peu avant le debut de la ou on a perdu la ligne donc on fait un mouvement de plus
+				while (numberMove  < numberMoveExpected*countScan && colorValue != black)
+				{
+					if (findAtRight)
+					{
+						currentTurnAtRight = false;
+						turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+					}
+					else
+					{
+						currentTurnAtRight = true;
+						turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+					}
+					//delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après decommenttez cette ligne
+					colorValue = getColorRight();
+					numberMove++;
+				}
+				if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi
+				{
+					//On retourne la ou on a perdu la ligne
+					if (findAtRight)
+					{
+						currentTurnAtRight = true;
+						turnRightTime(speed, (numberMoveExpected*countScan - 1) * precision);
+					}
+					else
+					{
+						currentTurnAtRight = false;
+						turnLeftTime(speed, (numberMoveExpected*countScan - 1) * precision);
+					}
+					countScan++; //On a fait un balayge entier on ajoute 1 a count scan pour pouvoir multiplier numberMoveExpected
+				}
+			}
 		}
 	}
 }

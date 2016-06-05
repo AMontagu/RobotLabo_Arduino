@@ -94,6 +94,7 @@ int ColorSensorTCS3200::getValue(void)
 	currentColorSensor = this;
 	//Serial.println("before TCS");
 	TCS();
+	delay(200);
 	//Serial.println("after TCS");
 	/*Serial.print("red=");
 	Serial.println(currentColorSensor->countR, DEC);
@@ -101,7 +102,7 @@ int ColorSensorTCS3200::getValue(void)
 	Serial.println(currentColorSensor->countG, DEC);
 	Serial.print("blue=");
 	Serial.println(currentColorSensor->countB, DEC);*/
-	if ((countR < 10) || (countG < 10) || (countB < 10)) {
+	if ((countR < 15) || (countG < 15) || (countB < 15)) {
 		colorReturn = black;
 	}
 	return colorReturn;
