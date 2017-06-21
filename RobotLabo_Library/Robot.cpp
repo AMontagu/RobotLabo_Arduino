@@ -7,9 +7,9 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->motorTabSize = sizeof(motorTab);
 	this->actionerTabSize = sizeof(actionerTab);*/
 
-	this->sensorTabSize = 4;
-	this->motorTabSize = 4;
-	this->actionerTabSize = 2;
+	this->sensorTabSize = 5; // 4 ultrasonic + 1 color
+	this->motorTabSize = 4; // 4 base DC motor
+	this->actionerTabSize = 2; // light and buzer
 
 	this->distanceFrontName = distanceFrontName;
 	this->distanceBackName = distanceBackName;
@@ -544,6 +544,10 @@ int Robot::getDistanceLeft() {
 int Robot::getColorRight() {
 	for (int i = 0; i < this->sensorTabSize; i++)
 	{
+        /*Serial.println(this->sensorTab[i]->getSensorFamily());
+        Serial.println(sensorFamily::colorSensor);
+        Serial.println(this->sensorTab[i]->getSensorName());
+        Serial.println(this->colorRightName);*/
 		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::colorSensor && this->sensorTab[i]->getSensorName() == this->colorRightName) {
 			delay(500);
 			return this->sensorTab[i]->getValue();
