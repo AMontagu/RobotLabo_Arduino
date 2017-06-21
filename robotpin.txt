@@ -1,4 +1,4 @@
-buzer = 20
+buzer = 30
 light = 34
 
 motorFrontRight = m1
@@ -18,8 +18,8 @@ Ultrasonor front = trigger: 53 echo : 52
 
 ultrasonor back = trigger 49 echo : 48
 
-ultrasonor right = trigger 47 echo : 46
+ultrasonor right = trigger 45 echo : 44
 
-ultrasonor left = trigger 45 echo : 44
+ultrasonor left = trigger 41 echo : 40
 
 colorcaptor =  out: 2 , s0 :3, s1 : 4, s2 : 5, s3=6

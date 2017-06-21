@@ -7,7 +7,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->motorTabSize = sizeof(motorTab);
 	this->actionerTabSize = sizeof(actionerTab);*/
 
-	this->sensorTabSize = 2;
+	this->sensorTabSize = 4;
 	this->motorTabSize = 4;
 	this->actionerTabSize = 2;
 

@@ -48,20 +48,23 @@ MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft, true, false, false);
 
 UltrasonicSensorHCSR04 ultrasonicFront("distanceFront", 53, 52);
 UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
+UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
+UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
+
 
 
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
-Sensor* sensorTab[2] = {&ultrasonicFront, &ultrasonicBack};
+Sensor* sensorTab[4] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
 
 void setup() {
   
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   while (!Serial)
   {}
@@ -95,6 +98,16 @@ void loop() {
 
   Serial.print("back distance");
   Serial.println(myRobot->getDistanceBack());
+
+  delay(100);
+
+  Serial.print("left distance");
+  Serial.println(myRobot->getDistanceLeft());
+
+  delay(100);
+
+  Serial.print("right distance");
+  Serial.println(myRobot->getDistanceRight());
 
   delay(100);
 
