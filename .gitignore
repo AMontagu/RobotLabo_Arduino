@@ -267,3 +267,6 @@ ModelManifest.xml
 =======
 .fake/
 >>>>>>> RobotLabo_Arduino/master
+\.idea/
+
+cmake-build-debug/CMakeFiles/
