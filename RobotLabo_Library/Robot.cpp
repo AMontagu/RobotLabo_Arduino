@@ -7,7 +7,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->motorTabSize = sizeof(motorTab);
 	this->actionerTabSize = sizeof(actionerTab);*/
 
-	this->sensorTabSize = 5;
+	this->sensorTabSize = 2;
 	this->motorTabSize = 4;
 	this->actionerTabSize = 2;
 
@@ -301,10 +301,10 @@ void Robot::followLine(void)
 	int numberMove = 0, numberMoveExpected = 5, temps = 200, countScan = 1;
 	int bigTourne = 0;
 	int speed = 80;
-	colorValue = getColorRight(); //Récupère la couleur retourne 1 si c’est noir 0 sinon
+	colorValue = getColorRight(); //Rï¿½cupï¿½re la couleur retourne 1 si cï¿½est noir 0 sinon
 	while (true)
 	{
-		while (colorValue == black) //Tant que l’on est sur du noir
+		while (colorValue == black) //Tant que lï¿½on est sur du noir
 		{
 			if (bigTourne != 0) {
 				while (true)
@@ -316,7 +316,7 @@ void Robot::followLine(void)
 			forward(speed); // On fait avancer notre robot
 			colorValue = getColorRight();
 		}
-		while (colorValue != black) //Tant que l’on est pas sur du noir
+		while (colorValue != black) //Tant que lï¿½on est pas sur du noir
 		{
 			Serial.println("different black");
 			Serial.println(colorValue);
@@ -324,12 +324,12 @@ void Robot::followLine(void)
 			while (numberMove  < numberMoveExpected && colorValue != black)
 			{
 				Serial.println("first turn");
-				turnRightTime(speed, temps);// On tourne à droite sur l’amplitude precision
-								 //delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+				turnRightTime(speed, temps);// On tourne ï¿½ droite sur lï¿½amplitude precision
+								 //delay(200);  //Si votre robot ne sï¿½arrï¿½te pas sur la ligne mais un peu aprï¿½s dï¿½cochez cette ligne
 				colorValue = getColorRight();
 				numberMove++;
 			}
-			if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi en fonction du nombre de balayage effectué
+			if (numberMove == numberMoveExpected*countScan) // Si on cï¿½est deplace au maximum choisi en fonction du nombre de balayage effectuï¿½
 			{
 				Serial.println("5 move turn");
 				//On retourne un peu avant la ou on a commence a tourner
@@ -339,15 +339,15 @@ void Robot::followLine(void)
 				while (numberMove  < numberMoveExpected*countScan && colorValue != black)
 				{
 					Serial.println("in while turn other sens");
-					turnLeftTime(speed, temps); // On tourne à droite sur l’amplitude precision
-									 //delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+					turnLeftTime(speed, temps); // On tourne ï¿½ droite sur lï¿½amplitude precision
+									 //delay(200);  //Si votre robot ne sï¿½arrï¿½te pas sur la ligne mais un peu aprï¿½s dï¿½cochez cette ligne
 					colorValue = getColorRight();
 					Serial.println("color value after big turn = ");
 					Serial.println(colorValue);
 					numberMove++;
 					
 				}
-				if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi
+				if (numberMove == numberMoveExpected*countScan) // Si on cï¿½est deplace au maximum choisi
 				{
 					//On retourne la ou on a perdu la ligne
 					turnRightTime(speed, temps);
@@ -573,7 +573,7 @@ void Robot::doLight(int actionNumber) {
 
 void Robot::lineFollower(void) {
 	int colorValue; // Variable qui nous permet de stocker la couleur
-	bool findAtRight = true, currentTurnAtRight = true; //On veut commencer à chercher à droite
+	bool findAtRight = true, currentTurnAtRight = true; //On veut commencer ï¿½ chercher ï¿½ droite
 	int speedForward = 60;
 	int  speed = 120, numberMove = 0, numberMoveExpected = 5, precision = 150, countScan = 1;
 	while (true)
@@ -586,7 +586,7 @@ void Robot::lineFollower(void) {
 		{
 			findAtRight = false;
 		}
-		colorValue = getColorRight(); //Récupère la couleur retourne 1 si c’est noir 0 sinon
+		colorValue = getColorRight(); //Rï¿½cupï¿½re la couleur retourne 1 si cï¿½est noir 0 sinon
 		Serial.println("colorValue = ");
 		Serial.println(colorValue);
 		if (colorValue == black)
@@ -594,14 +594,14 @@ void Robot::lineFollower(void) {
 			numberMoveExpected = 5;
 			countScan = 1;
 		}
-		while (colorValue == black) //Tant que l’on est sur du noir
+		while (colorValue == black) //Tant que lï¿½on est sur du noir
 		{
 			forward(speedForward); // On fait avancer notre robot
 			delay(300);
 			stop();
 			colorValue = getColorRight();
 		}
-		while (colorValue != black) //Tant que l’on est pas sur du noir
+		while (colorValue != black) //Tant que lï¿½on est pas sur du noir
 		{
 			numberMove = 0;
 			while (numberMove  < numberMoveExpected && colorValue != black)
@@ -609,18 +609,18 @@ void Robot::lineFollower(void) {
 				if (findAtRight)
 				{
 					currentTurnAtRight = true;
-					turnRightTime(speed, precision); // On tourne à droite sur l’amplitude precision
+					turnRightTime(speed, precision); // On tourne ï¿½ droite sur lï¿½amplitude precision
 				}
 				else
 				{
 					currentTurnAtRight = false;
-					turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+					turnLeftTime(speed, precision); // On tourne ï¿½ droite sur lï¿½amplitude precision
 				}
-				//delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après décochez cette ligne
+				//delay(200);  //Si votre robot ne sï¿½arrï¿½te pas sur la ligne mais un peu aprï¿½s dï¿½cochez cette ligne
 				colorValue = getColorRight();
 				numberMove++;
 			}
-			if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi en fonction du nombre de balayage effectué
+			if (numberMove == numberMoveExpected*countScan) // Si on cï¿½est deplace au maximum choisi en fonction du nombre de balayage effectuï¿½
 			{
 				//On retourne un peu avant la ou on a commence a tourner
 				if (findAtRight)
@@ -641,18 +641,18 @@ void Robot::lineFollower(void) {
 					if (findAtRight)
 					{
 						currentTurnAtRight = false;
-						turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+						turnLeftTime(speed, precision); // On tourne ï¿½ droite sur lï¿½amplitude precision
 					}
 					else
 					{
 						currentTurnAtRight = true;
-						turnLeftTime(speed, precision); // On tourne à droite sur l’amplitude precision
+						turnLeftTime(speed, precision); // On tourne ï¿½ droite sur lï¿½amplitude precision
 					}
-					//delay(200);  //Si votre robot ne s’arrête pas sur la ligne mais un peu après decommenttez cette ligne
+					//delay(200);  //Si votre robot ne sï¿½arrï¿½te pas sur la ligne mais un peu aprï¿½s decommenttez cette ligne
 					colorValue = getColorRight();
 					numberMove++;
 				}
-				if (numberMove == numberMoveExpected*countScan) // Si on c’est deplace au maximum choisi
+				if (numberMove == numberMoveExpected*countScan) // Si on cï¿½est deplace au maximum choisi
 				{
 					//On retourne la ou on a perdu la ligne
 					if (findAtRight)
