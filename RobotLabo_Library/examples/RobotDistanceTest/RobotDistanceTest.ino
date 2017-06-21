@@ -64,52 +64,52 @@ Robot* myRobot;
 
 void setup() {
 
-  Serial.begin(115200);
+    Serial.begin(115200);
 
-  while (!Serial)
-  {}
+    while (!Serial)
+    {}
 
-  Serial.println("begin");
+    Serial.println("begin");
 
-  myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
+    myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
-  Serial.println("created");
+    Serial.println("created");
 
-  AFMS.begin();
+    AFMS.begin();
 
-  /*for (int i = 0; i < 4; i++)
-  {
-    motorTab[i]->setup();
-  }*/
+    /*for (int i = 0; i < 4; i++)
+    {
+      motorTab[i]->setup();
+    }*/
 
-  myRobot->setup();
-  Serial.println("setup");
+    myRobot->setup();
+    Serial.println("setup");
 }
 
 
 void loop() {
 
-  Serial.println("loop");
+    Serial.println("loop");
 
-  Serial.print("front distance ");
-  Serial.println(myRobot->getDistanceFront());
+    Serial.print("front distance ");
+    Serial.println(myRobot->getDistanceFront());
 
-  delay(100);
+    delay(100);
 
-  Serial.print("back distance ");
-  Serial.println(myRobot->getDistanceBack());
+    Serial.print("back distance ");
+    Serial.println(myRobot->getDistanceBack());
 
-  delay(100);
+    delay(100);
 
-  Serial.print("left distance ");
-  Serial.println(myRobot->getDistanceLeft());
+    Serial.print("left distance ");
+    Serial.println(myRobot->getDistanceLeft());
 
-  delay(100);
+    delay(100);
 
-  Serial.print("right distance ");
-  Serial.println(myRobot->getDistanceRight());
+    Serial.print("right distance ");
+    Serial.println(myRobot->getDistanceRight());
 
-  delay(2000);
+    delay(2000);
 
 }
 
