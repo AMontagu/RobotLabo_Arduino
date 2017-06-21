@@ -45,8 +45,8 @@ extern "C" void __cxa_pure_virtual() {;}
 
 
 
-#include <arduino.h>
-#include <pins_arduino.h> 
+#include <Arduino.h>
+#include <pins_Arduino.h>
 #undef F
 #define F(string_literal) ((const PROGMEM char *)(string_literal))
 #undef PSTR

@@ -4,14 +4,14 @@
 #define _ULTRASONICSENSOR_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "arduino.h"
+	#include "Arduino.h"
 #else
 	#include "WProgram.h"
 #endif
 
 #include "Sensor.h"
 
-const long MEASURE_TIMEOUT = 25000L; // 40Hz = 25ms = ~8m à 340m/s
+const long MEASURE_TIMEOUT = 25000L; // 40Hz = 25ms = ~8m ï¿½ 340m/s
 
 class UltrasonicSensorHCSR04 : public Sensor
 {

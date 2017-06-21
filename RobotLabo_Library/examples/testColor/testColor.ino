@@ -20,7 +20,6 @@ ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
 void setup() {
   Serial.begin(115200);
-  mySerial.begin(9600);
 
   while (!Serial)
   {
@@ -33,6 +32,7 @@ void setup() {
 }
 
 void loop() {
-  myColorSensor.getValue();
+  int color = myColorSensor.getValue();
+  Serial.println(color);
   delay(3000);
 }

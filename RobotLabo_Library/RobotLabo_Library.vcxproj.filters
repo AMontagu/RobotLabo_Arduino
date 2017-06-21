@@ -26,7 +26,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="src\_micro-api\libraries\RobotLabo_LibraryLib\src\RobotLabo_LibraryLib.h" />
     <ClInclude Include="UltrasonicSensorHCSR04.h" />
-    <ClInclude Include="__vm\.RobotLabo_Library.vsarduino.h" />
+    <ClInclude Include="__vm\.RobotLabo_Library.vsArduino.h" />
     <ClInclude Include="IRSharp4To30.h" />
     <ClInclude Include="LightActionner.h" />
     <ClInclude Include="Robot.h" />
