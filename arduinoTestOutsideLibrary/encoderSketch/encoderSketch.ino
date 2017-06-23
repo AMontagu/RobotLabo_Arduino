@@ -1,68 +1,51 @@
-#include <Wire.h>
-#include <Adafruit_MotorShield.h>
-#include "utility/Adafruit_MS_PWMServoDriver.h"
+/*int encoderPinA = 18;
+int encoderPinB =  19;
+*/
 
-#define LEFT 19
-#define RIGHT 18
+int encoderPinA = 20;
+int encoderPinB =  21;
 
-#include <Wire.h>
-#include <Adafruit_MotorShield.h>
-#include "utility/Adafruit_MS_PWMServoDriver.h"
+int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadrature Encoder Matrix
 
-volatile int coderLeft = 0;
-volatile int coderRight = 0;
+volatile unsigned char Old0, New0;
+volatile long Position0 = 0;
 
-Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
+void isr(){
+  int readPinA = digitalRead(encoderPinA);
+  int readPinB = digitalRead(encoderPinB);
 
-Adafruit_DCMotor *motorLeft = AFMS.getMotor(1);
-Adafruit_DCMotor *motorRight = AFMS.getMotor(2);
+  /*Serial.print("pina = ");
+  Serial.print(readPinA);
+  
+  Serial.print(", pinb = ");
+  Serial.println(readPinB);
+
+  Serial.println("");*/
+
+  Old0 = New0;
+  New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+  Position0 += QEM [Old0 * 4 + New0];
+
+  Serial.print("position = ");
+  Serial.println(Position0);
+}
 
 void setup(){
 
-  Serial.begin(9600);                            //init the Serial port to print the data
-  attachInterrupt(digitalPinToInterrupt(LEFT), LwheelSpeed, RISING);    //init the interrupt mode for the digital pin 2
-  attachInterrupt(digitalPinToInterrupt(RIGHT), RwheelSpeed, RISING);   //init the interrupt mode for the digital pin 3
+  Serial.begin(9600);                            //init the Serial port to print the date
 
-  AFMS.begin();
+  New0 = 0;
   
-  motorLeft->setSpeed(50);
-  motorLeft->run(FORWARD);
-  motorLeft->run(RELEASE);
-
-  motorRight->setSpeed(50);
-  motorRight->run(FORWARD);
-  motorRight->run(RELEASE);
-
-  motorLeft->run(FORWARD);
-  motorRight->run(FORWARD);
+  pinMode(encoderPinA, INPUT);
+  pinMode(encoderPinB, INPUT);
+  
+  
+  attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
+  attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
+  
 }
 
 void loop(){
-
-  static unsigned long timer = 0;                //print manager timer
-
-  if(millis() - timer > 1000){                   
-    Serial.print("Coder value: ");
-    Serial.print(coderLeft);
-    Serial.print("[Left Wheel] ");
-    Serial.print(coderRight);
-    Serial.println("[Right Wheel]");
-    
-    timer = millis();
-  }
-
-}
-
-
-void LwheelSpeed()
-{
-  coderLeft ++;  //count the left wheel encoder interrupts
-}
-
-
-void RwheelSpeed()
-{
-  coderRight ++; //count the right wheel encoder interrupts
 }
 
 

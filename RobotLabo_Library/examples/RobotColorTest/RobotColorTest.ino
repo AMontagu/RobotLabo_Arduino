@@ -51,7 +51,7 @@ UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
 UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
 UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
 
-int s0 = 36, s1 = 37, s2 = 38, s3 = 39;
+int s0 = 3, s1 = 4, s2 = 5, s3 = 6;
 int out = 2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
@@ -66,7 +66,7 @@ Robot* myRobot;
 
 void setup() {
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   while (!Serial)
   {}

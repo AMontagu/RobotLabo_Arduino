@@ -13,25 +13,46 @@
 
 UltrasonicSensorHCSR04 ultrasonicFront("firstSensor", 53, 52);
 UltrasonicSensorHCSR04 ultrasonicBack("firstSensor", 49, 48);
+UltrasonicSensorHCSR04 ultrasonicRight("firstSensor", 45, 44);
+UltrasonicSensorHCSR04 ultrasonicLeft("firstSensor", 41, 40);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   while (!Serial)
   {}
 
   ultrasonicFront.setup();
   ultrasonicBack.setup();
+  ultrasonicRight.setup();
+  ultrasonicLeft.setup();
 }
 
 void loop() {
   if (ultrasonicFront.isSetup()) {
+    Serial.print("front = ");
     Serial.println(ultrasonicFront.getValue());
   }
-  delay(1000);
 
   if (ultrasonicBack.isSetup()) {
+    Serial.print("back = ");
     Serial.println(ultrasonicBack.getValue());
   }
-  delay(1000);
+
+  if (ultrasonicRight.isSetup()) {
+    Serial.print("right = ");
+    Serial.println(ultrasonicRight.getValue());
+  }
+
+  if (ultrasonicLeft.isSetup()) {
+    Serial.print("left = ");
+    Serial.println(ultrasonicLeft.getValue());
+  }
+
+  Serial.println();
+  Serial.println();
+  Serial.println();
+
+  
+  delay(2000);
 }

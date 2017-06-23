@@ -28,7 +28,7 @@ Encoder rightEncoder("myEncoder", 18, true);
 Encoder leftEncoder("myEncoder", 19, true);
 
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(115200);
 
   AFMS.begin();
   motorFrontRight.setup();

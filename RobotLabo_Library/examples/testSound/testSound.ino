@@ -15,7 +15,7 @@
 Sound mySound("melody", 30);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   while (!Serial)
   {

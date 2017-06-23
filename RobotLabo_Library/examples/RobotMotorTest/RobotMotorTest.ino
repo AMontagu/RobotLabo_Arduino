@@ -36,8 +36,8 @@ int gamma[] = {
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
-Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(2);
-Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(1);
+Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(1);
+Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
@@ -53,8 +53,8 @@ UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
 UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
 
 
-int s0 = 36, s1 = 37, s2 = 38, s3 = 39;
-int out = 2;
+int s0=3,s1=4,s2=5,s3=6;
+int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
 Sound mySound("melody", 30);
@@ -86,15 +86,15 @@ void loop() {
 
   Serial.println("forward");
 
-  myRobot->turnRight(60);
+  myRobot->turnRight(150);
 
   delay(3000);
 
-  myRobot->turnLeft(60);
+  myRobot->turnLeft(150);
 
   delay(3000);
 
-  /*myRobot->forward(150);
+  myRobot->forward(150);
 
   delay(3000);
 
@@ -102,7 +102,7 @@ void loop() {
 
   myRobot->backward(150);
 
-  delay(3000);*/
+  delay(3000);
 
   Serial.println("stop");
 

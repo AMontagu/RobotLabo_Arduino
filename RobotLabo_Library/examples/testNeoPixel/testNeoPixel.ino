@@ -33,7 +33,7 @@ int gamma[] = {
 LightActionner la = LightActionner("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   
   la.setup();
 }

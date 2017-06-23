@@ -17,7 +17,7 @@ IRSharp10To80 irRight("ir10To80Right", 2);
 
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   irLeft.setup();
   irRight.setup();

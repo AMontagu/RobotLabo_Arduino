@@ -52,12 +52,15 @@ UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
 UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
 
 
+int s0=3,s1=4,s2=5,s3=6;
+int out=2;
+ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
-Sensor* sensorTab[4] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight};
+Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
