@@ -7,7 +7,8 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
     this->motorTabSize = sizeof(motorTab);
     this->actionerTabSize = sizeof(actionerTab);*/
 
-	this->sensorTabSize = 5;
+	//this->sensorTabSize = 5;
+	this->sensorTabSize = 7;
 	this->motorTabSize = 4;
 	this->actionerTabSize = 2;
 
@@ -16,6 +17,8 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
 	this->distanceLeftName = distanceLeftName;
 	this->distanceRightName = distanceRightName;
 	this->colorRightName = "colorRight";
+	this->encoderRightName = "encoderRight";
+	this->encoderLeftName = "encoderLeft";
 
 	/*Serial.print("sensorTabSize = ");
     Serial.println(sensorTabSize);
@@ -546,6 +549,28 @@ int Robot::getColorRight() {
 	{
 		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::colorSensor && this->sensorTab[i]->getSensorName() == this->colorRightName) {
 			delay(500);
+			return this->sensorTab[i]->getValue();
+		}
+	}
+	return -1;
+}
+
+int Robot::getPositionRight() {
+
+	for (int i = 0; i < this->sensorTabSize; i++)
+	{
+		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::encoderSensor && this->sensorTab[i]->getSensorName() == this->encoderRightName) {
+			return this->sensorTab[i]->getValue();
+		}
+	}
+	return -1;
+}
+
+int Robot::getPositionLeft() {
+
+	for (int i = 0; i < this->sensorTabSize; i++)
+	{
+		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::encoderSensor && this->sensorTab[i]->getSensorName() == this->encoderLeftName) {
 			return this->sensorTab[i]->getValue();
 		}
 	}

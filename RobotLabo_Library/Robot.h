@@ -4,9 +4,9 @@
 #define _ROBOT_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+#include "Arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 
 #include "Sensor.h"
@@ -37,6 +37,8 @@ private:
 	char* distanceRightName;
 	char* distanceLeftName;
 	char* colorRightName;
+	char* encoderRightName;
+	char* encoderLeftName;
 
 public:
 	Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bool is4Wheel = false, char* distanceFrontName = "distanceFront", char* distanceBackName = "distanceBack", char* distanceRightName = "distanceRight", char* distanceLeftName = "distanceLeft");
@@ -93,6 +95,10 @@ public:
 	int getDistanceBack();
 	int getDistanceRight();
 	int getDistanceLeft();
+
+
+	int getPositionRight();
+	int getPositionLeft();
 
 	//getColorDroite
 	int getColorRight();

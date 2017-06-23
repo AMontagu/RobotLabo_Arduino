@@ -36,8 +36,8 @@ int gamma[] = {
 
 Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
-Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(2);
-Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(1);
+Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(1);
+Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
@@ -51,15 +51,19 @@ UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
 UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
 UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
 
-int s0 = 3, s1 = 4, s2 = 5, s3 = 6;
-int out = 2;
+
+int s0=3,s1=4,s2=5,s3=6;
+int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
+
+Encoder rightEncoder("encoderRight", 18, 19, true);
+Encoder leftEncoder("encoderLeft", 20, 21, false);
 
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
-Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
+Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;

@@ -16,29 +16,29 @@
 #include "utility/Adafruit_MS_PWMServoDriver.h"
 
 
-Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+/*Adafruit_MotorShield AFMS = Adafruit_MotorShield();
 
 Adafruit_DCMotor *_motorFrontRight = AFMS.getMotor(1);
 Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 
 MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight);
-MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft);
+MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft);*/
 
-Encoder rightEncoder("myEncoder", 18, true);
-Encoder leftEncoder("myEncoder", 19, true);
+Encoder rightEncoder("encoderRight", 18, 19, true);
+Encoder leftEncoder("encoderLeft", 20, 21, false);
 
 void setup() {
   Serial.begin(115200);
 
-  AFMS.begin();
-  motorFrontRight.setup();
-  motorFrontLeft.setup();
+  //AFMS.begin();
+  //motorFrontRight.setup();
+  //motorFrontLeft.setup();
 
   rightEncoder.setup();
   leftEncoder.setup();
 
-  motorFrontRight.move(-150);
-  motorFrontLeft.move(-150);
+  //motorFrontRight.move(-150);
+  //motorFrontLeft.move(-150);
 }
 
 void loop() {
@@ -46,5 +46,7 @@ void loop() {
   Serial.println(rightEncoder.getValue());
   Serial.print("leftEncoder = ");
   Serial.println(leftEncoder.getValue());
-  delay(1000);
+  Serial.println();
+  Serial.println();
+  delay(500);
 }
