@@ -41,13 +41,13 @@ Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
-Servo180 servoHand("servoHand", 10, false, false, false);
-Servo180 servoArm("servoArm", 9, false, false, false);
-
 MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight, true, true, true);
 MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true);
 MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
 MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft, true, false, false);
+
+Servo180 servoHand("servoHand", 10, false, false, false);
+Servo180 servoArm("servoArm", 9, false, false, false);
 
 UltrasonicSensorHCSR04 ultrasonicFront("distanceFront", 53, 52);
 UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
@@ -59,9 +59,6 @@ int s0=3,s1=4,s2=5,s3=6;
 int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
-int encoderPinA = 18;
-int encoderPinB =  19;
-
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
@@ -71,68 +68,36 @@ Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
 
-int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadrature Encoder Matrix
-
-volatile unsigned char Old0, New0;
-volatile long Position0 = 0;
-
-void isr(){
-    int readPinA = digitalRead(encoderPinA);
-    int readPinB = digitalRead(encoderPinB);
-
-    Old0 = New0;
-    New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
-    Position0 += QEM [Old0 * 4 + New0];
-
-    myRobot->setPositionRight(Position0);
-}
-
 void setup() {
 
-    Serial.begin(115200);
+  Serial.begin(115200);
 
-    while (!Serial)
-    {}
+  while (!Serial)
+  {
+  }
 
-    Serial.println("begin");
+  Serial.println("begin");
 
-    myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
+  myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
-    Serial.println("created");
+  Serial.println("created");
 
-    AFMS.begin();
+  AFMS.begin();
 
-    myRobot->setup();
-    Serial.println("setup");
+  /*for (int i = 0; i < 4; i++)
+  {
+  motorTab[i]->setup();
+  }*/
 
-    pinMode(encoderPinA, INPUT);
-    pinMode(encoderPinB, INPUT);
-
-    attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
-    attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
+  myRobot->setup();
+  Serial.println("setup");
 }
 
 
 void loop() {
-  // forwardAT or turn180 forwardAt
 
-  // TODO too much depend on firstAction
-
-  // turn90Right
-
-  // forwardWall
-
-  // turn90Left
-
-  // forwardWall
-
-  // turn90Left
-
-  // forwardAt
-
-  //turn90Right
-
-  //end
+  myRobot->armDown();
+  delay(3000);
+  myRobot->armUp();
+  delay(3000);
 }
-
-

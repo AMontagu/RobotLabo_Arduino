@@ -51,6 +51,9 @@ UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
 UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
 UltrasonicSensorHCSR04 ultrasonicRight("distanceRight", 41, 40);
 
+Servo180 servoHand("servoHand", 10, false, false, false);
+Servo180 servoArm("servoArm", 9, false, false, false);
+
 
 int s0=3,s1=4,s2=5,s3=6;
 int out=2;
@@ -62,7 +65,7 @@ int encoderPinB =  19;
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
+Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
@@ -111,15 +114,35 @@ void setup() {
 
 
 void loop() {
-  //forwardAt
+  delay (10000);  
 
-  //backwardAt
+  myRobot->forwardAtDistance(100,5);
+  
+  delay (1000);
 
-  //turn90Right
+  myRobot->backwardAtDistance(100,10);
 
-  // forwardAt fast
+  delay (1000);
 
-  //end
+  myRobot->turnRightAtDegre(150,90);
+
+  delay (1000);
+
+  myRobot->forwardAtDistance (200,120);
+
+  delay (1000);
+
+  myRobot->turnRightAtDegre(150,90);
+
+  delay (1000);
+
+  myRobot->forwardAtDistance (200,30);
+
+  delay (1000);
+  
+  mySound.doAction (2);
+  
+  myRobot->stop();
 }
 
 

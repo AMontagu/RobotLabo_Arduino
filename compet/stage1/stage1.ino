@@ -41,6 +41,9 @@ Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
+Servo180 servoHand("servoHand", 10, false, false, false);
+Servo180 servoArm("servoArm", 9, false, false, false);
+
 MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight, true, true, true);
 MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true);
 MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
@@ -62,7 +65,7 @@ int encoderPinB =  19;
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
+Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
@@ -113,52 +116,26 @@ void setup() {
 void loop() {
 
     //playCarSound
-    Serial.print();
-    myRobot->playSound(1);
-    
+    mySound.doAction(1);
     // forward to wall
-    Serial.print();
-    myRobot->goToWall("Front", 8, 100);
-
+    myRobot->goToWall("Front", 5, 100);
     // touch wall (forwardAt)
-    Serial.print();
-    myRobot->forwardAtDistance(100, 10); 
-
+    myRobot->forwardAtDistance(100, 5);
     // backAt
-    Serial.print();
-    myRobot->backwardAtDistance(100, 10);
-
+    myRobot->backwardAtDistance(100, 5);
+    // turn
+    myRobot->turnLeftAtDegre(150, 90);
+    // touch wall (forwardAt)
+    myRobot->forwardAtDistance(get
     // wait 3 seconds
     delay(3000);
-
     // danse
-    Serial.print();
     myRobot->turnLeftAtDegre(150, 360);
-    myRobot->playSound(4);
+
     myRobot->turnRightAtDegre(150, 360);
-
-     // backAt
-    Serial.print();
-    myRobot->backwardAtDistance(100, 10);    
-
-    // turn
-    Serial.print();
-    myRobot->turnLeftAtDegre(150, 90);
-
-    // touch wall (forwardAt)
-    Serial.print();
-    myRobot->goToWall("Front", 8, 100);
-    myRobot->forwardAtDistance(100, 10); 
-
-     // backAt
-    Serial.print();
-    myRobot->backwardAtDistance(100, 10);
-
-    /*
+    // backAt
+    
     //turn
-    Serial.print();
-    myRobot->turnLeftAtDegre(150, 90);
-    */
 
     // forwardAt or forwardDistance
 
