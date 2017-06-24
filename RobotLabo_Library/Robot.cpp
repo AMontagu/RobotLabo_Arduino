@@ -206,12 +206,12 @@ void Robot::backwardAtDistance(int speed, int distance)
 }
 
 void Robot::turnLeftAtDegre(int speed, int angle){
-    int position = angle*encoderRatioAngle;
+    int position = angle*6;
     turnLeftAt(speed, position);
 }
 
 void Robot::turnRightAtDegre(int speed, int angle){
-    int position = angle*encoderRatioAngle;
+    int position = angle*6;
     turnRightAt(speed, position);
 }
 
