@@ -1,7 +1,10 @@
 /*
 Color :
 
-blue : red=424 green=759 blue=754grey : red=753 green=572 blue=591
+blue : red=424 green=759 blue=754
+grey : red=753 green=572 blue=591
+
+
 
 */
 
@@ -96,12 +99,12 @@ int ColorSensorTCS3200::getValue(void)
 	TCS();
 	delay(200);
 	//Serial.println("after TCS");
-	/*Serial.print("red=");
+	Serial.print("red=");
 	Serial.println(currentColorSensor->countR, DEC);
 	Serial.print("green=");
 	Serial.println(currentColorSensor->countG, DEC);
 	Serial.print("blue=");
-	Serial.println(currentColorSensor->countB, DEC);*/
+	Serial.println(currentColorSensor->countB, DEC);
 	if ((countR < 15) || (countG < 15) || (countB < 15)) {
 		colorReturn = black;
 	}

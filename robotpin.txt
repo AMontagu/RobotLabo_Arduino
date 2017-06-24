@@ -1,0 +1,25 @@
+buzer = 30
+light = 34
+
+motorFrontRight = m1
+motorFrontLeft = m2
+motorBackRight = m3
+motorBackLeft = m4
+
+Encoder front right pin = (a,b)
+
+Encoder front left pin = (a,b)
+
+Encoder back right pin = (a,b)
+
+Encoder back left pin = (a,b)
+
+Ultrasonor front = trigger: 53 echo : 52
+
+ultrasonor back = trigger 49 echo : 48
+
+ultrasonor right = trigger 45 echo : 44
+
+ultrasonor left = trigger 41 echo : 40
+
+colorcaptor =  out: 2 , s0 :3, s1 : 4, s2 : 5, s3=6
