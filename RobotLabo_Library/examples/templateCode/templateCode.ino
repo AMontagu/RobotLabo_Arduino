@@ -56,51 +56,63 @@ int s0=3,s1=4,s2=5,s3=6;
 int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
+int encoderPinA = 18;
+int encoderPinB =  19;
+
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};};
+Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
 
+int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadrature Encoder Matrix
+
+volatile unsigned char Old0, New0;
+volatile long Position0 = 0;
+
+void isr(){
+    int readPinA = digitalRead(encoderPinA);
+    int readPinB = digitalRead(encoderPinB);
+
+    Old0 = New0;
+    New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    Position0 += QEM [Old0 * 4 + New0];
+
+    myRobot->setPositionRight(Position0);
+}
+
 void setup() {
 
-  Serial.begin(115200);
+    Serial.begin(115200);
 
-  while (!Serial)
-  {}
+    while (!Serial)
+    {}
 
-  Serial.println("begin");
+    Serial.println("begin");
 
-  myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
+    myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
-  Serial.println("created");
+    Serial.println("created");
 
-  AFMS.begin();
+    AFMS.begin();
 
-  /*for (int i = 0; i < 4; i++)
-  {
-    motorTab[i]->setup();
-  }*/
+    myRobot->setup();
+    Serial.println("setup");
 
-  myRobot->setup();
-  Serial.println("setup");
+    pinMode(encoderPinA, INPUT);
+    pinMode(encoderPinB, INPUT);
+
+    attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
+    attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
 }
 
 
 void loop() {
 
-  int color = myRobot->getColorRight();
-  if(color == black)
-  {
-    Serial.println("black");
-  }
-  else{
-    Serial.println("white");
-  }
+    // Do Something
 
-  delay(1000);
 }
 

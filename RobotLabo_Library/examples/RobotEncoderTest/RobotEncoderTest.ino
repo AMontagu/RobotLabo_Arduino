@@ -60,7 +60,7 @@ int encoderPinA = 18;
 int encoderPinB =  19;
 
 
-Encoder rightEncoder("encoderRight", encoderPinA, encoderPinB, true);
+//Encoder rightEncoder("encoderRight", encoderPinA, encoderPinB, true);
 //Encoder leftEncoder("encoderLeft", 20, 21, false);
 
 Sound mySound("melody", 30);
@@ -68,7 +68,7 @@ LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
 //Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
-Sensor* sensorTab[6] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder};
+Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
@@ -122,6 +122,10 @@ void setup() {
 
     myRobot->setup();
     Serial.println("setup");
+
+
+    pinMode(encoderPinA, INPUT);
+    pinMode(encoderPinB, INPUT);
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
