@@ -81,6 +81,13 @@ void Sound::doAction(int actionNumber) {
 		notesDurations = new int[noteNumber];
 		memcpy(notesDurations, this->noteDurationUnderworld2, noteNumber * sizeof(int));
 		break;
+	case 5:
+		noteNumber = this->melodyrandomNumber;
+		melodyTab = new int[noteNumber];
+		memcpy(melodyTab, this->melodyrandom, noteNumber * sizeof(int));
+		notesDurations = new int[noteNumber];
+		memcpy(notesDurations, this->noteDurationmelodyrandom, noteNumber * sizeof(int));
+		break;
 	default:
 		break;
 	}

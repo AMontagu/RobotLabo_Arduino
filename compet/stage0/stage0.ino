@@ -111,15 +111,35 @@ void setup() {
 
 
 void loop() {
-  //forwardAt
+  delay (10000);  
 
-  //backwardAt
+  myRobot->forwardAtDistance(100,5);
+  
+  delay (1000);
 
-  //turn90Right
+  myRobot->backwardAtDistance(100,10);
 
-  // forwardAt fast
+  delay (1000);
 
-  //end
+  myRobot->turnRightAtDegre(150,90);
+
+  delay (1000);
+
+  myRobot->forwardAtDistance (200,120);
+
+  delay (1000);
+
+  myRobot->turnRightAtDegre(150,90);
+
+  delay (1000);
+
+  myRobot->forwardAtDistance (200,30);
+
+  delay (1000);
+  
+  mySound.doAction (2);
+  
+  myRobot->stop();
 }
 
 
