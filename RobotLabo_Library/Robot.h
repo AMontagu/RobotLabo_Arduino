@@ -40,8 +40,10 @@ private:
 	char* encoderRightName;
 	char* encoderLeftName;
 	int encoderRatio = 5;
+    int encoderRatioDistance = 18;
+    int encoderRatioAngle = 6;
 
-    long position = 0;
+	long position = 0;
 
 public:
 	Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bool is4Wheel = false, char* distanceFrontName = "distanceFront", char* distanceBackName = "distanceBack", char* distanceRightName = "distanceRight", char* distanceLeftName = "distanceLeft");
@@ -58,9 +60,21 @@ public:
 
 	void backward(int speed);
 
-	void forwardAt(int speed, int distance);
+	void forwardAt(int speed, int position);
 
-	void backwardAt(int speed, int distance);
+	void backwardAt(int speed, int position);
+
+	void turnLeftAt(int speed, int position);
+
+	void turnRightAt(int speed, int position);
+
+    void turnLeftAtDegre(int speed, int position);
+
+    void turnRightAtDegre(int speed, int position);
+
+    void forwardAtDistance(int speed, int distance);
+
+	void backwardAtDistance(int speed, int distance);
 
 	void turnLeft(int speed);
 
@@ -75,6 +89,8 @@ public:
 	void followLine();
 
 	void lineFollower();
+
+    void goToWall(char* capteurName, int distanceToStop, int speed);
 
 	void followWall(bool isRightWall, int distanceToWall);
 
@@ -101,7 +117,7 @@ public:
 
 
 	int getPositionRight();
-    int setPositionRight(long position);
+	int setPositionRight(long position);
 
 	int getPositionLeft();
 
