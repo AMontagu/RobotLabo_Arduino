@@ -56,17 +56,49 @@ int s0=3,s1=4,s2=5,s3=6;
 int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
-Encoder rightEncoder("encoderRight", 18, 19, true);
-Encoder leftEncoder("encoderLeft", 20, 21, false);
+int encoderPinA = 18;
+int encoderPinB =  19;
+
+
+Encoder rightEncoder("encoderRight", encoderPinA, encoderPinB, true);
+//Encoder leftEncoder("encoderLeft", 20, 21, false);
 
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
-Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
+//Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
+Sensor* sensorTab[6] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
+
+int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadrature Encoder Matrix
+
+volatile unsigned char Old0, New0;
+volatile long Position0 = 0;
+
+void isr(){
+    int readPinA = digitalRead(encoderPinA);
+    int readPinB = digitalRead(encoderPinB);
+
+    /*Serial.print("pina = ");
+    Serial.print(readPinA);
+
+    Serial.print(", pinb = ");
+    Serial.println(readPinB);
+
+    Serial.println("");*/
+
+    Old0 = New0;
+    New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    Position0 += QEM [Old0 * 4 + New0];
+
+    Serial.print("position = ");
+    Serial.println(Position0);
+
+    myRobot->setPositionRight(Position0);
+}
 
 void setup() {
 
@@ -90,32 +122,19 @@ void setup() {
 
     myRobot->setup();
     Serial.println("setup");
+
+    attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
+    attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
 }
 
 
 void loop() {
 
-    Serial.println("loop");
+    myRobot->forward(150);
 
-    Serial.print("front distance");
-    Serial.println(myRobot->getDistanceFront());
+    delay(3000);
 
-    delay(100);
-
-    Serial.print("back distance");
-    Serial.println(myRobot->getDistanceBack());
-
-    delay(100);
-
-    Serial.print("left distance");
-    Serial.println(myRobot->getDistanceLeft());
-
-    delay(100);
-
-    Serial.print("right distance");
-    Serial.println(myRobot->getDistanceRight());
-
-    delay(100);
+    Serial.println(myRobot->getPositionRight());
 
 }
 

@@ -15,7 +15,7 @@ Encoder::Encoder(char* name, int encoderPinA, int encoderPinB, bool isRight)
     this->encoderPinA = encoderPinA;
     this->encoderPinA = encoderPinB;
     this->isRight = isRight;
-    this->oldPinState = 0;
+    //this->New0 = 0;
 
     if(this->isRight){
         encoderRight = this;
@@ -59,23 +59,23 @@ Encoder::~Encoder() {}
 
 bool Encoder::setup(void) {
 
-    //Initiate
-    /*if (this->isRight)
-    {
-        encoderRight = this;
-        attachInterrupt(this->interruptPin, getEncoderRight, CHANGE);
-    }
-    if (!this->isRight)
-    {
-        encoderLeft = this;
-        attachInterrupt(this->interruptPin, getEncoderLeft, CHANGE);
-    }*/
 
     pinMode(this->encoderPinA, INPUT);
     pinMode(this->encoderPinB, INPUT);
 
-    attachInterruptHack(this->encoderPinA, this->isRight);
-    attachInterruptHack(this->encoderPinB, this->isRight);
+    //Initiate
+    /*if (this->isRight)
+    {
+        encoderRight = this;
+        attachInterrupt(this->encoderPinA, updatePositionRight, CHANGE);
+        attachInterrupt(this->encoderPinB, updatePositionRight, CHANGE);
+    }
+    if (!this->isRight)
+    {
+        encoderLeft = this;
+        attachInterrupt(this->encoderPinA, updatePositionLeft, CHANGE);
+        attachInterrupt(this->encoderPinB, updatePositionLeft, CHANGE);
+    }*/
 
     this->isSetupVar = true;
 
@@ -122,14 +122,12 @@ void updatePositionRight() {
 
     Serial.println("");*/
 
-    int NewPositionState = readPinA * 2 + readPinB;           // Convert binary input to decimal value
-    encoderRight->position += encoderRight->QEM [encoderRight->oldPinState * 4 + NewPositionState];
+    encoderRight->Old0 = encoderRight->New0;
+    encoderRight->New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    encoderRight->position += encoderRight->QEM [encoderRight->Old0 * 4 + encoderRight->New0];
 
     Serial.print("position = ");
     Serial.println(encoderRight->position);
-
-
-    encoderRight->oldPinState = NewPositionState;
 }
 
 void updatePositionLeft() {
@@ -144,14 +142,12 @@ void updatePositionLeft() {
 
     Serial.println("");*/
 
-    int NewPositionState = readPinA * 2 + readPinB;           // Convert binary input to decimal value
-    encoderLeft->position += encoderLeft->QEM [encoderLeft->oldPinState * 4 + NewPositionState];
+    encoderLeft->Old0 = encoderLeft->New0;
+    encoderLeft->New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    encoderLeft->position += encoderLeft->QEM [encoderLeft->Old0 * 4 + encoderLeft->New0];
 
     Serial.print("position = ");
     Serial.println(encoderLeft->position);
-
-
-    encoderLeft->oldPinState = NewPositionState;
 }
 
 void attachInterruptHack(int pin, bool isRight) {

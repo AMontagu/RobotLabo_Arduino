@@ -1,9 +1,22 @@
-/*int encoderPinA = 18;
-int encoderPinB =  19;
-*/
+#include <Actioner.h>
+#include <ColorSensorTCS3200.h>
+#include <Encoder.h>
+#include <IRSharp10To80.h>
+#include <LightActionner.h>
+#include <Motor.h>
+#include <MotorContinu.h>
+#include <resource.h>
+#include <Sensor.h>
+#include <Servo180.h>
+#include <Sound.h>
+#include <UltrasonicSensorHCSR04.h>
 
-int encoderPinA = 20;
-int encoderPinB =  21;
+#include <Wire.h>
+#include <Adafruit_MotorShield.h>
+#include "utility/Adafruit_MS_PWMServoDriver.h"
+
+int encoderPinA = 18;
+int encoderPinB =  19;
 
 int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadrature Encoder Matrix
 
@@ -32,7 +45,7 @@ void isr(){
 
 void setup(){
 
-  Serial.begin(9600);                            //init the Serial port to print the date
+  Serial.begin(115200);                            //init the Serial port to print the date
 
   New0 = 0;
   

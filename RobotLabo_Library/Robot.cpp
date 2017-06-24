@@ -8,7 +8,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
     this->actionerTabSize = sizeof(actionerTab);*/
 
 	//this->sensorTabSize = 5;
-	this->sensorTabSize = 7;
+	this->sensorTabSize = 6;
 	this->motorTabSize = 4;
 	this->actionerTabSize = 2;
 
@@ -193,14 +193,26 @@ void Robot::backward(int speed)
 	}
 }
 
-void Robot::forwardAt(int distance)
+void Robot::forwardAt(int speed, int distance)
 {
-
+	int oldPostion = this->getPositionRight();
+	int distanceInPosition = distance * this->encoderRatio;
+	this->forward(speed);
+	while(this->getPositionRight() - oldPostion < distanceInPosition){
+		delay(10);
+	}
+	this->stop();
 }
 
-void Robot::backwardAt(int distance)
+void Robot::backwardAt(int speed, int distance)
 {
-
+	int oldPostion = this->getPositionRight();
+	int distanceInPosition = distance * this->encoderRatio;
+	this->backward(speed);
+	while(this->getPositionRight() - oldPostion > -distanceInPosition){
+		delay(10);
+	}
+	this->stop();
 }
 
 void Robot::turnLeft(int speed)
@@ -304,10 +316,10 @@ void Robot::followLine(void)
 	int numberMove = 0, numberMoveExpected = 5, temps = 200, countScan = 1;
 	int bigTourne = 0;
 	int speed = 80;
-	colorValue = getColorRight(); //R�cup�re la couleur retourne 1 si c�est noir 0 sinon
+	colorValue = getColorRight(); //Recupere la couleur retourne 1 si c est noir 0 sinon
 	while (true)
 	{
-		while (colorValue == black) //Tant que l�on est sur du noir
+		while (colorValue == black) //Tant que l on est sur du noir
 		{
 			if (bigTourne != 0) {
 				while (true)
@@ -319,7 +331,7 @@ void Robot::followLine(void)
 			forward(speed); // On fait avancer notre robot
 			colorValue = getColorRight();
 		}
-		while (colorValue != black) //Tant que l�on est pas sur du noir
+		while (colorValue != black) //Tant que l on est pas sur du noir
 		{
 			Serial.println("different black");
 			Serial.println(colorValue);
@@ -327,8 +339,8 @@ void Robot::followLine(void)
 			while (numberMove  < numberMoveExpected && colorValue != black)
 			{
 				Serial.println("first turn");
-				turnRightTime(speed, temps);// On tourne � droite sur l�amplitude precision
-				//delay(200);  //Si votre robot ne s�arr�te pas sur la ligne mais un peu apr�s d�cochez cette ligne
+				turnRightTime(speed, temps);// On tourne a droite sur l amplitude precision
+				//delay(200);  //Si votre robot ne s arrete pas sur la ligne mais un peu apres decochez cette ligne
 				colorValue = getColorRight();
 				numberMove++;
 			}
@@ -557,13 +569,12 @@ int Robot::getColorRight() {
 
 int Robot::getPositionRight() {
 
-	for (int i = 0; i < this->sensorTabSize; i++)
-	{
-		if (this->sensorTab[i]->getSensorFamily() == sensorFamily::encoderSensor && this->sensorTab[i]->getSensorName() == this->encoderRightName) {
-			return this->sensorTab[i]->getValue();
-		}
-	}
-	return -1;
+	return this->position;
+}
+
+int Robot::setPositionRight(long position) {
+
+    this->position = position;
 }
 
 int Robot::getPositionLeft() {

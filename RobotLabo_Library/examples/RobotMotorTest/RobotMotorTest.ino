@@ -57,13 +57,14 @@ int out=2;
 ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 
 Encoder rightEncoder("encoderRight", 18, 19, true);
-Encoder leftEncoder("encoderLeft", 20, 21, false);
+//Encoder leftEncoder("encoderLeft", 20, 21, false);
 
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
-Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
+//Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
+Sensor* sensorTab[6] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;

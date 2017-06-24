@@ -49,7 +49,7 @@ public :
     /**
     *  encoder position
     */
-    int position;
+    volatile long position;
 
     /**
     *  Pin for the pinA on the encoder (yellow wire)
@@ -64,7 +64,7 @@ public :
     /**
     *  old value on base 10 of the result of (pinA pinB) base 2
     */
-    int oldPinState;
+    volatile unsigned char Old0, New0;
 
     /**
     *  Quadrature Encoder Matrix
