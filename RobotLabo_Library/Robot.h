@@ -40,6 +40,8 @@ private:
 	char* encoderRightName;
 	char* encoderLeftName;
 	int encoderRatio = 5;
+    int encoderRatioDistance = 18;
+    int encoderRatioAngle = 6;
 
 	long position = 0;
 
@@ -62,7 +64,15 @@ public:
 
 	void backwardAt(int speed, int position);
 
-	void forwardAtDistance(int speed, int distance);
+	void turnLeftAt(int speed, int position);
+
+	void turnRightAt(int speed, int position);
+
+    void turnLeftAtDegre(int speed, int position);
+
+    void turnRightAtDegre(int speed, int position);
+
+    void forwardAtDistance(int speed, int distance);
 
 	void backwardAtDistance(int speed, int distance);
 
@@ -79,6 +89,8 @@ public:
 	void followLine();
 
 	void lineFollower();
+
+    void goToWall(char* capteurName, int distanceToStop, int speed);
 
 	void followWall(bool isRightWall, int distanceToWall);
 

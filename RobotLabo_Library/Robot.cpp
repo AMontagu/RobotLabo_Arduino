@@ -131,18 +131,19 @@ void Robot::setup()
 void Robot::forward(int speed)
 {
     //Serial.println("in forward");
-    for (int i = 0; i < motorTabSize; i++)
+    /*for (int i = 0; i < motorTabSize; i++)
     {
         /*Serial.println(this->motorTab[i]->getMotorType());
         Serial.println(motorType::courantContinu);
-        Serial.println(this->motorTab[i]->isMovingMotor);*/
+        Serial.println(this->motorTab[i]->isMovingMotor);
 
         if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
         {
             //Serial.print("move motor");
             this->motorTab[i]->move(speed);
         }
-    }
+    }*/
+    this->forwardDifferentSpeed(speed,speed+30);
 }
 
 void Robot::forwardDifferentSpeed(int speedRight, int speedLeft)
@@ -194,22 +195,24 @@ void Robot::backward(int speed)
 
 void Robot::forwardAtDistance(int speed, int distance)
 {
-    int oldPostion = this->getPositionRight();
-    int distanceInPosition = distance * this->encoderRatio;
-    this->forward(speed);
-    while(this->getPositionRight() - oldPostion < distanceInPosition){
-    }
-    this->stop();
+    int position = distance*encoderRatioDistance;
+    forwardAt(speed, position);
 }
 
 void Robot::backwardAtDistance(int speed, int distance)
 {
-    int oldPostion = this->getPositionRight();
-    int distanceInPosition = distance * this->encoderRatio;
-    this->backward(speed);
-    while(this->getPositionRight() - oldPostion > -distanceInPosition){
-    }
-    this->stop();
+    int position = distance*encoderRatioDistance;
+    backwardAt(speed, position);
+}
+
+void Robot::turnLeftAtDegre(int speed, int angle){
+    int position = angle*encoderRatioAngle;
+    turnLeftAt(speed, position);
+}
+
+void Robot::turnRightAtDegre(int speed, int angle){
+    int position = angle*encoderRatioAngle;
+    turnRightAt(speed, position);
 }
 
 void Robot::forwardAt(int speed, int position)
@@ -244,7 +247,57 @@ void Robot::backwardAt(int speed, int position)
     this->stop();
 }
 
+void Robot::turnLeftAt(int speed, int position)
+{
+    int oldPosition = this->getPositionRight();
+    int positionToReach = oldPosition - position;
+    this->turnLeft(speed);
+
+    int currentPosition = this->getPositionRight();
+
+    while(currentPosition < positionToReach){
+        currentPosition = this->getPositionRight();
+        delay(1);
+    }
+    this->stop();
+}
+
+void Robot::turnRightAt(int speed, int position)
+{
+    int oldPosition = this->getPositionRight();
+    int positionToReach = oldPosition + position;
+
+    this->turnRight(speed);
+
+    int currentPosition = this->getPositionRight();
+
+    while(currentPosition > positionToReach){
+        currentPosition = this->getPositionRight();
+        delay(1);
+    }
+
+    this->stop();
+}
+
 void Robot::turnLeft(int speed)
+{
+    for (int i = 0; i < this->motorTabSize; i++)
+    {
+        if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
+        {
+            if (this->motorTab[i]->isRight)
+            {
+                this->motorTab[i]->move(speed);
+            }
+            else
+            {
+                this->motorTab[i]->move(-speed);
+            }
+        }
+    }
+}
+
+void Robot::turnRight(int speed)
 {
     for (int i = 0; i < this->motorTabSize; i++)
     {
@@ -266,40 +319,9 @@ void Robot::turnLeft(int speed)
     }
 }
 
-void Robot::turnRight(int speed)
-{
-    for (int i = 0; i < this->motorTabSize; i++)
-    {
-        if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
-        {
-            if (this->motorTab[i]->isRight)
-            {
-                this->motorTab[i]->move(speed);
-            }
-            else
-            {
-                this->motorTab[i]->move(-speed);
-            }
-        }
-    }
-}
-
 void Robot::turnLeftTime(int speed, int delayMs)
 {
-    for (int i = 0; i < motorTabSize; i++)
-    {
-        if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
-        {
-            if (this->motorTab[i]->isRight)
-            {
-                this->motorTab[i]->move(-speed);
-            }
-            else
-            {
-                this->motorTab[i]->move(speed);
-            }
-        }
-    }
+    this->turnLeft(speed);
     delay(delayMs);
     stop();
     delay(200);
@@ -307,20 +329,7 @@ void Robot::turnLeftTime(int speed, int delayMs)
 
 void Robot::turnRightTime(int speed, int delayMs)
 {
-    for (int i = 0; i < this->motorTabSize; i++)
-    {
-        if (this->motorTab[i]->getMotorType() == motorType::courantContinu && this->motorTab[i]->isMovingMotor)
-        {
-            if (this->motorTab[i]->isRight)
-            {
-                this->motorTab[i]->move(speed);
-            }
-            else
-            {
-                this->motorTab[i]->move(-speed);
-            }
-        }
-    }
+    this->turnRight(speed);
     delay(delayMs);
     stop();
     delay(200);
@@ -405,6 +414,28 @@ void Robot::followLine(void)
         }
     }
 }
+
+void Robot::goToWall(char* capteurName,int distanceToStop, int speed)
+{
+    if (capteurName == "Front"){
+        forward(speed);
+        int distance = getDistanceFront();
+        while ((distance>distanceToStop) && (distance != 0)){
+            distance = getDistanceFront();
+            delay(100);
+        }
+        stop();
+    }else {
+        backward(speed);
+        int distance = getDistanceBack();
+        while ((distance>distanceToStop) && (distance != 0)){
+            distance = getDistanceBack();
+            delay(100);
+        }
+        stop();
+    }
+}
+
 void Robot::followWall(bool isRightWall, int distanceToWall)
 {
     int indexSensor = 0;
