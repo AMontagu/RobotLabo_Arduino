@@ -140,5 +140,19 @@ void loop() {
 
     Serial.println(myRobot->getPositionRight());
 
-}
+    myRobot->stop();
 
+    delay(1000);
+
+    myRobot->backward(150);
+
+    delay(3000);
+
+    Serial.println(myRobot->getPositionRight());
+
+    myRobot->stop();
+
+    delay(3000);
+
+
+}

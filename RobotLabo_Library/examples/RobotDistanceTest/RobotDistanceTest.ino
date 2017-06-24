@@ -94,25 +94,19 @@ void loop() {
 
     Serial.println("loop");
 
-    Serial.print("front distance");
+    Serial.print("front distance: ");
     Serial.println(myRobot->getDistanceFront());
 
-    delay(100);
-
-    Serial.print("back distance");
+    Serial.print("back distance: ");
     Serial.println(myRobot->getDistanceBack());
 
-    delay(100);
-
-    Serial.print("left distance");
+    Serial.print("left distance: ");
     Serial.println(myRobot->getDistanceLeft());
 
-    delay(100);
-
-    Serial.print("right distance");
+    Serial.print("right distance: ");
     Serial.println(myRobot->getDistanceRight());
 
-    delay(100);
+    delay(2000);
 
 }
 

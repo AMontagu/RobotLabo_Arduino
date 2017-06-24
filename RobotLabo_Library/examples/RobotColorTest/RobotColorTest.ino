@@ -59,7 +59,7 @@ ColorSensorTCS3200 myColorSensor("colorRight", s0, s1, s2, s3, out);
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};};
+Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
