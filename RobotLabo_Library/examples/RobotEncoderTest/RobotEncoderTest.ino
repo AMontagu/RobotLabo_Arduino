@@ -46,6 +46,9 @@ MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true
 MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
 MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft, true, false, false);
 
+Servo180 servoHand("servoHand", 10, false, false, false);
+Servo180 servoArm("servoArm", 9, false, false, false);
+
 UltrasonicSensorHCSR04 ultrasonicFront("distanceFront", 53, 52);
 UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
 UltrasonicSensorHCSR04 ultrasonicLeft("distanceLeft", 45, 44);
@@ -66,7 +69,7 @@ int encoderPinB =  19;
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
+Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
 //Sensor* sensorTab[7] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor, &rightEncoder, &leftEncoder};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};

@@ -39,6 +39,8 @@ private:
 	char* colorRightName;
 	char* encoderRightName;
 	char* encoderLeftName;
+	char* motorHandName;
+	char* motorArmName;
 	int encoderRatio = 5;
     int encoderRatioDistance = 18;
     int encoderRatioAngle = 6;
@@ -83,6 +85,10 @@ public:
 	void turnLeftTime(int speed, int delayMs);
 
 	void turnRightTime(int speed, int delayMs);
+
+	void armUp();
+
+	void armDown();
 
 	void stop();
 

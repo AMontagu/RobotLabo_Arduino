@@ -41,13 +41,13 @@ Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
-Servo180 servoHand("servoHand", 10, false, false, false);
-Servo180 servoArm("servoArm", 9, false, false, false);
-
 MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight, true, true, true);
 MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true);
 MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
 MotorContinu motorBackLeft("motorBackLeft", _motorBackLeft, true, false, false);
+
+Servo180 servoHand("servoHand", 10, false, false, false);
+Servo180 servoArm("servoArm", 9, false, false, false);
 
 UltrasonicSensorHCSR04 ultrasonicFront("distanceFront", 53, 52);
 UltrasonicSensorHCSR04 ultrasonicBack("distanceBack", 49, 48);
@@ -63,53 +63,41 @@ Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
-Sensor* sensorTab[6] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
+Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
 Robot* myRobot;
 
 void setup() {
 
-    Serial.begin(115200);
+  Serial.begin(115200);
 
-    while (!Serial)
-    {}
+  while (!Serial)
+  {
+  }
 
-    Serial.println("begin");
+  Serial.println("begin");
 
-    myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
+  myRobot = new Robot(sensorTab, motorTab, actionerTab, true);
 
-    Serial.println("created");
+  Serial.println("created");
 
-    AFMS.begin();
+  AFMS.begin();
 
-    /*for (int i = 0; i < 4; i++)
-    {
-      motorTab[i]->setup();
-    }*/
+  /*for (int i = 0; i < 4; i++)
+  {
+  motorTab[i]->setup();
+  }*/
 
-    myRobot->setup();
-    Serial.println("setup");
+  myRobot->setup();
+  Serial.println("setup");
 }
 
 
 void loop() {
 
-    Serial.println("loop");
-
-    Serial.print("front distance: ");
-    Serial.println(myRobot->getDistanceFront());
-
-    Serial.print("back distance: ");
-    Serial.println(myRobot->getDistanceBack());
-
-    Serial.print("left distance: ");
-    Serial.println(myRobot->getDistanceLeft());
-
-    Serial.print("right distance: ");
-    Serial.println(myRobot->getDistanceRight());
-
-    delay(2000);
-
+  myRobot->armDown();
+  delay(3000);
+  myRobot->armUp();
+  delay(3000);
 }
-
