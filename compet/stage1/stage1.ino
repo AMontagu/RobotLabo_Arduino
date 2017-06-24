@@ -113,24 +113,52 @@ void setup() {
 void loop() {
 
     //playCarSound
-
+    Serial.print();
+    myRobot->playSound(1);
+    
     // forward to wall
+    Serial.print();
+    myRobot->goToWall("Front", 8, 100);
 
     // touch wall (forwardAt)
+    Serial.print();
+    myRobot->forwardAtDistance(100, 10); 
 
     // backAt
-
-    // turn
-
-    // touch wall (forwardAt)
+    Serial.print();
+    myRobot->backwardAtDistance(100, 10);
 
     // wait 3 seconds
+    delay(3000);
 
     // danse
+    Serial.print();
+    myRobot->turnLeftAtDegre(150, 360);
+    myRobot->playSound(4);
+    myRobot->turnRightAtDegre(150, 360);
 
-    // backAt
+     // backAt
+    Serial.print();
+    myRobot->backwardAtDistance(100, 10);    
 
+    // turn
+    Serial.print();
+    myRobot->turnLeftAtDegre(150, 90);
+
+    // touch wall (forwardAt)
+    Serial.print();
+    myRobot->goToWall("Front", 8, 100);
+    myRobot->forwardAtDistance(100, 10); 
+
+     // backAt
+    Serial.print();
+    myRobot->backwardAtDistance(100, 10);
+
+    /*
     //turn
+    Serial.print();
+    myRobot->turnLeftAtDegre(150, 90);
+    */
 
     // forwardAt or forwardDistance
 
