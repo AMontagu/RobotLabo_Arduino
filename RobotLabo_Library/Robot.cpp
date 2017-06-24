@@ -8,7 +8,7 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
     this->actionerTabSize = sizeof(actionerTab);*/
 
     this->sensorTabSize = 5;
-    this->motorTabSize = 4;
+    this->motorTabSize = 6;
     this->actionerTabSize = 2;
 
     this->distanceFrontName = distanceFrontName;
@@ -18,6 +18,8 @@ Robot::Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bo
     this->colorRightName = "colorRight";
     this->encoderRightName = "encoderRight";
     this->encoderLeftName = "encoderLeft";
+    this->motorHandName = "servoHand";
+    this->motorArmName = "servoArm";
 
     /*Serial.print("sensorTabSize = ");
     Serial.println(sensorTabSize);
@@ -127,6 +129,26 @@ void Robot::setup()
     }
 }
 
+void Robot::armUp(){
+
+    int handIndex = this->getMotorIndexWithName(this->motorHandName);
+    int armIndex = this->getMotorIndexWithName(this->motorArmName);
+
+    for (position = 135; position >= 90; position -= 1){
+        this->motorTab[handIndex]->move(position);
+        this->motorTab[armIndex]->move(position);
+    }
+}
+void Robot::armDown() {
+
+    int handIndex = this->getMotorIndexWithName(this->motorHandName);
+    int armIndex = this->getMotorIndexWithName(this->motorArmName);
+
+    for (position = 90; position <= 135; position += 1) {
+        this->motorTab[handIndex]->move(position);
+        this->motorTab[armIndex]->move(position);
+    }
+}
 
 void Robot::forward(int speed)
 {
