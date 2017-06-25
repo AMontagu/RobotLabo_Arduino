@@ -115,24 +115,44 @@ void setup() {
 
 void loop() {
   // forwardAT or turn180 forwardAt
+myRobot->forwardAtDistance(100,110);
 
-  // TODO too much depend on firstAction
+myRobot->backwardAtDistance(100,10);
 
-  // turn90Right
+myRobot->turnLeftAtDegre(150,90);
 
-  // forwardWall
+myRobot->goToWall("Front",10,100);
 
-  // turn90Left
+myRobot->turnRightAtDegre(150,90);
 
-  // forwardWall
+myRobot->forwardTime(100,3000);
 
-  // turn90Left
+myRobot->backwardAtDistance(100,10);
 
-  // forwardAt
+myRobot->turnRightAtDegre(150,180);
 
-  //turn90Right
+myRobot->forwardTime(100,3000);
 
-  //end
+myRobot->backwardAtDistance(100,10);
+
+myRobot->turnLeftAtDegre(150,90);
+
+myRobot->goToWall("Front",10,100);
+
+myRobot->turnRightAtDegre(150,90);
+
+myRobot->goToWall("Front",10,100);
+
+myRobot->turnLeftAtDegre(150,90);
+
+myRobot->goToWall("Front",10,100);
+
+myRobot->turnLeftAtDegre(150,90);
+
+myRobot->forwardAtDistance(100,55);
+
+myRobot->turnRightAtDegre(150,90);
+
 }
 
 
