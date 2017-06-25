@@ -116,20 +116,36 @@ void setup() {
 void loop() {
 
   //forwardAt
+    myRobot->forwardAt(100, 500);
+    delay(1000);
 
   // bacwardAt
+    myRobot->backwardAt(100, 200);
+    delay(1000);
 
   // turn90Left
+    myRobot->turn90Left();
+    delay(1000);
 
   //forwardWall high distance
+    myRobot->goToWall("Front", 50, 100);
+    delay(1000);
 
   // turn90right
+    myRobot->turn90Right();
+    delay(1000);
 
   // forwardWall
+    myRobot->goToWall("Front", 20, 100);
+    delay(1000);
 
   // turn90Left
+    myRobot->turn90Left();
+    delay(1000);
 
   // forwardAt
+    myRobot->forwardAt(100, 500);
+    delay(1000);
 
   //end
 }
