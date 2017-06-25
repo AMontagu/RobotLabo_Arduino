@@ -127,6 +127,7 @@ void Robot::setup()
     {
         this->actionerTab[i]->setup();
     }
+    this->armPosition(90,160);
 }
 
 void Robot::armUp(){
@@ -134,7 +135,7 @@ void Robot::armUp(){
     int handIndex = this->getMotorIndexWithName(this->motorHandName);
     int armIndex = this->getMotorIndexWithName(this->motorArmName);
 
-    for (position = 135; position >= 90; position -= 1){
+    for (position = 130; position >= 90; position -= 1){
         this->motorTab[handIndex]->move(position);
         this->motorTab[armIndex]->move(position);
     }
@@ -144,10 +145,23 @@ void Robot::armDown() {
     int handIndex = this->getMotorIndexWithName(this->motorHandName);
     int armIndex = this->getMotorIndexWithName(this->motorArmName);
 
-    for (position = 90; position <= 135; position += 1) {
+    for (position = 90; position <= 130; position += 1) {
         this->motorTab[handIndex]->move(position);
         this->motorTab[armIndex]->move(position);
     }
+}
+
+void Robot::armPosition(int positionArm, int positionHand) {
+
+    //position between 90 and 130
+
+    int handIndex = this->getMotorIndexWithName(this->motorHandName);
+    int armIndex = this->getMotorIndexWithName(this->motorArmName);
+
+
+        this->motorTab[handIndex]->move(positionHand);
+        this->motorTab[armIndex]->move(positionArm);
+
 }
 
 void Robot::forward(int speed)
