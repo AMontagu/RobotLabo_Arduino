@@ -272,7 +272,7 @@ void Robot::backwardAt(int speed, int position)
 void Robot::turnLeftAt(int speed, int position)
 {
     int oldPosition = this->getPositionRight();
-    int positionToReach = oldPosition - position;
+    int positionToReach = oldPosition + position;
     this->turnLeft(speed);
 
     int currentPosition = this->getPositionRight();
@@ -287,7 +287,7 @@ void Robot::turnLeftAt(int speed, int position)
 void Robot::turnRightAt(int speed, int position)
 {
     int oldPosition = this->getPositionRight();
-    int positionToReach = oldPosition + position;
+    int positionToReach = oldPosition - position;
 
     this->turnRight(speed);
 

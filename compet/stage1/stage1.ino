@@ -116,23 +116,34 @@ void setup() {
 void loop() {
 
     //playCarSound
-    mySound.doAction(1);
+    myRobot->playSound(1);
     // forward to wall
-    myRobot->goToWall("Front", 5, 100);
+    myRobot->goToWall("Front", 15, 100);
     // touch wall (forwardAt)
-    myRobot->forwardAtDistance(100, 5);
+    delay(1000);
+    myRobot->forwardTime(100, 2000);
+    
     // backAt
-    myRobot->backwardAtDistance(100, 5);
+    delay(500);
+    myRobot->backwardAtDistance(100, 10);
     // turn
+    delay(500);
     myRobot->turnLeftAtDegre(150, 90);
+
+    delay(1000);
     // touch wall (forwardAt)
-    myRobot->forwardAtDistance(get
+    myRobot->goToWall("Front", 15, 100);
+
+    delay(1000);
+    myRobot->forwardTime(100, 1500);
     // wait 3 seconds
     delay(3000);
     // danse
-    myRobot->turnLeftAtDegre(150, 360);
+    myRobot->backwardAt(150, 250);
+    myRobot->playSound(4);
+    myRobot->forwardAt(150, 100);
 
-    myRobot->turnRightAtDegre(150, 360);
+    delay(100000);
     // backAt
     
     //turn
@@ -142,8 +153,6 @@ void loop() {
     //turn
 
     //forward
-
-    // if wall half turn and forward else end
 
 }
 
