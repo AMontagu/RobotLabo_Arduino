@@ -77,9 +77,9 @@ void LightActionner::doAction(int actionNumber)
 	case 7:
 		rainbowFade2White(3, 3, 1);
 		break;
-		case 8:
-			colorWipe(strip.Color(255, 215, 0), brightness); // Gold
-			break;
+	case 8:
+		colorWipe(strip.Color(255, 215, 0), brightness); // Gold
+		break;
 	default:
 		break;
 	}

@@ -76,6 +76,7 @@ int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadratur
 volatile unsigned char Old0, New0;
 volatile long Position0 = 0;
 
+
 void isr(){
     int readPinA = digitalRead(encoderPinA);
     int readPinB = digitalRead(encoderPinB);
@@ -110,36 +111,41 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
+
 }
 
 
 void loop() {
-  // forwardAT or turn180 forwardAt
-myRobot->forwardAtDistance(100,110);
+  delay(5000);
+myRobot->forwardAtDistance(100,55);
 
 myRobot->backwardAtDistance(100,10);
-
-myRobot->turnLeftAtDegre(150,90);
-
-myRobot->goToWall("Front",10,100);
 
 myRobot->turnRightAtDegre(150,90);
 
-myRobot->forwardTime(100,3000);
-
-myRobot->backwardAtDistance(100,10);
+myRobot->goToWall("Back",30,100);
 
 myRobot->turnRightAtDegre(150,180);
 
+myRobot->goToWall("Front",10,100);
+
+myRobot->turnRightAtDegre(150,90);
+
 myRobot->forwardTime(100,3000);
 
 myRobot->backwardAtDistance(100,10);
 
-myRobot->turnLeftAtDegre(150,90);
+myRobot->turnLeftAtDegre(150,180);
 
-myRobot->goToWall("Front",10,100);
+myRobot->forwardTime(100,3000);
+
+myRobot->backwardAtDistance(100,10);
 
 myRobot->turnRightAtDegre(150,90);
+
+myRobot->goToWall("Back",15,100);
+
+myRobot->turnLeftAtDegre(150,90);
 
 myRobot->goToWall("Front",10,100);
 

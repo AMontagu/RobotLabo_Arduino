@@ -85,7 +85,6 @@ void isr(){
     Position0 += QEM [Old0 * 4 + New0];
 
     myRobot->setPositionRight(Position0);
-
 }
 
 void setup() {
@@ -112,30 +111,35 @@ void setup() {
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
 
+
 }
 
 
 void loop() {
-  delay(5000);
+
+  // forwardAt
+
+  //turn90Right
+
   // forwardWall
-myRobot->goToWall("Front", 10, 100);
+
   // turn90Left
-myRobot->turnLeftAtDegre(150, 90);
-  // forwardAt
-myRobot->forwardAtDistance(100, 120);
-  // backwardAt and turn180 and forwardWall or backwardWall
-myRobot->goToWall("Back",10, 100);
+
+  // forwardWall
+
+  // turn90Left
+
+  // forwardWall
+
+  // do sound front of queens
+
+  // delay
+
   // turn90Right
-myRobot->turnLeftAtDegre(150, 90);
-  // forwardAt
-myRobot->forwardAtDistance(100, 50);
 
-myRobot->turnLeftAtDegre(150, 90);
+  // forwardWall high distance
 
-myRobot->backwardAtDistance(100,10);
-
-myRobot->turnLeftAtDegre(150, 180);
-
+  //end
 }
 
 
