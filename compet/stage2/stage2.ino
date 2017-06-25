@@ -122,7 +122,7 @@ void loop() {
   myRobot->forwardAtDistance(100,20);
   myRobot->turnRightAtDegre(150, 90);
   myRobot->backwardAtDistance(100, 20);
-  myRobot->turnLeftAtDistance(150, 90);
+  myRobot->turnLeftAtDegre(150, 90);
   myRobot->forwardAtDistance(100, 40);
   delay(10000);
 }

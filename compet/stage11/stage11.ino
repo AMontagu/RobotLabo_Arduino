@@ -129,7 +129,7 @@ void loop() {
 
   // turn90Left*/
 
-    delay(1000);
+    delay(3000);
 
   // forwardWall
     myRobot->goToWall("Front", 15, 100);
