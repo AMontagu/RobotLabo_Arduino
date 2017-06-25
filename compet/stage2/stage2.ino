@@ -107,59 +107,24 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
-
-
 }
 
 
 void loop() {
-  // forwardAT a little bit
-  Serial.print("");
   myRobot->forwardAtDistance(100, 10);
-  delay(1000);
-
-  // turn90Right
-  Serial.print("");
-  myRobot->turnRightAtDegre(150, 90);
-  delay(1000);
-
-  // forwardToWall
-  Serial.print("");
-  myRobot->goToWall("Front", 15, 100);
-  myRobot->forwardTime(200, 15);
-  delay(1000);
-
-  // Back a little
-  Serial.print("");
-  myRobot->backwardAtDistance(100,20);
-  delay(1000);
-
-  // turn90Left
-  Serial.print("");
+  myRobot->goToWall("Front", 8, 100);
   myRobot->turnLeftAtDegre(150, 90);
-  delay(1000);
-
-  // forwardToWall
-  Serial.print("");
-  myRobot->goToWall("Front", 15, 100);
-  delay(1000);
-  
-  // touchwall and backwarAt and turn90Left or turn90Left and use arm
-  Serial.print("");
-  myRobot->forwardTime(200, 15);
-  delay(1000);
-
-  // animations light yellow + sound piece go down
-  Serial.print("");
+  myRobot->goToWall("Back", 8, 100);
+  delay(3000);
+  // TODO : gestion de taper avec le bras
   myRobot->doLight(8);
   delay(1000);
-  
-  // forwardAT
-  //Serial.print();
+  myRobot->forwardAtDistance(100,20);
+  myRobot->turnRightAtDegre(150, 90);
+  myRobot->backwardAtDistance(100, 20);
+  myRobot->turnLeftAtDistance(150, 90);
   myRobot->forwardAtDistance(100, 40);
-  delay(1000);
-
-  //end
+  delay(10000);
 }
 
 
