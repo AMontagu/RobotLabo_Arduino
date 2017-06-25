@@ -117,11 +117,22 @@ void loop() {
 
   //forwardWall
   Serial.println("End ForwardWall");
-  delay(1000);
+  delay(3000);
+
+    myRobot->goToWall("Front", 20, 100);
 
   // fun action
   Serial.println("End fun action");
   delay(1000);
+
+    myRobot->backwardAt(150, 100);
+    myRobot->forwardAt(150, 100);
+    myRobot->backwardAt(150, 100);
+    myRobot->forwardAt(150, 100);
+
+    myRobot->playSound(4);
+
+    delay(50000);
 
   //end
 }

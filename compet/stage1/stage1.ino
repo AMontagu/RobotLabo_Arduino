@@ -140,8 +140,11 @@ void loop() {
     delay(3000);
     // danse
     myRobot->backwardAt(150, 250);
-    myRobot->playSound(4);
     myRobot->forwardAt(150, 100);
+    myRobot->backwardAt(150, 100);
+    myRobot->forwardAt(150, 100);
+
+    myRobot->playSound(4);
 
     delay(100000);
     // backAt
