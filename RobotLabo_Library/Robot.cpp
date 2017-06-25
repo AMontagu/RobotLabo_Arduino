@@ -107,6 +107,7 @@ Robot::~Robot()
 
 void Robot::setup()
 {
+    this->armPosition(90,160);
     Serial.print("sensorTabSize = ");
     Serial.println(sensorTabSize);
     Serial.print("motorTabSize = ");
@@ -127,7 +128,9 @@ void Robot::setup()
     {
         this->actionerTab[i]->setup();
     }
-    this->armPosition(90,160);
+
+
+
 }
 
 void Robot::armUp(){
@@ -135,20 +138,20 @@ void Robot::armUp(){
     int handIndex = this->getMotorIndexWithName(this->motorHandName);
     int armIndex = this->getMotorIndexWithName(this->motorArmName);
 
-    for (position = 130; position >= 90; position -= 1){
-        this->motorTab[handIndex]->move(position);
-        this->motorTab[armIndex]->move(position);
-    }
+
+        this->motorTab[handIndex]->move(90);
+        this->motorTab[armIndex]->move(160);
+
 }
 void Robot::armDown() {
 
     int handIndex = this->getMotorIndexWithName(this->motorHandName);
     int armIndex = this->getMotorIndexWithName(this->motorArmName);
 
-    for (position = 90; position <= 130; position += 1) {
-        this->motorTab[handIndex]->move(position);
-        this->motorTab[armIndex]->move(position);
-    }
+
+        this->motorTab[handIndex]->move(110);
+        this->motorTab[armIndex]->move(90);
+
 }
 
 void Robot::armPosition(int positionArm, int positionHand) {
