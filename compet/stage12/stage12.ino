@@ -126,28 +126,30 @@ void loop() {
 
     for(int i=0; i< 7; i++){
         //deployArm
-        myRobot->armDown();
+        myRobot->armPosition(90, 100);
         myRobot->armUp();
 
         // play ambiance sound
         myRobot->playSound(2);
 
-        myRobot->forwardAt(100, 100);
+        myRobot->forwardAtDistance(100, 3);
         delay(1000);
     }
 
 
   // forwardWall
-    myRobot->goToWall("Front", 30, 100);
+    myRobot->goToWall("Front", 15, 100);
     delay(1000);
 
   // turn90Left
-    myRobot->turn90Left();
+    myRobot->turnLeftAtDegre(150, 90);
     delay(1000);
 
   // forwardAt
-    myRobot->forwardAtDistance(100, 20);
+    myRobot->forwardAtDistance(100, 60);
     delay(1000);
+
+    delay(10000);
 
   //end
 }

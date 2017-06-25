@@ -118,18 +118,49 @@ void setup() {
 void loop() {
 
   // forwardWall
-
-  // forwardAt
-
-  // backwardAt
+    /*myRobot->goToWall("Front", 40, 100);
+    delay(1000);
 
   // turn90Left
+    myRobot->turn90Left();
+    delay(1000);*/
 
   // forwardWall distance good for arm to push ping pong ball stage after
 
-  // turn90Left
+  // turn90Left*/
+
 
   // forwardWall
+    myRobot->goToWall("Front", 15, 100);
+    delay(1000);
+
+    // touch wall
+    myRobot->forwardTime(100, 2000);
+    delay(1000);
+
+    //bacwardAt
+    myRobot->backwardAtDistance(100, 15);
+    delay(1000);
+
+    //turn180
+    //myRobot->turnRightAtDegre(150, 180);
+    myRobot->turnRightAtDegre(150, 200);
+    delay(1000);
+
+    //forwardWall
+    myRobot->goToWall("Front", 15, 100);
+    delay(1000);
+
+
+    //turn180
+    myRobot->turnLeftAtDegre(150, 90);
+    delay(1000);
+
+    //forwardAT
+    myRobot->forwardAtDistance(100, 20);
+    delay(1000);
+
+    delay(10000);
 
   //end
 }
