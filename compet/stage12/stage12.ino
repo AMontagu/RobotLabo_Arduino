@@ -130,7 +130,7 @@ void loop() {
         myRobot->armUp();
 
         // play ambiance sound
-        myRobot->playSound(2);
+        myRobot->playSound(3);
 
         myRobot->forwardAtDistance(100, 3);
         delay(1000);

@@ -117,6 +117,9 @@ void setup() {
 
 void loop() {
 
+    
+    delay(1000);
+    
   //forwardAt
     myRobot->forwardAtDistance(100, 50);
     delay(1000);

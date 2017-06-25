@@ -116,13 +116,28 @@ void setup() {
 
 
 void loop() {
+
+  delay(1000);
   // armDown
+  myRobot->armDown();
 
+  
+  delay(1000);
   // light
+  myRobot->doLight(4);
 
+
+  delay(1000);
   // ghost sound
-
+  myRobot->playSound(4);
+  
+  
+  delay(1000);
   // forwardAt or followWall
+  myRobot->forwardAtDistance(150, 200);
+
+  
+  delay(1000);
 
   //end
 }

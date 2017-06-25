@@ -130,7 +130,7 @@ void loop() {
     myRobot->backwardAtDistance(100, 10);
     // turn
     delay(500);
-    myRobot->turnLeftAtDegre(150, 90);
+    myRobot->turnRightAtDegre(150, 90);
 
     delay(1000);
     // touch wall (forwardAt)
@@ -145,8 +145,26 @@ void loop() {
     myRobot->forwardAt(150, 100);
     myRobot->backwardAt(150, 100);
     myRobot->forwardAt(150, 100);
+    
+    myRobot->turnRightAtDegre(150, 15);
+    myRobot->turnLeftAtDegre(150, 15);
 
     myRobot->playSound(4);
+
+    
+    delay(1000);
+    myRobot->turnRightAtDegre(150, 90);
+
+    delay(1000);
+    myRobot->forwardAtDistance(100, 20);
+
+    delay(1000);
+
+    myRobot->turnRightAtDegre(150, 90);
+
+    delay(1000);
+
+    myRobot->forwardTime(3000);
 
     delay(100000);
     // backAt
