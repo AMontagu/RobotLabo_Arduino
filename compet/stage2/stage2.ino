@@ -116,7 +116,7 @@ void loop() {
   myRobot->turnLeftAtDegre(150, 90);
   myRobot->goToWall("Back", 8, 100);
   delay(3000);
-  // TODO : gestion de taper avec le bras
+  myRobot->armDown();
   myRobot->doLight(8);
   delay(1000);
   myRobot->forwardAtDistance(100,20);
