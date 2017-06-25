@@ -67,6 +67,7 @@ LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
 Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
 Actioner* actionerTab[2] = {&mySound, &la};
+Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 
 Robot* myRobot;
 
@@ -113,27 +114,31 @@ void setup() {
 
 
 void loop() {
-  //forwardWall (high distance
-
   // doAction ligh + sound
+myRobot->playSound(3);
 
-  //turn45Right
+myRobot->doLight(8);
 
-  // forwardAt
+myRobot->forwardAtDistance(100,25);
 
-  // turn45Right
+myRobot->turnRightAtDegre(150,90);
 
-  //forwardWall
+myRobot->goToWall ("Front", 15, 100);
 
-  // turn90Right
+myRobot->turnLeftAtDegre(150,90);
 
-  //forwardwall
+myRobot->goToWall ("Front", 15, 100);
 
-  // turn90Left
+myRobot->turnRightAtDegre(150,90);
 
-  // forwardAt
+myRobot->goToWall ("Front", 15, 100);
 
-  //end
+myRobot->turnRightAtDegre(150,90);
+
+myRobot->forwardAtDistance(100,55);
+
+myRobot->turnLeftAtDegre(150,90);
+
 }
 
 

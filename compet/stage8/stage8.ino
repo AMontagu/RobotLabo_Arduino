@@ -111,31 +111,51 @@ void setup() {
 
 
 void loop() {
+  delay(5000);
   //forwardAt
-
+myRobot->goToWall("Front",10,100);
   //turn90Left
-
+myRobot->turnLeftAtDegre(150,90);
   //forwardWall
-
+myRobot->goToWall("Front",20,100);
   // turnLeft
-
+myRobot->turnRightAtDegre(150,270);
   // forwardWall
-
+//myRobot->armDown();
   // armMove
-
+//myRobot->armUp();
   // doSoundJackpot
-
+myRobot->playSound(1);
   // danse (backward, forward, backard, forward)
-
+myRobot->turnRightAtDegre(150,90);
+myRobot->forwardAtDistance(100,5);
+myRobot->backwardAtDistance(100,5);
+myRobot->forwardAtDistance(100,5);
+myRobot->backwardAtDistance(100,5);
   // backwardAt
-
+myRobot->goToWall("Back",15,100);
   // turn90Right
-
+myRobot->turnLeftAtDegre(150,90);
   // forwardWall
-
+  myRobot->goToWall("Back",15,100);
   // turn90Left
-
+  myRobot->turnLeftAtDegre(150,90);
   // forwardWall
+  myRobot->goToWall("Back",15,100);
+  
+  myRobot->turnLeftAtDegre(150,180);
+  
+  myRobot->forwardAtDistance(100,5);
+  myRobot->backwardAtDistance(100,5);
+  myRobot->forwardAtDistance(100,5);
+  myRobot->backwardAtDistance(100,5);
+
+  myRobot->turnRightAtDegre(150,90);
+
+
+  
+
+  
 
   // turn90Left
 

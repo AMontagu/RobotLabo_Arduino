@@ -114,6 +114,7 @@ void setup() {
 
 
 void loop() {
+  delay(5000);
   // forwardWall
 myRobot->goToWall("Front", 10, 100);
   // turn90Left
@@ -127,7 +128,12 @@ myRobot->turnLeftAtDegre(150, 90);
   // forwardAt
 myRobot->forwardAtDistance(100, 50);
 
-myRobot->turnRightAtDegre(150, 90);
+myRobot->turnLeftAtDegre(150, 90);
+
+myRobot->backwardAtDistance(100,10);
+
+myRobot->turnLeftAtDegre(150, 180);
+
 }
 
 

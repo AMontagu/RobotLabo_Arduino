@@ -112,48 +112,48 @@ void setup() {
 
 void loop() {
   // forwardAT a little bit
-  Serial.print();
+  Serial.print("");
   myRobot->forwardAtDistance(100, 10);
   delay(1000);
 
   // turn90Right
-  Serial.print();
+  Serial.print("");
   myRobot->turnRightAtDegre(150, 90);
   delay(1000);
 
   // forwardToWall
-  Serial.print();
+  Serial.print("");
   myRobot->goToWall("Front", 15, 100);
   myRobot->forwardTime(200, 15);
   delay(1000);
 
   // Back a little
-  Serial.print();
+  Serial.print("");
   myRobot->backwardAtDistance(100,20);
   delay(1000);
 
   // turn90Left
-  Serial.print();
+  Serial.print("");
   myRobot->turnLeftAtDegre(150, 90);
   delay(1000);
 
   // forwardToWall
-  Serial.print();
+  Serial.print("");
   myRobot->goToWall("Front", 15, 100);
   delay(1000);
   
   // touchwall and backwarAt and turn90Left or turn90Left and use arm
-  Serial.print();
+  Serial.print("");
   myRobot->forwardTime(200, 15);
   delay(1000);
 
   // animations light yellow + sound piece go down
-  Serial.print();
+  Serial.print("");
   myRobot->doLight(8);
   delay(1000);
   
   // forwardAT
-  Serial.print();
+  //Serial.print();
   myRobot->forwardAtDistance(100, 40);
   delay(1000);
 
