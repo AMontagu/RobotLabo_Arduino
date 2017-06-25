@@ -110,44 +110,13 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
-
-
 }
 
 
 void loop() {
-
-  // ----------------
-
-  // find line
-
-  // do fun action
-
-  // followline
-
-  // --------------- or --------------
-
-  // forwardWall
-
-  // do fun action
-
-  // turn90Right
-
-  // forwardWall
-
-  //turn90left
-
-  // ------------------------------
-
-  // forwardWall
-
-  // turn90Right
-
-  // forwardWall high distance
-
-  // turn90Right
-
-  //end
+  myRobot->goToWall("Front", 15, 100);
+  myRobot->turnRightAtDegre(150, 90);
+  myRobot->goToWall("Front", 15, 100);
+  myRobot->turnRightAtDegre(150, 90);
+  myRobot->goToWall("Front", 35, 100);
 }
-
-

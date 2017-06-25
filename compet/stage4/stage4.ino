@@ -118,13 +118,14 @@ void setup() {
 
 void loop() {
   // forwardAt
+  delay(10000);
   myRobot->forwardAtDistance(100, 60);
   // forwardAtDifferentSpeed
-  myRobot->forwardDifferentSpeed(100,50);
+  myRobot->forwardDifferentSpeed(150,100);
   // forwardAt
   myRobot->forwardAtDistance(100, 155);
   // forwardAtDifferentSpeed
-  myRobot->forwardDifferentSpeed(100,50);
+  myRobot->forwardDifferentSpeed(150,100);
   // forwardAt
   myRobot->forwardAtDistance(100, 50);
   //end
