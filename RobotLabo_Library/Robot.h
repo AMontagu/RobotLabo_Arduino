@@ -80,6 +80,8 @@ public:
 
 	void turnLeft(int speed);
 
+
+
 	void turnRight(int speed);
 
 	void turnLeftTime(int speed, int delayMs);
@@ -89,6 +91,8 @@ public:
 	void armUp();
 
 	void armDown();
+
+	void armPosition(int positionArm, int positionHand);
 
 	void stop();
 
