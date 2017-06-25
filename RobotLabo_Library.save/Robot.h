@@ -4,9 +4,9 @@
 #define _ROBOT_h
 
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+#include "Arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 
 #include "Sensor.h"
@@ -36,6 +36,16 @@ private:
 	char* distanceBackName;
 	char* distanceRightName;
 	char* distanceLeftName;
+	char* colorRightName;
+	char* encoderRightName;
+	char* encoderLeftName;
+	char* motorHandName;
+	char* motorArmName;
+	int encoderRatio = 5;
+    int encoderRatioDistance = 18;
+    int encoderRatioAngle = 6;
+
+	long position = 0;
 
 public:
 	Robot(Sensor* sensorTab[], Motor* motorTab[], Actioner* actionerTab[], bool is4Wheel = false, char* distanceFrontName = "distanceFront", char* distanceBackName = "distanceBack", char* distanceRightName = "distanceRight", char* distanceLeftName = "distanceLeft");
@@ -46,21 +56,53 @@ public:
 
 	void forward(int speed);
 
+	void forwardDifferentSpeed(int speedRight, int speedLeft);
+
+	void forwardTime(int speed, int dealyMs);
+
 	void backward(int speed);
 
-	void forwardAt(int distance);
+	void forwardAt(int speed, int position);
 
-	void backwardAt(int distance);
+	void backwardAt(int speed, int position);
+
+	void turnLeftAt(int speed, int position);
+
+	void turnRightAt(int speed, int position);
+
+    void turnLeftAtDegre(int speed, int position);
+
+    void turnRightAtDegre(int speed, int position);
+
+    void forwardAtDistance(int speed, int distance);
+
+	void backwardAtDistance(int speed, int distance);
 
 	void turnLeft(int speed);
 
+
+
 	void turnRight(int speed);
+
+	void turnLeftTime(int speed, int delayMs);
+
+	void turnRightTime(int speed, int delayMs);
+
+	void armUp();
+
+	void armDown();
+
+	void armPosition(int positionArm, int positionHand);
 
 	void stop();
 
 	void followLine();
 
-	void foolwWall(bool isRightWall);
+	void lineFollower();
+
+    void goToWall(char* capteurName, int distanceToStop, int speed);
+
+	void followWall(bool isRightWall, int distanceToWall);
 
 	void turn45degreeLeft();
 
@@ -82,6 +124,15 @@ public:
 	int getDistanceBack();
 	int getDistanceRight();
 	int getDistanceLeft();
+
+
+	int getPositionRight();
+	int setPositionRight(long position);
+
+	int getPositionLeft();
+
+	//getColorDroite
+	int getColorRight();
 
 	//DoAction fucntions
 

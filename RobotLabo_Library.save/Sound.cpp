@@ -48,7 +48,6 @@ bool Sound::isSetup(void) {
 
 void Sound::doAction(int actionNumber) {
 	// iterate over the notes of the melody:
-	Serial.println("here sound");
 	int noteNumber = 0;
 	int *melodyTab;
 	int *notesDurations;
@@ -82,18 +81,25 @@ void Sound::doAction(int actionNumber) {
 		notesDurations = new int[noteNumber];
 		memcpy(notesDurations, this->noteDurationUnderworld2, noteNumber * sizeof(int));
 		break;
+	case 5:
+		noteNumber = this->melodyrandomNumber;
+		melodyTab = new int[noteNumber];
+		memcpy(melodyTab, this->melodyrandom, noteNumber * sizeof(int));
+		notesDurations = new int[noteNumber];
+		memcpy(notesDurations, this->noteDurationmelodyrandom, noteNumber * sizeof(int));
+		break;
 	default:
 		break;
 	}
 
-	Serial.print("aNote number = ");
+	/*Serial.print("aNote number = ");
 	Serial.println(noteNumber);
 
 	Serial.print("melodyTab[40] = ");
 	Serial.println(melodyTab[40]);
 
 	Serial.print("notesDurations[40] = ");
-	Serial.println(notesDurations[40]);
+	Serial.println(notesDurations[40]);*/
 
 	for (int thisNote = 0; thisNote < noteNumber; thisNote++) {
 
@@ -109,11 +115,11 @@ void Sound::doAction(int actionNumber) {
 		delay(pauseBetweenNotes);
 		// stop the tone playing:
 		noTone(this->melodyPin);
-		Serial.print("after loop ");
-		Serial.println(thisNote);
+		/*Serial.print("after loop ");
+		Serial.println(thisNote);*/
 
 	}
-	Serial.println("out");
+	//Serial.println("out");
 
 }
 

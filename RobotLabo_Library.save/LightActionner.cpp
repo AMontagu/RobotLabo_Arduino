@@ -21,7 +21,6 @@ LightActionner::LightActionner(char* actionName, int lightPin, int num_leds, int
 }
 
 LightActionner::LightActionner(const LightActionner &la) : Actioner(la) {
-	Serial.println("in lightActionner copy constructor ");
 	this->actionnerName = la.actionnerName;
 	this->actionnerFamily = la.actionnerFamily;
 	this->lightPin = la.lightPin;
@@ -31,29 +30,8 @@ LightActionner::LightActionner(const LightActionner &la) : Actioner(la) {
 	this->delaytime = la.delaytime;
 	this->first_arg = la.first_arg;
 	this->second_arg = la.second_arg;
-	this->strip = Adafruit_NeoPixel(this->num_leds, this->lightPin, this->first_arg + this->second_arg);
-	//this->setup();
-}
-
-LightActionner &LightActionner:: operator= (const LightActionner &    la)
-{
-	Serial.println("in lightActionner operator = ");
-	if (this != &la) {
-		this->actionnerName = la.actionnerName;
-		this->actionnerFamily = la.actionnerFamily;
-		this->lightPin = la.lightPin;
-		this->num_leds = la.num_leds;
-		this->brightness = la.brightness;
-		this->gamma = la.gamma;
-		this->delaytime = la.delaytime;
-		this->first_arg = la.first_arg;
-		this->second_arg = la.second_arg;
-		this->strip = Adafruit_NeoPixel(this->num_leds, this->lightPin, this->first_arg + this->second_arg);
-
-		//this->setup();
-	}
-
-	return *this;
+	this->strip = Adafruit_NeoPixel(this->num_leds, this->lightPin, first_arg + second_arg);
+	this->setup();
 }
 
 LightActionner ::~LightActionner()
@@ -62,13 +40,9 @@ LightActionner ::~LightActionner()
 
 bool LightActionner::setup(void)
 {
-	Serial.println("1");
 	strip.setBrightness(this->brightness);
-	Serial.println("2");
 	strip.begin();
-	Serial.println("3");
 	strip.show();
-	Serial.println("4");
 	this->isSetupVar = true;
 	return this->isSetupVar;
 }
@@ -80,12 +54,9 @@ bool LightActionner::isSetup(void)
 
 void LightActionner::doAction(int actionNumber)
 {
-	Serial.println("do action light");
-	Serial.println(actionNumber);
 	switch (actionNumber)
 	{
 	case 1:
-		Serial.println("do action 1");
 		colorWipe(strip.Color(255, 0, 0), brightness); // Red
 		break;
 	case 2:
@@ -105,6 +76,9 @@ void LightActionner::doAction(int actionNumber)
 		break;
 	case 7:
 		rainbowFade2White(3, 3, 1);
+		break;
+	case 8:
+		colorWipe(strip.Color(255, 215, 0), brightness); // Gold
 		break;
 	default:
 		break;

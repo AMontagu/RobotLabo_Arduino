@@ -7,41 +7,51 @@
 Encoder* encoderRight;
 Encoder* encoderLeft;
 
-Encoder::Encoder(char* name, int interruptPin, bool isRight)
+Encoder::Encoder(char* name, int encoderPinA, int encoderPinB, bool isRight)
 {
-	this->sensorName = name;
-	this->sensorFamilyVar = sensorFamily::encoderSensor;
-	this->sensorTypeVar = sensorType::encoder;
-	this->interruptPin = interruptPin;
-	this->isRight = isRight;
+    this->sensorName = name;
+    this->sensorFamilyVar = sensorFamily::encoderSensor;
+    this->sensorTypeVar = sensorType::encoder;
+    this->encoderPinA = encoderPinA;
+    this->encoderPinA = encoderPinB;
+    this->isRight = isRight;
+    //this->New0 = 0;
 
-	this->isSetupVar = false;
+    if(this->isRight){
+        encoderRight = this;
+    }else{
+        encoderLeft = this;
+    }
 
-	//this->setup();
+    this->isSetupVar = false;
+
+    //this->setup();
 }
 
 Encoder::Encoder(const Encoder &    ss) : Sensor(ss)
 {
-	this->sensorFamilyVar = ss.sensorFamilyVar;
-	this->sensorName = ss.sensorName;
-	this->sensorTypeVar = ss.sensorTypeVar;
-	this->interruptPin = ss.interruptPin;
+    this->sensorFamilyVar = ss.sensorFamilyVar;
+    this->sensorName = ss.sensorName;
+    this->sensorTypeVar = ss.sensorTypeVar;
+    this->encoderPinA = ss.encoderPinA;
+    this->encoderPinA = ss.encoderPinB;
 
-	this->setup();
+    this->setup();
 }
 
 Encoder &Encoder :: operator= (const Encoder &    ss)
 {
-	if (this != &ss) {
-		this->sensorFamilyVar = ss.sensorFamilyVar;
-		this->sensorName = ss.sensorName;
-		this->sensorTypeVar = ss.sensorTypeVar;
-		this->interruptPin = ss.interruptPin;
+    if (this != &ss) {
+        this->sensorFamilyVar = ss.sensorFamilyVar;
+        this->sensorName = ss.sensorName;
+        this->sensorTypeVar = ss.sensorTypeVar;
+        this->encoderPinA = ss.encoderPinA;
+        this->encoderPinA = ss.encoderPinB;
 
-		this->setup();
-	}
+        this->setup();
+    }
 
-	return *this;
+    return *this;
 }
 
 
@@ -49,72 +59,105 @@ Encoder::~Encoder() {}
 
 bool Encoder::setup(void) {
 
-	//Initiate
-	if (this->isRight)
-	{
-		encoderRight = this;
-		attachInterrupt(this->interruptPin, getEncoderRight, CHANGE);
-	}
-	if (!this->isRight)
-	{
-		encoderLeft = this;
-		attachInterrupt(this->interruptPin, getEncoderLeft, CHANGE);
-	}
-	
 
-	this->isSetupVar = true;
+    pinMode(this->encoderPinA, INPUT);
+    pinMode(this->encoderPinB, INPUT);
 
-	return this->isSetupVar;
+    //Initiate
+    /*if (this->isRight)
+    {
+        encoderRight = this;
+        attachInterrupt(this->encoderPinA, updatePositionRight, CHANGE);
+        attachInterrupt(this->encoderPinB, updatePositionRight, CHANGE);
+    }
+    if (!this->isRight)
+    {
+        encoderLeft = this;
+        attachInterrupt(this->encoderPinA, updatePositionLeft, CHANGE);
+        attachInterrupt(this->encoderPinB, updatePositionLeft, CHANGE);
+    }*/
+
+    this->isSetupVar = true;
+
+    return this->isSetupVar;
 }
 
 bool Encoder::isSetup(void) {
-	return this->isSetupVar;
+    return this->isSetupVar;
 }
 
 int Encoder::getValue(void) {
-	return this->counter;
+    return this->position;
 }
 
 long Encoder::getPrecisionValue(void) {
-	return this->counter;
+    return this->position;
 }
 
 void Encoder::reset(void) {
-	this->counter = 0;
+    this->position = 0;
 }
 
 char* Encoder::getSensorName(void) {
-	return this->sensorName;
+    return this->sensorName;
 }
 
 int Encoder::getSensorType(void) {
-	return this->sensorTypeVar;
+    return this->sensorTypeVar;
 }
 
 int Encoder::getSensorFamily(void) {
-	return this->sensorFamilyVar;
+    return this->sensorFamilyVar;
 }
 
-void getEncoderLeft() {
-	if (!encoderLeft) {
-		encoderLeft->counter++;
-	}
+void updatePositionRight() {
+    int readPinA = digitalRead(encoderRight->encoderPinA);
+    int readPinB = digitalRead(encoderRight->encoderPinB);
+
+    /*Serial.print("pina = ");
+    Serial.print(readPinA);
+
+    Serial.print(", pinb = ");
+    Serial.println(readPinB);
+
+    Serial.println("");*/
+
+    encoderRight->Old0 = encoderRight->New0;
+    encoderRight->New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    encoderRight->position += encoderRight->QEM [encoderRight->Old0 * 4 + encoderRight->New0];
+
+    Serial.print("position = ");
+    Serial.println(encoderRight->position);
 }
 
-void getEncoderRight() {
-	if (!encoderRight) {
-		encoderRight->counter++;
-	}
+void updatePositionLeft() {
+    int readPinA = digitalRead(encoderLeft->encoderPinA);
+    int readPinB = digitalRead(encoderLeft->encoderPinB);
+
+    /*Serial.print("pina = ");
+    Serial.print(readPinA);
+
+    Serial.print(", pinb = ");
+    Serial.println(readPinB);
+
+    Serial.println("");*/
+
+    encoderLeft->Old0 = encoderLeft->New0;
+    encoderLeft->New0 = readPinA * 2 + readPinB;           // Convert binary input to decimal value
+    encoderLeft->position += encoderLeft->QEM [encoderLeft->Old0 * 4 + encoderLeft->New0];
+
+    Serial.print("position = ");
+    Serial.println(encoderLeft->position);
 }
 
 void attachInterruptHack(int pin, bool isRight) {
-	if (isRight)
-	{
-		attachInterrupt(pin, getEncoderRight, CHANGE);
-	}
-	if (!isRight)
-	{
-		attachInterrupt(pin, getEncoderLeft, CHANGE);
-	}
+    if (isRight)
+    {
+        attachInterrupt(digitalPinToInterrupt(pin), updatePositionRight, CHANGE);
+    }
+    if (!isRight)
+    {
+        attachInterrupt(digitalPinToInterrupt(pin), updatePositionLeft, CHANGE);
+    }
 }
 

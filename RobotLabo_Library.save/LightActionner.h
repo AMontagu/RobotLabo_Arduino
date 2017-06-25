@@ -17,7 +17,6 @@ class LightActionner : public Actioner
 public:
 	LightActionner(char* actionName, int lightPin, int num_leds, int brightness, int* gamma, int delay, int first_arg, int second_arg);
 	LightActionner(const LightActionner &la);
-	virtual LightActionner &operator= (const LightActionner &    la);
 	virtual ~LightActionner ();
 
 	virtual LightActionner * create() const       // Virtual constructor (creation) 
@@ -97,6 +96,8 @@ public:
 
 	uint8_t blue(uint32_t c);
 
+
+private:
 	//Actionner name
 	char* actionnerName;
 	
