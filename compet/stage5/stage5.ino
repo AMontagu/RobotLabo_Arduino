@@ -115,18 +115,19 @@ void setup() {
 
 void loop() {
   // forwardWall
-
+myRobot->goToWall("Front", 10, 100);
   // turn90Left
-
+myRobot->turnLeftAtDegre(150, 90);
   // forwardAt
-
+myRobot->forwardAtDistance(100, 120);
   // backwardAt and turn180 and forwardWall or backwardWall
-  
+myRobot->goToWall("Back",10, 100);
   // turn90Right
-
+myRobot->turnLeftAtDegre(150, 90);
   // forwardAt
+myRobot->forwardAtDistance(100, 50);
 
-  //end
+myRobot->turnRightAtDegre(150, 90);
 }
 
 
