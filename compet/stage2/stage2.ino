@@ -41,9 +41,6 @@ Adafruit_DCMotor *_motorFrontLeft = AFMS.getMotor(2);
 Adafruit_DCMotor *_motorBackRight = AFMS.getMotor(3);
 Adafruit_DCMotor *_motorBackLeft = AFMS.getMotor(4);
 
-Servo180 servoHand("servoHand", 10, false, false, false);
-Servo180 servoArm("servoArm", 9, false, false, false);
-
 MotorContinu motorFrontRight("motorFrontRight", _motorFrontRight, true, true, true);
 MotorContinu motorFrontLeft("motorFrontLeft", _motorFrontLeft, true, false, true);
 MotorContinu motorBackRight("motorBackRight", _motorBackRight, true, true, false);
@@ -65,7 +62,7 @@ int encoderPinB =  19;
 Sound mySound("melody", 30);
 LightActionner la("light", 34, 16, 50, gamma, 115200, NEO_GRBW, NEO_KHZ800);
 
-Motor* motorTab[6] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft, &servoHand, &servoArm};
+Motor* motorTab[4] = { &motorFrontRight, &motorFrontLeft, &motorBackRight, &motorBackLeft};
 Sensor* sensorTab[5] = {&ultrasonicFront, &ultrasonicBack, &ultrasonicLeft, &ultrasonicRight, &myColorSensor};
 Actioner* actionerTab[2] = {&mySound, &la};
 
@@ -115,20 +112,50 @@ void setup() {
 
 void loop() {
   // forwardAT a little bit
+  Serial.print();
+  myRobot->forwardAtDistance(100, 10);
+  delay(1000);
 
   // turn90Right
+  Serial.print();
+  myRobot->turnRightAtDegre(150, 90);
+  delay(1000);
 
   // forwardToWall
+  Serial.print();
+  myRobot->goToWall("Front", 15, 100);
+  myRobot->forwardTime(200, 15);
+  delay(1000);
+
+  // Back a little
+  Serial.print();
+  myRobot->backwardAtDistance(100,20);
+  delay(1000);
 
   // turn90Left
+  Serial.print();
+  myRobot->turnLeftAtDegre(150, 90);
+  delay(1000);
 
   // forwardToWall
-
+  Serial.print();
+  myRobot->goToWall("Front", 15, 100);
+  delay(1000);
+  
   // touchwall and backwarAt and turn90Left or turn90Left and use arm
+  Serial.print();
+  myRobot->forwardTime(200, 15);
+  delay(1000);
 
   // animations light yellow + sound piece go down
+  Serial.print();
+  myRobot->doLight(8);
+  delay(1000);
   
   // forwardAT
+  Serial.print();
+  myRobot->forwardAtDistance(100, 40);
+  delay(1000);
 
   //end
 }
