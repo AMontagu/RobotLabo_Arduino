@@ -118,22 +118,36 @@ void setup() {
 void loop() {
 
   //forwardAt
+    myRobot->forwardAtDistance(100, 10);
+    delay(1000);
 
   //delay
+    delay(3000);
 
-  //deployArm
+    for(int i=0; i< 7; i++){
+        //deployArm
+        myRobot->armDown();
+        myRobot->armUp();
 
-  // play ambiance sound
+        // play ambiance sound
+        myRobot->playSound(2);
+
+        myRobot->forwardAt(100, 100);
+        delay(1000);
+    }
+
 
   // forwardWall
-
-  // replyArm
-
-  // forwardWall
+    myRobot->goToWall("Front", 30, 100);
+    delay(1000);
 
   // turn90Left
+    myRobot->turn90Left();
+    delay(1000);
 
   // forwardAt
+    myRobot->forwardAtDistance(100, 20);
+    delay(1000);
 
   //end
 }

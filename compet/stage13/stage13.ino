@@ -118,11 +118,11 @@ void setup() {
 void loop() {
 
   //forwardAt
-    myRobot->forwardAt(100, 500);
+    myRobot->forwardAtDistance(100, 20);
     delay(1000);
 
   // bacwardAt
-    myRobot->backwardAt(100, 200);
+    myRobot->backwardAtDistance(100, 10);
     delay(1000);
 
   // turn90Left
@@ -146,7 +146,7 @@ void loop() {
     delay(1000);
 
   // forwardAt
-    myRobot->forwardAt(100, 500);
+    myRobot->forwardAtDistance(100, 20);
     delay(1000);
 
   //end
