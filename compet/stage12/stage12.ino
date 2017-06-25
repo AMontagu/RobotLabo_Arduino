@@ -117,6 +117,8 @@ void setup() {
 
 void loop() {
 
+  delay(2000);
+
   //forwardAt
     myRobot->forwardAtDistance(100, 10);
     delay(1000);
@@ -124,9 +126,9 @@ void loop() {
   //delay
     delay(3000);
 
-    for(int i=0; i< 7; i++){
+    /*for(int i=0; i< 7; i++){
         //deployArm
-        myRobot->armPosition(90, 100);
+        myRobot->armDown();
         myRobot->armUp();
 
         // play ambiance sound
@@ -134,7 +136,10 @@ void loop() {
 
         myRobot->forwardAtDistance(100, 3);
         delay(1000);
-    }
+    }*/
+
+    myRobot->armPosition(120, 120);
+    delay(500);
 
 
   // forwardWall

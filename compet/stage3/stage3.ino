@@ -134,7 +134,7 @@ void loop() {
   
   delay(1000);
   // forwardAt or followWall
-  myRobot->forwardAtDistance(150, 200);
+  myRobot->forwardAtDistance(150, 140);
 
   
   delay(1000);

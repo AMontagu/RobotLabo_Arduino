@@ -149,7 +149,7 @@ void Robot::armDown() {
     int armIndex = this->getMotorIndexWithName(this->motorArmName);
 
 
-        this->motorTab[handIndex]->move(110);
+        this->motorTab[handIndex]->move(90);
         this->motorTab[armIndex]->move(90);
 
 }
