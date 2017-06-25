@@ -111,12 +111,13 @@ void setup() {
 
 
 void loop() {
+  delay(5000);
   myRobot->forwardAtDistance(100, 10);
   myRobot->goToWall("Front", 8, 100);
   myRobot->turnLeftAtDegre(150, 90);
   myRobot->goToWall("Back", 8, 100);
   delay(3000);
-  myRobot->armDown();
+  //myRobot->armDown();
   myRobot->doLight(8);
   delay(1000);
   myRobot->forwardAtDistance(100,20);

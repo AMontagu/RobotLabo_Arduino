@@ -164,7 +164,7 @@ void loop() {
 
     delay(1000);
 
-    myRobot->forwardTime(3000);
+    myRobot->forwardTime(100, 3000);
 
     delay(100000);
     // backAt

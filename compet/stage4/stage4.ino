@@ -118,7 +118,15 @@ void loop() {
   delay(10000);
   myRobot->forwardAtDistance(100, 10);
 
-  myRobot->turnLeftAtDegre(150, 20);
+  myRobot->turnLeftAtDegre(150, 25);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 25);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 25);
 
   myRobot->forwardAtDistance(100, 15);
 
@@ -126,21 +134,27 @@ void loop() {
 
   myRobot->forwardAtDistance(100, 15);
 
-  myRobot->turnLeftAtDegre(150, 20);
-
-  myRobot->forwardAtDistance(100, 15);
-
-  myRobot->turnLeftAtDegre(150, 20);
-
-  myRobot->forwardAtDistance(100, 15);
-
-  myRobot->turnLeftAtDegre(150, 10 );
+  myRobot->turnLeftAtDegre(150, 10);
   
-  myRobot->forwardAtDistance(100, 155);
+  myRobot->forwardAtDistance(100, 115);
   
-  myRobot->forwardDifferentSpeed(150,100);
-  
-  myRobot->forwardAtDistance(100, 50);
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 10);
   
 }
 
