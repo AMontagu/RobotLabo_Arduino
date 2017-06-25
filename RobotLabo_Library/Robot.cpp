@@ -127,6 +127,7 @@ void Robot::setup()
     {
         this->actionerTab[i]->setup();
     }
+    this->armPosition(90,160);
 }
 
 void Robot::armUp(){
