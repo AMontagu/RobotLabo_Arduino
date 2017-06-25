@@ -118,13 +118,13 @@ void loop() {
   myRobot->goToWall("Front", 10, 100);
   delay(1000);
   
-  myRobot->turnRightAtDegre(150, 90);
+  myRobot->turnLeftAtDegre(150, 90);
   delay(1000);
   
-  myRobot->goToWall("Front", 20, 100);
+  myRobot->goToWall("Back", 20, 100);
   delay(1000);
   
-  myRobot->turnRightAtDegre(150, 90);
+  myRobot->turnLeftAtDegre(150, 90);
   delay(1000);
   
   myRobot->goToWall("Front", 35, 100);
