@@ -73,6 +73,7 @@ int QEM [16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};               // Quadratur
 volatile unsigned char Old0, New0;
 volatile long Position0 = 0;
 
+
 void isr(){
     int readPinA = digitalRead(encoderPinA);
     int readPinB = digitalRead(encoderPinB);
@@ -107,6 +108,7 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
+        myRobot->armPosition(90,160);
 }
 
 
