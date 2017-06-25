@@ -85,7 +85,6 @@ void isr(){
     Position0 += QEM [Old0 * 4 + New0];
 
     myRobot->setPositionRight(Position0);
-
 }
 
 void setup() {
@@ -111,24 +110,38 @@ void setup() {
 
     attachInterrupt(digitalPinToInterrupt(encoderPinA), isr, CHANGE);    //init the interrupt mode for the digital pin 2
     attachInterrupt(digitalPinToInterrupt(encoderPinB), isr, CHANGE);   //init the interrupt mode for the digital pin 3
-
-
 }
 
 
 void loop() {
   // forwardAt
   delay(10000);
-  myRobot->forwardAtDistance(100, 60);
-  // forwardAtDifferentSpeed
-  myRobot->forwardDifferentSpeed(150,100);
-  // forwardAt
+  myRobot->forwardAtDistance(100, 10);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 20);
+
+  myRobot->forwardAtDistance(100, 15);
+
+  myRobot->turnLeftAtDegre(150, 10 );
+  
   myRobot->forwardAtDistance(100, 155);
-  // forwardAtDifferentSpeed
+  
   myRobot->forwardDifferentSpeed(150,100);
-  // forwardAt
+  
   myRobot->forwardAtDistance(100, 50);
-  //end
+  
 }
 
 
